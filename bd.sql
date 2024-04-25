@@ -1,7 +1,7 @@
 CREATE DATABASE app;
 USE app;
 
-/*Criação das tabelas*/
+/* Criação das tabelas */
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 );
 
 CREATE TABLE IF NOT EXISTS `desaparecidos` (
-	`id` int AUTO_INCREMENT NOT NULL UNIQUE DEFAULT '0',
+	`id` int AUTO_INCREMENT ,
 	`nome_desaparecido` varchar(50) NOT NULL,
 	`nome_social` varchar(50) NOT NULL,
 	`idade` int NOT NULL,
@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS `desaparecidos` (
 );
 
 CREATE TABLE IF NOT EXISTS `banidos` (
-	`user_id` int AUTO_INCREMENT NOT NULL UNIQUE,
-	PRIMARY KEY (`user_id`)
+	`usuario_id` int AUTO_INCREMENT,
+	PRIMARY KEY (`usuario_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `contatos` (
-	`id` int AUTO_INCREMENT NOT NULL UNIQUE DEFAULT '0',
+	`id` int AUTO_INCREMENT ,
 	`numero` int NOT NULL,
 	`desaparecido_id` int NOT NULL,
 	PRIMARY KEY (`id`)
@@ -45,6 +45,7 @@ ALTER TABLE `desaparecidos` ADD CONSTRAINT `desaparecidos_fk11` FOREIGN KEY (`us
 ALTER TABLE `banidos` ADD CONSTRAINT `banidos_fk0` FOREIGN KEY (`user_id`) REFERENCES `usuarios`(`id`);
 ALTER TABLE `contatos` ADD CONSTRAINT `contatos_fk2` FOREIGN KEY (`desaparecido_id`) REFERENCES `desaparecidos`(`id`);
 
+/* Populando o Banco de dados */
 -- Inserindo usuários
 INSERT INTO usuarios (nome, email, senha, telefone) VALUES
 ('João', 'joao@example.com', 'senha123', 123456789),
@@ -71,4 +72,22 @@ INSERT INTO contatos (numero, desaparecido_id) VALUES
 (888888888, 4),
 (999999999, 5),
 (1010101010, 5);
+
+
+
+
+/* selecionando dados */
+ -- usuarios
+SELECT * FROM usuarios;
+-- um derteminado usuario 
+SELECT nome,email,senha  FROM usuarios  WHERE id= 1; 
+
+-- verificando se esta banido 
+SELECT u.*
+FROM usuarios AS u
+LEFT JOIN banidos AS b ON u.id = b.usuario_id
+WHERE u.id = 1 AND b.usuario_id =1;
+
+-- desaoarecidos de um usuarios
+SELECT desaparecidos.* FROM usuarios LEFT  JOIN  desaparecidos ON desaparecidos.usuario_id = usuarios.id WHERE usuarios.id =  1 ;
 
