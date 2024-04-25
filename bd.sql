@@ -46,10 +46,9 @@ CREATE TABLE IF NOT EXISTS `banidos` (
 
 /*DELETANDO TABELA*/
 DROP TABLE `banidos`;
-DROP TABLE `usuarios`;
 DROP TABLE `desaparecidos`;
 DROP TABLE `contatos`;
-
+DROP TABLE `usuarios`;
 /*Descrição das tabelas*/
 DESCRIBE `usuarios`;
 DESCRIBE `desaparecidos`;
@@ -63,6 +62,9 @@ SELECT * FROM `banidos`;
 SELECT * FROM `contatos`;
 
 /*com seu relacionamento*/
+SELECT emial
+FROM desaparecidos
+INNER JOIN usuarios ON desaparecidos.user_id = usuarios.id;
 
 /*populando banco de dados*/
 /*usuarios*/
@@ -80,10 +82,3 @@ DELETE FROM `usuarios`;
 DELETE FROM `desaparecidos`;
 DELETE FROM `banidos`;
 DELETE FROM `contatos`;
-
-/*adicinamento das restrições com foreing key */
-ALTER TABLE `usuarios` ADD CONSTRAINT `usuarios_fk5` FOREIGN KEY (`desaparecido_id`) REFERENCES `desaparecidos`(`id`);
-ALTER TABLE `usuarios` ADD CONSTRAINT email UNIQUE (email);
-ALTER TABLE `desaparecidos` ADD CONSTRAINT `desaparecidos_fk1` FOREIGN KEY (`contato_id`) REFERENCES `contatos`(`id`);
-ALTER TABLE `banidos` ADD CONSTRAINT `banidos_fk0` FOREIGN KEY (`user_id`) REFERENCES `usuarios`(`id`);
-
