@@ -28,10 +28,7 @@ CREATE TABLE IF NOT EXISTS `desaparecidos` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `banidos` (
-	`usuario_id` int AUTO_INCREMENT,
-	PRIMARY KEY (`usuario_id`)
-);
+
 
 CREATE TABLE IF NOT EXISTS `contatos` (
 	`id` int AUTO_INCREMENT ,
@@ -42,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `contatos` (
 
 
 ALTER TABLE `desaparecidos` ADD CONSTRAINT `desaparecidos_fk11` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`);
-ALTER TABLE `banidos` ADD CONSTRAINT `banidos_fk0` FOREIGN KEY (`user_id`) REFERENCES `usuarios`(`id`);
 ALTER TABLE `contatos` ADD CONSTRAINT `contatos_fk2` FOREIGN KEY (`desaparecido_id`) REFERENCES `desaparecidos`(`id`);
 
 /* Populando o Banco de dados */
@@ -83,10 +79,8 @@ SELECT * FROM usuarios;
 SELECT nome,email,senha  FROM usuarios  WHERE id= 1; 
 
 -- verificando se esta banido 
-SELECT u.*
-FROM usuarios AS u
-LEFT JOIN banidos AS b ON u.id = b.usuario_id
-WHERE u.id = 1 AND b.usuario_id =1;
+SELECT usuarios
+FROM usuarios WHERE id = 1 AND esta_banido = true;
 
 -- desaoarecidos de um usuarios
 SELECT desaparecidos.* FROM usuarios LEFT  JOIN  desaparecidos ON desaparecidos.usuario_id = usuarios.id WHERE usuarios.id =  1 ;
