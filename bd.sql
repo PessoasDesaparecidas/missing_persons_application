@@ -1,73 +1,56 @@
-CREATE DATABASE app;
-USE app;
+CREATE DATABASE tcc;
+USE tcc;
 
 /* Criação das tabelas */
+DROP TABLE Usuario;
+DROP TABLE Desaparecido;
 
 CREATE TABLE IF NOT EXISTS `Usuario` (
-	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
-	`nome` varchar(50) NOT NULL,
-	`email` varchar(50) NOT NULL,
-	`senha` varchar(20) NOT NULL,
-	`telefone` int NOT NULL,
-	PRIMARY KEY (`id`)
+	`id_usuario` INT AUTO_INCREMENT,
+	`nome_usuario` VARCHAR(50) NOT NULL,
+	`email_usuario` VARCHAR(50) NOT NULL UNIQUE,
+	`senha_usuario` VARCHAR(20) NOT NULL,
+    `esta_banido` BOOLEAN  DEFAULT True,
+	PRIMARY KEY (`id_usuario`)
 );
 
 CREATE TABLE IF NOT EXISTS `Desaparecido` (
-	`id` int AUTO_INCREMENT ,
+	`id_desaparecido` INT  AUTO_INCREMENT ,
+    `id_usuario` INT,
 	`nome_desaparecido` varchar(50) NOT NULL,
-	`nome_social` varchar(50) NOT NULL,
-	`idade` int NOT NULL,
-	`foto` int NOT NULL,
-	`genero` varchar(15) NOT NULL,
-	`caracteristica` varchar(255) NOT NULL,
-	`visto_por_ultimo` date NOT NULL,
-	`historia` text NOT NULL,
-	`regiao` char(20) NOT NULL,
-	`esta_desaparecido` boolean NOT NULL DEFAULT true,
-	`usuario_id` int,
-	PRIMARY KEY (`id`)
+	`foto_desaparecido` BLOB NOT NULL,
+    `contato_desaparecido` INT NOT NULL,
+    `observacao_desaparecido` TEXT NOT NULL,
+    `data_nascimento` DATE NOT NULL,
+    `local_desaparecimento` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`id_desaparecido`),
+    foreign key (`id_usuario`) REFERENCES `Usuario`(`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
-
-CREATE TABLE IF NOT EXISTS `Contato` (
-	`id` int AUTO_INCREMENT ,
-	`numero` int NOT NULL,
-	`desaparecido_id` int NOT NULL,
-	PRIMARY KEY (`id`)
-);
 
 
 ALTER TABLE `Desaparecido` ADD CONSTRAINT `desaparecido_fk11` FOREIGN KEY (`usuario_id`) REFERENCES `usuario`(`id`);
 ALTER TABLE `Contato` ADD CONSTRAINT `contato_fk2` FOREIGN KEY (`desaparecido_id`) REFERENCES `desaparecido`(`id`);
 
 /* Populando o Banco de dados */
--- Inserindo usuários
-INSERT INTO Usuario (nome, email, senha, telefone) VALUES
-('João', 'joao@example.com', 'senha123', 123456789),
-('Maria', 'maria@example.com', 'senha456', 987654321),
-('Pedro', 'pedro@example.com', 'senha789', 111223344);
 
--- Inserindo desaparecido
-INSERT INTO Desaparecido (nome_desaparecido, nome_social, idade, foto, genero, caracteristica, visto_por_ultimo, historia, regiao, esta_desaparecido, usuario_id) VALUES
-('Fernanda', 'Fernanda Silva', 20, 1, 'Feminino', 'Cabelo preto, olhos castanhos', '2024-01-15', 'Fernanda desapareceu enquanto voltava para casa do trabalho.', 'Zona Sul', true, 1),
-('Carlos', 'Carlos Oliveira', 25, 2, 'Masculino', 'Altura média, cabelo curto', '2024-02-20', 'Carlos desapareceu após uma briga de bar.', 'Zona Oeste', true, 1),
-('Ana', 'Ana Santos', 18, 3, 'Feminino', 'Cabelo ruivo, sardas no rosto', '2024-03-10', 'Ana desapareceu durante uma festa de aniversário.', 'Zona Leste', true, 2),
-('Mariana', 'Mariana Lima', 22, 4, 'Feminino', 'Cabelo loiro, olhos verdes', '2024-01-05', 'Mariana desapareceu depois de uma discussão com o namorado.', 'Zona Norte', true, 2),
-('Roberto', 'Roberto Souza', 30, 5, 'Masculino', 'Tatuagem no braço direito', '2024-02-15', 'Roberto desapareceu após sair para uma caminhada.', 'Centro', true, 3);
+-- Populando a tabela Usuario
+INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, esta_banido)
+VALUES
+    ('João Silva', 'joao.silva@email.com', '123456', False),
+    ('Maria Santos', 'maria.santos@email.com', 'senha123', False),
+    ('Carlos Oliveira', 'carlos.oliveira@email.com', 'minhasenha', True);
 
--- Inserindo contato
-INSERT INTO Contato (numero, desaparecido_id) VALUES
-(111111111, 1),
-(222222222, 1),
-(333333333, 2),
-(444444444, 2),
-(555555555, 3),
-(666666666, 3),
-(777777777, 4),
-(888888888, 4),
-(999999999, 5),
-(1010101010, 5);
+-- Populando a tabela Desaparecido
+INSERT INTO Desaparecido (id_usuario, nome_desaparecido, foto_desaparecido, contato_desaparecido, observacao_desaparecido, data_nascimento, local_desaparecimento)
+VALUES
+    (1, 'Ana Silva', 'ImagemB64aqui', 123456789, 'Descrição do desaparecimento...', '1990-05-15', 'Cidade A'),
+    (2, 'Pedro Santos', 'ImagemB64aqui', 987654321, 'Outra descrição...', '1985-10-20', 'Cidade B'),
+    (3, 'Fernanda Oliveira', 'ImagemB64aqui', 555555555, 'Mais uma descrição...', '2000-03-25', 'Cidade C'),
+	(1, 'Ana julia', 'ImagemB64aqui', 123456784, 'Descrição do desaparecimento...', '1990-05-15', 'Cidade A'),
+    (2, 'João pedro', 'ImagemB64aqui', 987654325, 'Outra descrição...', '1985-10-20', 'Cidade B'),
+    (3, 'Fernanda dias', 'ImagemB64aqui', 555555554, 'Mais uma descrição...', '2000-03-25', 'Cidade C');
 
 
 
@@ -76,11 +59,34 @@ INSERT INTO Contato (numero, desaparecido_id) VALUES
  -- usuario
 SELECT * FROM Usuario;
 -- um derteminado usuario 
-SELECT nome,email,senha  FROM usuario  WHERE id= 1; 
+SELECT nome_usuario,email_usuario,senha_usuario  FROM Usuario  WHERE id_usuario= 1; 
 
 -- verificando se esta banido 
-SELECT nome,email,senha
-FROM Usuario WHERE id = 1 AND esta_banido = true;
+SELECT nome_usuario,email_usuario,senha_usuario  FROM Usuario  
+WHERE id_usuario= 1 AND esta_banido = FALSE;
 
 -- usuario com seu desaparecidos
-SELECT Desaparecido.* FROM Usuario LEFT  JOIN  Desaparecido ON Desaparecido.usuario_id = Usuario.id WHERE Usuario.id =  1 ;
+
+SELECT Desaparecido.*  FROM Usuario LEFT  JOIN  Desaparecido 
+ON Desaparecido.id_usuario = Usuario.id_usuario 
+WHERE Usuario.id_usuario =  1 AND Usuario.esta_banido=FALSE;
+
+SELECT * FROM Desaparecido;
+
+-- deletar 
+
+DELETE FROM Usuario WHERE id_usuario = 3;
+DELETE FROM Desaparecido WHERE id_usuario = 3;
+
+
+-- atualizar 
+
+UPDATE Usuario 
+SET nome_usuario = "Henry"
+WHERE id_usuario = 1;
+
+UPDATE Desaparecido 
+SET nome_desaparecido = "fulano"
+WHERE id_desaparecido = 1;
+
+
