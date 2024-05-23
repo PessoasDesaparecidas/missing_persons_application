@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS Usuario (
 CREATE TABLE IF NOT EXISTS Desaparecido (
 	id_desaparecido INT  AUTO_INCREMENT ,
     id_usuario INT,
-	nome_desaparecido varchar(50) NOT NULL,
-	foto_desaparecido BLOB NOT NULL,
+	nome_desaparecido VARCHAR(50) NOT NULL,
+	foto_desaparecido VARCHAR(255) NOT NULL,
     contato_desaparecido INT NOT NULL,
     observacao_desaparecido TEXT NOT NULL,
     data_nascimento DATE NOT NULL,
@@ -86,8 +86,3 @@ WHERE id_usuario = 1;
 UPDATE Desaparecido 
 SET nome_desaparecido = "fulano"
 WHERE id_desaparecido = 1;
-
-
-
-
-
