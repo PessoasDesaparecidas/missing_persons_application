@@ -1,15 +1,15 @@
 <?php
-$username = "henry";
-$password = "Hfra2006";
+$username = "root";
+$password = "1234";
 $database = "tcc";
-$host = "localhost";
+$host = "localhost:3312";
 $connection = new mysqli($host, $username, $password, $database);
 
-if($connection -> error){
-    die("falha ao conectar o banco de dados".$connection->error);
+if ($connection->error) {
+    die("falha ao conectar o banco de dados" . $connection->error);
 }
 
-$create_user_table="CREATE TABLE IF NOT EXISTS Usuario (
+$create_user_table = "CREATE TABLE IF NOT EXISTS Usuario (
     id_usuario INT AUTO_INCREMENT,
     nome_usuario VARCHAR(50) NOT NULL,
     email_usuario VARCHAR(50) NOT NULL UNIQUE,
@@ -18,7 +18,7 @@ $create_user_table="CREATE TABLE IF NOT EXISTS Usuario (
    PRIMARY KEY (id_usuario)
 );";
 
-$create_missing_persons_table ="CREATE TABLE IF NOT EXISTS Desaparecido (
+$create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
    id_desaparecido INT  AUTO_INCREMENT ,
    id_usuario INT,
    nome_desaparecido varchar(50) NOT NULL,
@@ -35,5 +35,3 @@ $create_missing_persons_table ="CREATE TABLE IF NOT EXISTS Desaparecido (
 
 $connection->query($create_user_table);
 $connection->query($create_missing_persons_table);
-
-?>

@@ -1,6 +1,7 @@
-<?php 
+<?php
 session_start();
 include './database/database-connection.php'
+
 ?>
 
 <!DOCTYPE html>
@@ -34,18 +35,17 @@ include './database/database-connection.php'
         <!-- <li><a href="logout.php"> logout </a></li> -->
     </header>
 
-    <div>
-        <!--tela ou caixa de login-->
-        <?php 
-    include'./components/form-login.php';
-    ?>
-
-        <!--tela ou caixa de cadastro-->
-
-        <?php 
-    include'./components/form-register.php';
-    ?>
+    <div class="wrapper">
+        <!-- tela de login -->
+        <?php
+        include './components/form-login.php'
+        ?>
+        <!--tela cadastro-->
+        <?php
+        include './components/form-register.php'
+        ?>
     </div>
+
     <section>
 
         <div class="content">
@@ -57,14 +57,12 @@ include './database/database-connection.php'
                     elit. Placeat soluta ad nobis facilis quidem eum, culpa blanditiis suscipit accusantium perspiciatis
                     voluptate fugiat, eos autem facere laudantium deleniti debitis voluptatem nam. </p>
                 <br />
-                <p>Conhece alguém que desapareceu? <a style="color: black; cursor: pointer;"
-                        href="cadastrodesp.php">Cadastre aqui!</a></p>
+                <p>Conhece alguém que desapareceu? <a style="color: black; cursor: pointer;" href="cadastrodesp.php">Cadastre aqui!</a></p>
                 <br />
                 <div class="box">
                     <form method="GET" action="">
                         <div class="search-container">
-                            <input type="text" name="pesquisar" class="search-input"
-                                placeholder="O que você procura...">
+                            <input type="text" name="pesquisar" class="search-input" placeholder="O que você procura...">
                             <button class="search-button">Buscar</button>
                             <button class="filter-button">Filtrar</button>
                         </div>
