@@ -1,13 +1,8 @@
 <?php
 session_start();
-$_SESSION['errors'] = '';
 include './database/database-connection.php';
-
-if (empty($_POST['email']) || empty($_POST['senha'])) {
-    header('Location: index.php');
-    exit();
-}
-
+if(isset($_POST['btn-login'])){
+    
 $email = mysqli_real_escape_string($connection, $_POST['email']);
 $senha = mysqli_real_escape_string($connection, $_POST['senha']);
 
@@ -18,12 +13,14 @@ $result = mysqli_query($connection, $query);
 $row = mysqli_num_rows($result);
 if ($row == 1) {
     $user = $result->fetch_assoc();
-    $_SESSION['id_usuario'] = $user['id_usuario'];
-    header('Location: index.php');
-    exit();
+    $_SESSION['id_user'] = $user['id_usuario'];
+    $_SESSION['errors'] = '';
+   
 } else {
     $_SESSION['errors'] = 'Usuario invalido';
-    header('Location: index.php');
-    exit();
+    $_SESSION['id_user'] = '';
 }
+}
+header('Location: index.php');
+
 ?>

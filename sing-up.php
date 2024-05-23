@@ -1,28 +1,31 @@
 <?php
 session_start();
-
-
 include './database/database-connection.php';
+  if (isset($_POST['submit-form-register'])) {
+    $name = $_POST['nome'];
+    $email = $_POST['email'];
+    $password = $_POST['senha'];
 
-$email = mysqli_real_escape_string($connection, trim($_POST['email']));
-$usuario = mysqli_real_escape_string($connection, trim($_POST['nome']));
-$senha = mysqli_real_escape_string($connection, trim($_POST['senha']));
+    if (!empty($email) || !empty($name) || !empty($password)) {
 
-$sql = "select count(*) as total from Usuario where nome_usuario = '$usuario'";
-$result = mysqli_query($connection, $sql);
-$row = mysqli_fetch_assoc($result);
+      $query = "SELECT * FROM Usuario WHERE email_usuario = '{$email}'";
+      $result = mysqli_query($connection, $query);
+      $existing_user = mysqli_num_rows($result);
 
-if ($row['total'] == 1) {
-    $_SESSION['usuario_existe'] = true;
-    header('Location: index.php');
-    exit;
-}
+      if (!$existing_user) {
+        $query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
+        VALUES('{$name}', '{$email}', '{$password}', False)";
 
-$sql = "INSERT INTO Usuario (email_usuario, nome_usuario, senha_usuario) VALUES ('$email', '$usuario', '$senha')";
+        $result = mysqli_query($connection, $query);
 
-if ($connection->query($sql) === TRUE) {
-    $_SESSION['status_cadastro'] = true;
-}
-$connection->close();
-header('Location: #register');
-exit;
+        if ($result) {
+          echo "<script>
+            alert('user cadastrado')
+          </script>";
+        }
+      }
+    }
+  }
+  header('Location: index.php');
+
+  ?>
