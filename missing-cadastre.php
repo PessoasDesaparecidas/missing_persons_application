@@ -27,7 +27,7 @@ include './database/database-connection.php';
             Cadastro de pessoas desaparecidos
         </h1>
 
-        <form action="missing-cadastre-action.php" method="POST" class="form-register-missing">
+        <form action="missing-cadastre-action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
 
             <div class="form-control">
                 <label for="nome_desaparecido">nome :</label>
@@ -35,8 +35,8 @@ include './database/database-connection.php';
             </div>
 
             <div class="form-control">
-                <label for="foto_desaparecido">foto:</label>
-                <input type="file" name="foto_desaparecido" id="foto_desaparecido" required>
+                <label for="exampleFormControlInput1" class="form-label">Foto</label>
+                <input type="file" class="form-control" id="exampleFormControlInput1" name="imagem" accept="image/*">
             </div>
 
             <div class="form-control">

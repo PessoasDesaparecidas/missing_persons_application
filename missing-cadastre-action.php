@@ -32,4 +32,15 @@ if (isset($_POST['btn-cdastre-missing'])) {
   echo " local_desaparecimento <br>";
   print_r($local_desaparecimento);
   echo "<br>";
+
+  //Salvando a imagem 
+  $extensao = strtolower(substr($_FILE['imagem']['name'], -4));
+  $novo_nome = md5(time()) . $extensao;
+  $diretorio = "./assets/uploads/";
+  move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $novo_nome);
+
+
+  echo "novo nome:";
+  print_r($novo_nome);
+  echo "<br>";
 }
