@@ -12,6 +12,8 @@ include './database/database-connection.php';
     <title>cadastro de desaparecidos</title>
     <link rel="icon" href="./assets/images/favicon.png">
     <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
+    <link rel="stylesheet" href="./assets/styles/index.css">
+
 </head>
 
 <body>
@@ -29,6 +31,12 @@ include './database/database-connection.php';
 
         <form action="missing-cadastre-action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
 
+            <img src="" alt="" id="missing-image" style="
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            object-fit: cover;">
+
             <div class="form-control">
                 <label for="nome_desaparecido">nome :</label>
                 <input type="text" name="nome_desaparecido" id="nome_desaparecido" required>
@@ -38,6 +46,8 @@ include './database/database-connection.php';
                 <label for="exampleFormControlInput1" class="form-label">Foto</label>
                 <input type="file" class="form-control" id="exampleFormControlInput1" name="imagem" accept="image/*">
             </div>
+
+
 
             <div class="form-control">
                 <label for="contato_desaparecido">contato:</label>
@@ -94,6 +104,7 @@ include './database/database-connection.php';
     <script src=" ./assets/javascript/handle-form-user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="./assets/javascript/handler-image-missing-in-form-register.js" defer></script>
 </body>
 
 </html>

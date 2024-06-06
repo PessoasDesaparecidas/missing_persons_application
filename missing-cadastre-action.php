@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-$id_usuario = $_SESSION['id_user'] ? $_SESSION['id_user'] : "não temos id do usuario";
-echo  $id_usuario;
-
+$usuario_id = $_SESSION['id_user'] ?? '';
+if ($usuario_id) {
+  header('Location: index.php');
+}
 
 
 if (isset($_POST['btn-cdastre-missing'])) {
