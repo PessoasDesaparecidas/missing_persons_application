@@ -11,6 +11,7 @@ include './database/database-connection.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuscaSolidária</title>
     <link rel="icon" href="./assets/images/favicon.png">
+    <link rel="stylesheet" href="./assets/styles/globals.css">
     <link rel="stylesheet" href="./assets/styles/index.css">
     <link rel="stylesheet" href="./assets/styles/form-user.css">
 </head>
@@ -19,29 +20,29 @@ include './database/database-connection.php';
 
     <!-- navbar -->
     <?php
-    include'./components/header.php';
+    include './components/header.php';
     ?>
 
     <!-- validação -->
-    <?php if ($_SESSION['id_user']): ?>
+    <?php if ($_SESSION['id_user']) : ?>
 
-    <?php 
+        <?php
         echo  $_SESSION['id_user'];
         echo $_SESSION['message'];
-    ?>
+        ?>
 
-    <?php else:?>
-    <div class="wrapper">
-        <!-- tela de login -->
-        <?php
-        include './components/form-sing-in.php'
-        ?>
-        <!--tela cadastro-->
-        <?php
-        include './components/form-sing-up.php'
-        ?>
-    </div>
-    <?php endif?>
+    <?php else : ?>
+        <div class="wrapper">
+            <!-- tela de login -->
+            <?php
+            include './components/form-sing-in.php'
+            ?>
+            <!--tela cadastro-->
+            <?php
+            include './components/form-sing-up.php'
+            ?>
+        </div>
+    <?php endif ?>
 
 
     <section>
@@ -55,14 +56,12 @@ include './database/database-connection.php';
                     elit. Placeat soluta ad nobis facilis quidem eum, culpa blanditiis suscipit accusantium perspiciatis
                     voluptate fugiat, eos autem facere laudantium deleniti debitis voluptatem nam. </p>
                 <br />
-                <p>Conhece alguém que desapareceu? <a style="color: black; cursor: pointer;"
-                        href="cadastrodesp.php">Cadastre aqui!</a></p>
+                <p>Conhece alguém que desapareceu? <a style="color: black; cursor: pointer;" href="cadastrodesp.php">Cadastre aqui!</a></p>
                 <br />
                 <div class="box">
                     <form method="GET" action="">
                         <div class="search-container">
-                            <input type="text" name="pesquisar" class="search-input"
-                                placeholder="O que você procura...">
+                            <input type="text" name="pesquisar" class="search-input" placeholder="O que você procura...">
                             <button class="search-button">Buscar</button>
                             <button class="filter-button">Filtrar</button>
                         </div>
@@ -141,8 +140,8 @@ include './database/database-connection.php';
     </section>
 
     <!-- rodapé -->
-    <?php 
-        include './components/footer.php'
+    <?php
+    include './components/footer.php'
     ?>
     <!-- javascript -->
     <script src="./assets/javascript/handle-form-user.js"></script>

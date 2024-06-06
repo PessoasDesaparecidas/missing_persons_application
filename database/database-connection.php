@@ -1,6 +1,6 @@
 <?php
-$username = "henry";
-$password = "Hfra2006";
+$username = "root";
+$password = "1234";
 $database = "tcc";
 $host = "localhost";
 $connection = new mysqli($host, $username, $password, $database);
@@ -21,7 +21,7 @@ $create_user_table = "CREATE TABLE IF NOT EXISTS Usuario (
 $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
    id_desaparecido INT  AUTO_INCREMENT ,
    id_usuario INT,
-   nome_desaparecido varchar(50) NOT NULL,
+   nome_desaparecido VARCHAR(50) NOT NULL,
    foto_desaparecido VARCHAR(255) NOT NULL,
    contato_desaparecido INT NOT NULL,
    observacao_desaparecido TEXT NOT NULL,
