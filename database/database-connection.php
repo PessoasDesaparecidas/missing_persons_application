@@ -23,7 +23,7 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
    id_usuario INT,
    nome_desaparecido VARCHAR(50) NOT NULL,
    foto_desaparecido VARCHAR(255) NOT NULL,
-   contato_desaparecido INT NOT NULL,
+   contato_desaparecido VARCHAR(255) NOT NULL,
    observacao_desaparecido TEXT NOT NULL,
    data_nascimento DATE NOT NULL,
    data_desaparecimento DATE NOT NULL,

@@ -31,7 +31,7 @@ include './database/database-connection.php';
 
         <form action="missing-cadastre-action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
 
-            <img src="./assests/images/missing-image-example-form.jpg" alt="" id="missing-image" style="
+            <img src="./assets/images/missing-image-example-form.jpg" alt="" id="missing-image" style="
             width: 100px;
             height: 100px;
             border-radius: 100%;

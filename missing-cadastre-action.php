@@ -1,9 +1,11 @@
 <?php
 session_start();
-
+include './database/database-connection.php';
 $usuario_id = $_SESSION['id_user'] ?? '';
 
-echo "id usuario = " + $usuario_id;
+if (!$usuario_id) {
+  header('Location: index.php');
+}
 
 if (isset($_POST['btn-cdastre-missing'])) {
 
@@ -21,12 +23,18 @@ if (isset($_POST['btn-cdastre-missing'])) {
 
 
 
-  echo "
-<pre>";
   $query = "INSERT INTO Desaparecido 
 (id_usuario, nome_desaparecido, foto_desaparecido, contato_desaparecido, observacao_desaparecido, data_desaparecimento ,data_nascimento, local_desaparecimento)
 VALUES
-    (, '$nome_desaparecido', '$foto_desaparecido', '$contato_desaparecido', '$observacao_desaparecido','$data_desaparecimento', '$data_nascimento', '$local_desaparecimento')";
+    ('$usuario_id', '$nome_desaparecido', '$foto_desaparecido', '$contato_desaparecido', '$observacao_desaparecido','$data_desaparecimento', '$data_nascimento', '$local_desaparecimento')";
+  echo "<pre>" . $query . "</pre>";
+  $result = $connection->query($query);
+  if ($result == 1) {
+    header('Location: missings-dashboard.php');
+  } else {
+    // TODO:error message
+    header('Location: index.php');
+  }
+} else {
+  header('Location: index.php');
 }
-print_r($query);
-echo "</pre>";

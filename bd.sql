@@ -75,7 +75,7 @@ SELECT * FROM Desaparecido;
 
 DELETE FROM Usuario WHERE id_usuario = 3;
 DELETE FROM Desaparecido WHERE id_usuario = 3;
-
+DELETE FROM `desaparecido` WHERE `desaparecido`.`id_desaparecido` = 3
 
 -- atualizar 
 
