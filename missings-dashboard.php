@@ -13,8 +13,9 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cadastro de desaparecidos</title>
   <link rel="icon" href="./assets/images/favicon.png">
-  <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
-  <link rel="stylesheet" href="./assets/styles/index.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./assets/styles/globals.css">
+  <link rel="stylesheet" href="./assets/styles/missing-dashboard.css">
 
 </head>
 
@@ -29,8 +30,8 @@ session_start();
 
   <main>
     <h1>meus desaparecidos </h1>
-    <ul>
-      <li>
+    <ul class="link-list">
+      <li class="link-item">
         <a href="./missing-cadastre.php">
           cadastro
         </a>

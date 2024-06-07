@@ -12,7 +12,7 @@ include './database/database-connection.php';
     <title>cadastro de desaparecidos</title>
     <link rel="icon" href="./assets/images/favicon.png">
     <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
-    <link rel="stylesheet" href="./assets/styles/index.css">
+    <link rel="stylesheet" href="./assets/styles/globals.css">
 
 </head>
 
@@ -31,7 +31,7 @@ include './database/database-connection.php';
 
         <form action="missing-cadastre-action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
 
-            <img src="" alt="" id="missing-image" style="
+            <img src="./assests/images/missing-image-example-form.jpg" alt="" id="missing-image" style="
             width: 100px;
             height: 100px;
             border-radius: 100%;
