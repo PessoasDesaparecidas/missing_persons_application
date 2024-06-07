@@ -1,8 +1,6 @@
 <?php
 session_start();
 include './database/database-connection.php';
-session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +18,6 @@ session_start();
 </head>
 
 <body>
-
   <!-- navbar -->
   <?php
   include './components/header.php';
@@ -37,6 +34,10 @@ session_start();
         </a>
       </li>
     </ul>
+    <section>
+      <?php
+      ?>
+    </section>
   </main>
 
   <!-- rodapé -->
