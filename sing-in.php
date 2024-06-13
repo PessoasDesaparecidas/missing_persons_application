@@ -1,26 +1,22 @@
 <?php
 session_start();
 include './database/database-connection.php';
-if(isset($_POST['btn-login'])){
-    
-$email = mysqli_real_escape_string($connection, $_POST['email']);
-$senha = mysqli_real_escape_string($connection, $_POST['senha']);
+if (isset($_POST['btn-login'])) {
 
-$query = "SELECT id_usuario, email_usuario FROM Usuario WHERE email_usuario = '{$email}' AND senha_usuario = '{$senha}'";
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
+    $senha = mysqli_real_escape_string($connection, $_POST['senha']);
 
-$result = mysqli_query($connection, $query);
+    $query = "SELECT id_usuario, email_usuario FROM Usuario WHERE email_usuario = '{$email}' AND senha_usuario = '{$senha}'";
 
-$row = mysqli_num_rows($result);
-if ($row == 1) {
-    $user = $result->fetch_assoc();
-    $_SESSION['id_user'] = $user['id_usuario'];
-    $_SESSION['errors'] = '';
-   
-} else {
-    $_SESSION['errors'] = 'Usuario invalido';
-    $_SESSION['id_user'] = '';
+    $result = mysqli_query($connection, $query);
+
+    $row = mysqli_num_rows($result);
+    if ($row == 1) {
+        $user = $result->fetch_assoc();
+        $_SESSION['id_user'] = $user['id_usuario'];
+        $_SESSION['errors'] = '';
+    } else {
+        $_SESSION['errors'] = 'Usuario invalido';
+        $_SESSION['id_user'] = '';
+    }
 }
-}
-header('Location: index.php');
-
-?>
