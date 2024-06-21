@@ -1,26 +1,28 @@
 <div>
     <!--tela ou caixa de login-->
     <?php
+    if (isset($_POST['submit-form-login'])) {
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $password = filter_var($_POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-  if (isset($_POST['submit-form-login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+        if (!empty($email) || !empty($password)) {
+            $query = "select id_usuario, email_usuario from Usuario where email_usuario = '{$email}' and senha_usuario =  ('{$password}')";
 
-    if (!empty($_POST['email']) || !empty($_POST['password'])) {
-      $query = "select id_usuario, email_usuario from Usuario where email_usuario = '{$email}' and senha_usuario =  ('{$password}')";
+            $result = mysqli_query($connection, $query);
 
-      $result = mysqli_query($connection, $query);
+            $existing_user = mysqli_num_rows($result);
 
-      $existing_user = mysqli_num_rows($result);
+            if ($existing_user) {
+                $_SESSION['user_id'] = $existing_user['id_usuario'];
 
-      if ($existing_user) {
-        $_SESSION['user_id'] = $existing_user['id_usuario'];
-
-        echo 'user existente';
-      }
+                echo 'user existente';
+            }
+        } else {
+            // TODO:tratativa de erros de validação
+        }
     }
-  }
-  ?>
+
+    ?>
 
     <div class="wrapper">
         <span class="icon-close">
@@ -55,30 +57,30 @@
     <!--tela ou caixa de cadastro-->
 
     <?php
-  if (isset($_POST['submit-form-register'])) {
-    $name = $_POST['nome'];
-    $email = $_POST['email'];
-    $password = $_POST['senha'];
+    if (isset($_POST['submit-form-register'])) {
+        $name = $_POST['nome'];
+        $email = $_POST['email'];
+        $password = $_POST['senha'];
 
-    if (!empty($email) || !empty($name) || !empty($password)) {
+        if (!empty($email) || !empty($name) || !empty($password)) {
 
-      $query = "SELECT * FROM Usuario WHERE email_usuario = '{$email}'";
-      $result = mysqli_query($connection, $query);
-      $existing_user = mysqli_num_rows($result);
+            $query = "SELECT * FROM Usuario WHERE email_usuario = '{$email}'";
+            $result = mysqli_query($connection, $query);
+            $existing_user = mysqli_num_rows($result);
 
-      if (!$existing_user) {
-        $query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
+            if (!$existing_user) {
+                $query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
         VALUES('{$name}', '{$email}', '{$password}', False)";
 
-        $result = mysqli_query($connection, $query);
+                $result = mysqli_query($connection, $query);
 
-        if ($result) {
-          echo 'user cadastrado';
+                if ($result) {
+                    echo 'user cadastrado';
+                }
+            }
         }
-      }
     }
-  }
-  ?>
+    ?>
 
     <div class="form-box register" id="register">
         <h2>Cadastro</h2>
