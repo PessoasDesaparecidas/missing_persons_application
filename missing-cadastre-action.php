@@ -27,12 +27,14 @@ if (isset($_POST['btn-cdastre-missing'])) {
 (id_usuario, nome_desaparecido, foto_desaparecido, contato_desaparecido, observacao_desaparecido, data_desaparecimento ,data_nascimento, local_desaparecimento)
 VALUES
     ('$usuario_id', '$nome_desaparecido', '$foto_desaparecido', '$contato_desaparecido', '$observacao_desaparecido','$data_desaparecimento', '$data_nascimento', '$local_desaparecimento')";
+
   echo "<pre>" . $query . "</pre>";
+
   $result = $connection->query($query);
   if ($result == 1) {
     header('Location: missings-dashboard.php');
   } else {
-    // TODO:error message
+
     header('Location: index.php');
   }
 } else {
