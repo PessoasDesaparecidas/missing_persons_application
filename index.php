@@ -23,14 +23,12 @@ include './database/database-connection.php';
     include './components/header.php';
     ?>
 
+    <!-- se estiver logado não precisa fazer cadatro ou login  -->
     <!-- validação -->
     <?php if ($_SESSION['id_user']) : ?>
-
         <?php
         echo  $_SESSION['id_user'];
-        echo $_SESSION['message'];
         ?>
-
     <?php else : ?>
         <div class="wrapper">
             <!-- tela de login -->
@@ -43,7 +41,12 @@ include './database/database-connection.php';
             ?>
         </div>
     <?php endif ?>
-
+    <!-- TODO: adicionar sonner  -->
+    <h1>
+        <?php
+        echo $_SESSION['message'];
+        ?>
+    </h1>
 
     <section>
 
