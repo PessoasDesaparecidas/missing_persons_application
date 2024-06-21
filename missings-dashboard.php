@@ -37,7 +37,7 @@ include './database/database-connection.php';
     <section>
       <!-- TODO:exibir desaparecidos de um determinado usuario admin -->
       <?php
-      $queyr = "SELECT *  FROM Usuario WHERE "
+      $queyr = "SELECT *  FROM Usuario WHERE"
       ?>
     </section>
   </main>
