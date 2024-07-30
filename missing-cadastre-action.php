@@ -9,12 +9,12 @@ if (!$usuario_id) {
 
 if (isset($_POST['btn-cdastre-missing'])) {
 
-  $nome_desaparecido = trim($_POST['nome_desaparecido']);
-  $contato_desaparecido = trim($_POST['contato_desaparecido']);
-  $observacao_desaparecido = trim($_POST['observacao_desaparecido']);
+  $nome_desaparecido = filter_var($_POST['nome_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $contato_desaparecido = filter_var($_POST['contato_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $observacao_desaparecido = filter_var($_POST['observacao_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
   $data_desaparecimento = trim($_POST['data_desaparecimento']);
   $data_nascimento = trim($_POST['data_nascimento']);
-  $local_desaparecimento = trim($_POST['local_desaparecimento']);
+  $local_desaparecimento = filter_var($_POST['local_desaparecimento'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   $extensao = strtolower(substr($_FILE['imagem']['name'], -4));
   $foto_desaparecido = md5(time()) . $extensao;
@@ -23,20 +23,26 @@ if (isset($_POST['btn-cdastre-missing'])) {
 
 
 
-  $query = "INSERT INTO Desaparecido 
+  $preparement_query_to_created_missing = $connection->prepare("INSERT INTO Desaparecido 
 (id_usuario, nome_desaparecido, foto_desaparecido, contato_desaparecido, observacao_desaparecido, data_desaparecimento ,data_nascimento, local_desaparecimento)
-VALUES
-    ('$usuario_id', '$nome_desaparecido', '$foto_desaparecido', '$contato_desaparecido', '$observacao_desaparecido','$data_desaparecimento', '$data_nascimento', '$local_desaparecimento')";
+VALUES (?, ?, ?, ?, ?,?, ?, ?)");
 
-  echo "<pre>" . $query . "</pre>";
+  $preparement_query_to_created_missing->bind_param(
+    "ssssssss",
+    $usuario_id,
+    $nome_desaparecido,
+    $foto_desaparecido,
+    $contato_desaparecido,
+    $observacao_desaparecido,
+    $data_desaparecimento,
+    $data_nascimento,
+    $local_desaparecimento
+  );
 
-  $result = $connection->query($query);
-  if ($result == 1) {
-    header('Location: missings-dashboard.php');
-  } else {
+  $preparement_query_to_created_missing->execute();
 
-    header('Location: index.php');
-  }
+  $preparement_query_to_created_missing->close();
+  header('Location: missings-dashboard.php');
 } else {
   header('Location: index.php');
 }

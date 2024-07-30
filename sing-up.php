@@ -16,13 +16,15 @@ if (isset($_POST['submit-form-register'])) {
     $isAnExistingUser = mysqli_num_rows($result_query);
 
     if (!$isAnExistingUser) {
-      $query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
+      //TODO:tratativa para usuario criado
+      $create_user_query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
         VALUES('{$name}', '{$email}', '{$password}', False)";
-      $result_query = mysqli_query($connection, $query);
+      $result_query = mysqli_query($connection, $create_user_query);
 
       if ($result_query) {
-        $query = "SELECT id_usuario, email_usuario FROM Usuario WHERE email_usuario = '{$email}' AND senha_usuario = '{$password}'";
-        $result = $connection->query($query);
+        $select_new_user_created_query = "SELECT id_usuario, email_usuario FROM Usuario WHERE email_usuario = '{$email}' AND senha_usuario = '{$password}'";
+        $result = $connection->query($select_new_user_created_query);
+
         $user = $result->fetch_assoc();
 
         $_SESSION['id_user'] = $user['id_usuario'];

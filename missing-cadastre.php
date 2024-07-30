@@ -39,7 +39,7 @@ include './database/database-connection.php';
 
             <div class="form-control">
                 <label for="nome_desaparecido">nome :</label>
-                <input type="text" name="nome_desaparecido" id="nome_desaparecido" required>
+                <input type="text" name="nome_desaparecido" id="nome_desaparecido" min="3" required>
             </div>
 
             <div class="form-control">
@@ -51,7 +51,7 @@ include './database/database-connection.php';
 
             <div class="form-control">
                 <label for="contato_desaparecido">contato:</label>
-                <input type="tel" name="contato_desaparecido" id="contato_desaparecido" required>
+                <input type="tel" name="contato_desaparecido" id="contato_desaparecido" min="10" max="11" required>
             </div>
 
             <div class="form-control">

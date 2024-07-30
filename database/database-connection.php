@@ -1,6 +1,6 @@
 <?php
 $username = "root";
-$password = "1234";
+$password = "usbw";
 $database = "tcc";
 $host = "localhost";
 $connection = new mysqli($host, $username, $password, $database);
@@ -8,6 +8,7 @@ $connection = new mysqli($host, $username, $password, $database);
 if ($connection->error) {
     die("falha ao conectar o banco de dados" . $connection->error);
 }
+
 
 $create_user_table = "CREATE TABLE IF NOT EXISTS Usuario (
     id_usuario INT AUTO_INCREMENT,
@@ -33,5 +34,6 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
 );";
 
 
+$connection->query($create_database);
 $connection->query($create_user_table);
 $connection->query($create_missing_persons_table);
