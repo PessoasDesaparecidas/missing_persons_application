@@ -9,7 +9,7 @@
             <li><a href="sobre.html">Sobre</a></li>
             <?php if ($_SESSION['id_user']) : ?>
                 <li><a href="missings-dashboard.php">desaparecido</a></li>
-                <li><a href="logout.php"> logout </a></li>
+                <li><a href="logout.action.php"> logout </a></li>
             <?php else : ?>
                 <button class="btnLogin-popup"><a>Login</a></button>
             <?php endif ?>
