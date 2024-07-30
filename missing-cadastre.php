@@ -29,7 +29,7 @@ include './database/database-connection.php';
             Cadastro de pessoas desaparecidos
         </h1>
 
-        <form action="missing-cadastre-action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
+        <form action="missing-cadastre.action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
 
             <img src="./assets/images/missing-image-example-form.jpg" alt="" id="missing-image" style="
             width: 100px;
