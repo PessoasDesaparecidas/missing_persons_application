@@ -25,9 +25,9 @@ include './database/database-connection.php';
 
     <!-- se estiver logado não precisa fazer cadatro ou login  -->
     <!-- validação -->
-    <?php if ($_SESSION['id_user']) : ?>
+    <?php if ($_SESSION['user_id']) : ?>
         <?php
-        echo  $_SESSION['id_user'];
+        echo  $_SESSION['user_id'];
         ?>
     <?php else : ?>
         <div class="wrapper">

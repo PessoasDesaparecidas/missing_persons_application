@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sonner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <button id="btn-login">Login</button>
+    <div
+      class="w-40 roundend border border-2 border-green-500 px-5 py-2 bg-green-500/50 absolute right-0 bottom-10 rounded-l transition-all translate-x-40"
+      id="box-sucess"
+    >
+      <div class="flex justify-between items-center">
+        <h3 class="text-green-600 text-sm">Sucess</h3>
+        <p class="text-green-600 text-sm">x</p>
+      </div>
+    </div>
+    <script>
+      const submintFormSucess = document.getElementById("btn-login");
+      const sonnerSucess = document.getElementById("box-sucess");
+      const toast = {
+        sucess: () => {
+          sonnerSucess.classList.add("translate-x-0");
+          setTimeout(() => {
+            sonnerSucess.classList.remove("translate-x-0");
+            sonnerSucess.classList.add("translate-x-40");
+          }, 2000);
+        },
+      };
+      submintFormSucess.addEventListener("click", () => {
+        toast.sucess();
+      });
+    </script>
+  </body>
+</html>

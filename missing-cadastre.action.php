@@ -1,9 +1,9 @@
 <?php
 session_start();
 include './database/database-connection.php';
-$usuario_id = $_SESSION['id_user'] ?? '';
+$user_exists = $_SESSION['user_id'] ?? '';
 
-if (!$usuario_id) {
+if (!$user_exists) {
   header('Location: index.php');
 }
 

@@ -7,7 +7,7 @@
         <ul>
             <li><a href="#inicio" id="inicio">Inicio</a></li>
             <li><a href="sobre.html">Sobre</a></li>
-            <?php if ($_SESSION['id_user']) : ?>
+            <?php if ($_SESSION['user_id']) : ?>
                 <li><a href="missings-dashboard.php">desaparecido</a></li>
                 <li><a href="logout.action.php"> logout </a></li>
             <?php else : ?>
