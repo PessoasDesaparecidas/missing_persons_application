@@ -5,32 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sonner</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Development version -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Production version -->
+    <script src="https://unpkg.com/lucide@latest"></script>
   </head>
-  <body>
-    <button id="btn-login">Login</button>
+  <body class="overflow-x-hidden">
+    <div class="flex gap-5">
+      <button
+        class="px-2 py-1 border bg-grenn-500/50 roundend b-green-500 text-green-500 text-base font-light"
+        id="btn-success"
+      >
+        Login
+      </button>
+      <button
+        class="px-2 py-1 border bg-grenn-500/50 roundend b-green-500 text-green-500 text-base font-light"
+        id="btn-danger"
+      >
+        error
+      </button>
+      <button
+        class="px-2 py-1 border bg-grenn-500/50 roundend b-green-500 text-green-500 text-base font-light"
+        id="btn-alert"
+      >
+        alerta
+      </button>
+    </div>
+
     <div
-      class="w-40 roundend border border-2 border-green-500 px-5 py-2 bg-green-500/50 absolute right-0 bottom-10 rounded-l transition-all translate-x-40"
-      id="box-sucess"
+      class="w-auto roundend border border-2 border-green-500 px-5 py-2 bg-green-500/50 absolute right-0 bottom-10 rounded-l transition-all translate-x-full"
+      id="box-success"
     >
-      <div class="flex justify-between items-center">
-        <h3 class="text-green-600 text-sm">Sucess</h3>
-        <p class="text-green-600 text-sm">x</p>
+      <div class="flex justify-between items-center gap-10">
+        <h3 class="text-green-600 text-sm" id="sonner-success-title">
+          Success
+        </h3>
+        <div class="icon-x text-white"></div>
       </div>
     </div>
+
+    <div
+      class="w-auto roundend border border-2 border-red-500 px-5 py-2 bg-red-500/50 absolute right-0 bottom-10 rounded-l transition-all translate-x-full"
+      id="box-danger"
+    >
+      <div class="flex justify-between items-center gap-10">
+        <h3 class="text-red-600 text-sm" id="sonner-danger-title">danger</h3>
+        <div class="icon-x text-white"></div>
+      </div>
+    </div>
+
+    <div
+      class="w-auto roundend border border-2 border-yellow-500 px-5 py-2 bg-yellow-500/50 absolute right-0 bottom-10 rounded-l transition-all translate-x-full"
+      id="box-alert"
+    >
+      <div class="flex justify-between items-center gap-10">
+        <h3 class="text-yellow-600 text-sm" id="sonner-alert-title">alert</h3>
+        <div class="icon-x text-white"></div>
+      </div>
+    </div>
+
     <script>
-      const submintFormSucess = document.getElementById("btn-login");
-      const sonnerSucess = document.getElementById("box-sucess");
+      const buttonSuccess = document.getElementById("btn-success");
+      const buttonAlert = document.getElementById("btn-alert");
+      const buttonDanger = document.getElementById("btn-danger");
+
+      const toastSuccess = {
+        element: document.getElementById("box-success"),
+        title: document.getElementById("sonner-success-title"),
+      };
+
+      const toastAlert = {
+        element: document.getElementById("box-alert"),
+        title: document.getElementById("sonner-alert-title"),
+      };
+
+      const toastDanger = {
+        element: document.getElementById("box-danger"),
+        title: document.getElementById("sonner-danger-title"),
+      };
+
       const toast = {
-        sucess: () => {
-          sonnerSucess.classList.add("translate-x-0");
+        success: (message) => {
+          toastSuccess.title.innerHTML = message;
+          toastSuccess.element.classList.add("translate-x-0");
           setTimeout(() => {
-            sonnerSucess.classList.remove("translate-x-0");
-            sonnerSucess.classList.add("translate-x-40");
+            toastSuccess.element.classList.remove("translate-x-0");
+            toastSuccess.element.classList.add("translate-x-full");
+          }, 2000);
+        },
+        error: (message) => {
+          toastDanger.title.innerHTML = message;
+          toastDanger.element.classList.add("translate-x-0");
+          setTimeout(() => {
+            toastDanger.element.classList.remove("translate-x-0");
+            toastDanger.element.classList.add("translate-x-full");
+          }, 2000);
+        },
+        alert: (message) => {
+          toastAlert.title.innerHTML = message;
+          toastAlert.element.classList.add("translate-x-0");
+          setTimeout(() => {
+            toastAlert.element.classList.remove("translate-x-0");
+            toastAlert.element.classList.add("translate-x-full");
           }, 2000);
         },
       };
-      submintFormSucess.addEventListener("click", () => {
-        toast.sucess();
+      buttonSuccess.addEventListener("click", () => {
+        toast.success("successo em login");
+      });
+
+      buttonDanger.addEventListener("click", () => {
+        toast.error("erro em login");
+      });
+
+      buttonAlert.addEventListener("click", () => {
+        toast.alert("email errado");
       });
     </script>
   </body>
