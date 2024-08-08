@@ -16,13 +16,16 @@ if (isset($_POST['submit-form-register'])) {
     $isAnExistingUser = mysqli_num_rows($result_query);
 
     if (!$isAnExistingUser) {
-      //TODO:tratativa para usuario criado
+      //tratativa para usuario criado
+
+      // TODO: verifica se a senha hashed bate com senha normal
+      //$password_hashed = password_hash($password,PASSWORD_BCRYPT);
       $create_user_query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
         VALUES('{$name}', '{$email}', '{$password}', False)";
       $result_query = mysqli_query($connection, $create_user_query);
 
       if ($result_query) {
-        $select_new_user_created_query = "SELECT id_usuario, email_usuario FROM Usuario WHERE email_usuario = '{$email}' AND senha_usuario = '{$password}'";
+        $select_new_user_created_query = "SELECT id_usuario, email_usuario FROM Usuario WHERE email_usuario = '{$email}'";
         $result = $connection->query($select_new_user_created_query);
 
         $user = $result->fetch_assoc();
@@ -32,13 +35,13 @@ if (isset($_POST['submit-form-register'])) {
         $_SESSION['sonner-message'] = 'login efetuado com sucesso';
       }
     } else {
-      //TODO: tratativa de usuario já existent com mesmo email
+      // tratativa de usuario já existent com mesmo email
       $_SESSION['user_id'] = '';
       $_SESSION['sonner-type'] = 'alert';
       $_SESSION['sonner-message'] = 'usuario com email existente';
     }
   } else {
-    //TODO: tratativa de unauthorised
+    // tratativa de não autorizados
     $_SESSION['sonner-type'] = 'error';
     $_SESSION['sonner-message'] = 'usuario não autorizado';
   }
