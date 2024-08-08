@@ -145,6 +145,8 @@ include './database/database-connection.php';
     <!-- sonner -->
     <?php
     include './components/sonner.php';
+    $_SESSION['sonner-type'] = '';
+    $_SESSION['sonner-message'] = '';
     ?>
 
 

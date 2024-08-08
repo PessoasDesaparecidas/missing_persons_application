@@ -4,7 +4,6 @@
         <p>
             <a href="./index.php">
                 Busca Solidária
-
             </a>
         </p>
     </div>
