@@ -8,7 +8,7 @@
         Success
       </h3>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x translate-y-px" id="sonner-success-button-close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x translate-y-px cursor-pointer" id="sonner-success-button-close">
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
@@ -25,7 +25,7 @@
       </svg>
       <h3 class="text-red-600 text-sm" id="sonner-error-title">error</h3>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x translate-y-px" id="sonner-error-button-close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x translate-y-px cursor-pointer" id="sonner-error-button-close">
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
@@ -42,7 +42,7 @@
       </svg>
       <h3 class="text-yellow-600 text-sm" id="sonner-alert-title">alert</h3>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x translate-y-px" id="sonner-alert-button-close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x translate-y-px cursor-pointer" id="sonner-alert-button-close">
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>

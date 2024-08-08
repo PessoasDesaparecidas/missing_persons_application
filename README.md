@@ -25,11 +25,13 @@ voce deve atribuir o valor aos seguintes sessions
       $_SESSION['sonner-message'] = 'login efetuado com sucesso';
     ?>
 
-o sonner type pode ser : **success** | **alert** | **error**
+o sonner type pode ser : **success** = *verde* | **alert** = *amarelo* | **error** = *vermelho*
 
 indicado atribuir esses valores em paginas actions como por exemplo :
 - *sing-in.action.php*
 - *sing-up.action.php*
 - *sing-out.action.php*
+
+obs:sonner só será ativado uma vez por action
 
 
