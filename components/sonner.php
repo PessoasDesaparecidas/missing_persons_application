@@ -209,6 +209,10 @@
       message: "<?php echo $message_sonner; ?>",
       timeInSeconds: 3,
     });
-  <?php
-  endif; ?>
+  <?php endif; ?>
 </script>
+
+<?php
+$_SESSION['sonner-type'] = '';
+$_SESSION['sonner-message'] = '';
+?>
