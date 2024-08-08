@@ -41,6 +41,10 @@ include './database/database-connection.php';
       ?>
     </section>
   </main>
+  <!-- sonner -->
+  <?php
+  include './components/sonner.php';
+  ?>
 
   <!-- rodapé -->
   <?php

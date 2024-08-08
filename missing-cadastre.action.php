@@ -42,7 +42,12 @@ VALUES (?, ?, ?, ?, ?,?, ?, ?)");
   $preparement_query_to_created_missing->execute();
 
   $preparement_query_to_created_missing->close();
+
+  $_SESSION['sonner-type'] = 'success';
+  $_SESSION['sonner-message'] = 'desaparecido cadastrado com sucesso';
   header('Location: missings-dashboard.php');
 } else {
+  $_SESSION['sonner-type'] = 'error';
+  $_SESSION['sonner-message'] = 'usuario não autorizado';
   header('Location: index.php');
 }

@@ -13,13 +13,13 @@ if (isset($_POST['btn-login'])) {
     $row = mysqli_num_rows($result);
     if ($row == 1) {
         $user = $result->fetch_assoc();
-        $_SESSION['id_user'] = $user['id_usuario'];
-        $_SESSION['errors'] = '';
-        $_SESSION['message'] = 'login efetuado com sucesso';
+        $_SESSION['user_id'] = $user['id_usuario'];
+        $_SESSION['sonner-type'] = 'success';
+        $_SESSION['sonner-message'] = 'login efetuado com sucesso';
     } else {
-        $_SESSION['id_user'] = '';
-        $_SESSION['errors'] = 'Usuario invalido';
-        $_SESSION['message'] = 'usuario não econtrado';
+        $_SESSION['user_id'] = '';
+        $_SESSION['sonner-type'] = 'error';
+        $_SESSION['sonner-message'] = 'usuario não econtrado';
     }
 
     header("location: index.php");

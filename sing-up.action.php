@@ -28,20 +28,19 @@ if (isset($_POST['submit-form-register'])) {
         $user = $result->fetch_assoc();
 
         $_SESSION['user_id'] = $user['id_usuario'];
-        $_SESSION['errors'] = '';
-        $_SESSION['message'] = 'login efetuado com sucesso';
+        $_SESSION['sonner-type'] = 'success';
+        $_SESSION['sonner-message'] = 'login efetuado com sucesso';
       }
     } else {
       //TODO: tratativa de usuario já existent com mesmo email
       $_SESSION['user_id'] = '';
-      $_SESSION['errors'] = 'usuario com email existente';
-      $_SESSION['message'] = '';
+      $_SESSION['sonner-type'] = 'alert';
+      $_SESSION['sonner-message'] = 'usuario com email existente';
     }
   } else {
     //TODO: tratativa de unauthorised
-    $_SESSION['errors'] = 'credenciais invalidas';
-    $_SESSION['user_id'] = '';
-    $_SESSION['message'] = '';
+    $_SESSION['sonner-type'] = 'error';
+    $_SESSION['sonner-message'] = 'usuario não autorizado';
   }
 }
 

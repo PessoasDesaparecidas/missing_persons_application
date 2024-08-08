@@ -1,7 +1,12 @@
 <header>
     <div class="logo">
         <!-- <a><img src="assets/img/"></a>-->
-        <p>Busca Solidária</p>
+        <p>
+            <a href="./index.php">
+                Busca Solidária
+
+            </a>
+        </p>
     </div>
     <nav>
         <ul>

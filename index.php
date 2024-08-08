@@ -142,6 +142,12 @@ include './database/database-connection.php';
         </div>
     </section>
 
+    <!-- sonner -->
+    <?php
+    include './components/sonner.php';
+    ?>
+
+
     <!-- rodapé -->
     <?php
     include './components/footer.php'

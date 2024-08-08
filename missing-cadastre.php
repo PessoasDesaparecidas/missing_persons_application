@@ -96,6 +96,10 @@ include './database/database-connection.php';
         </form>
     </main>
 
+    <!-- sonner -->
+    <?php
+    include './components/sonner.php';
+    ?>
     <!-- rodapé -->
     <?php
     include './components/footer.php'
