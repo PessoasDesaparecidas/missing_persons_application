@@ -14,7 +14,7 @@ $create_user_table = "CREATE TABLE IF NOT EXISTS Usuario (
     id_usuario INT AUTO_INCREMENT,
     nome_usuario VARCHAR(50) NOT NULL,
     email_usuario VARCHAR(50) NOT NULL UNIQUE,
-    senha_usuario VARCHAR(20) NOT NULL,
+    senha_usuario VARCHAR(100) NOT NULL,
     esta_banido BOOLEAN  DEFAULT True,
    PRIMARY KEY (id_usuario)
 );";
