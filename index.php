@@ -41,7 +41,6 @@ include './database/database-connection.php';
             ?>
         </div>
     <?php endif ?>
-    <!-- TODO: adicionar sonner  -->
     <h1>
         <?php
         echo $_SESSION['message'];

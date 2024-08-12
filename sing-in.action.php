@@ -6,7 +6,6 @@ include './database/database-connection.php';
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = filter_var($_POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-//todo: verifica se a senha hashed do banco de dados está batendo com a senha enviada
 $query = "SELECT id_usuario, email_usuario, senha_usuario, nome_usuario FROM Usuario WHERE email_usuario = '{$email}' ";
 
 $result = mysqli_query($connection, $query);
