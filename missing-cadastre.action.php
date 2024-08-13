@@ -1,13 +1,10 @@
 <?php
+include "./utils/is-authenticate-user.php";
+include "./utils/sonner.php";
+include "./database/database-connection.php";
 session_start();
-include './database/database-connection.php';
-$user_exists = $_SESSION['user_id'] ?? '';
 
-if (!$user_exists) {
-  header('Location: index.php');
-}
-
-if (isset($_POST['btn-cdastre-missing'])) {
+if (isset($_POST['btn-cdastre-missing']) && is_authenticate_user($connection, $_SESSION['user_id'])) {
 
   $nome_desaparecido = filter_var($_POST['nome_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
   $contato_desaparecido = filter_var($_POST['contato_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -43,11 +40,7 @@ VALUES (?, ?, ?, ?, ?,?, ?, ?)");
 
   $preparement_query_to_created_missing->close();
 
-  $_SESSION['sonner-type'] = 'success';
-  $_SESSION['sonner-message'] = 'desaparecido cadastrado com sucesso';
-  header('Location: missings-dashboard.php');
+  sonner('success', 'desaparecido cadastrado com sucesso');
 } else {
-  $_SESSION['sonner-type'] = 'error';
-  $_SESSION['sonner-message'] = 'usuario não autorizado';
-  header('Location: index.php');
+  sonner('error', 'usuario não autorizado');
 }
