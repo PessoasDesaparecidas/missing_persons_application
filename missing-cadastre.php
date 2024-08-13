@@ -1,114 +1,103 @@
-<?php
-session_start();
-include './database/database-connection.php';
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastro de desaparecidos</title>
-    <link rel="icon" href="./assets/images/favicon.png">
     <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
-    <link rel="stylesheet" href="./assets/styles/globals.css">
-
+    <title>Cadastro de Desaparecido</title>
 </head>
 
 <body>
+    <div class="container">
+        <div class="form-image">
+            <img src="./assets/images/sample-example-profile.svg">
+        </div>
+        <div class="form">
+            <form action="#">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Cadastre o desaparecido</h1>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Nome completo</label>
+                        <input id="firstname" type="text" name="firstname" placeholder="Digite o nome completo do desaparecido" required>
+                    </div>
 
-    <!-- navbar -->
-    <?php
-    include './components/header.php';
-    ?>
+                    <div class="input-box">
+                        <label for="number">Idade do desaparecido</label>
+                        <input id="number" type="text" name="number" placeholder="Digite a idade atual do desaparecido" required>
+                    </div>
 
-    <!-- content  -->
-    <main>
-        <h1>
-            Cadastro de pessoas desaparecidos
-        </h1>
+                    <div class="input-box">
+                        <label for="caract">Caracteristicas do desaparecido</label>
+                        <input id="caract" type="text" name="caract" placeholder="Digite as caraceristicas do desaparecido" required>
+                    </div>
 
-        <form action="missing-cadastre.action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
+                    <div class="input-box">
+                        <label for="number">Telefone para contato</label>
+                        <input id="number" type="tel" name="number" placeholder="(xx) xxxxx-xxxx" minlength="9" maxlength="9" required>
+                    </div>
 
-            <img src="./assets/images/missing-image-example-form.jpg" alt="" id="missing-image" style="
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-            object-fit: cover;">
+                    <div class="input-box">
+                        <label for="datetime">Foi visto por último em</label>
+                        <input id="datetime" type="datetime-local" name="datetime" style="width: 215px;" required>
+                    </div>
 
-            <div class="form-control">
-                <label for="nome_desaparecido">nome :</label>
-                <input type="text" name="nome_desaparecido" id="nome_desaparecido" min="3" required>
-            </div>
+                    <div class="input-box">
+                        <label for="reg">Região</label>
+                        <input id="reg" type="text" name="reg" placeholder="Digite a região do desaparecido" required>
+                    </div>
+                </div>
 
-            <div class="form-control">
-                <label for="exampleFormControlInput1" class="form-label">Foto</label>
-                <input type="file" class="form-control" id="exampleFormControlInput1" name="imagem" accept="image/*">
-            </div>
+                <div class="input-box">
+                    <label for="hist">Historia</label>
+                    <input id="hist" type="text" name="hist" placeholder="Digite a historia do desaparecido" required>
+                </div>
 
+                <div class="input-box">
+                    <label class="picture" tabindex="0">Foto</label>
+                    <input type="file" accept="image/*" class="picture_input" required>
+                </div>
 
+                <div class="gender-inputs">
 
-            <div class="form-control">
-                <label for="contato_desaparecido">contato:</label>
-                <input type="tel" name="contato_desaparecido" id="contato_desaparecido" min="10" max="11" required>
-            </div>
+                    <div class="gender-title">
+                        <h6>Gênero</h6>
+                    </div>
 
-            <div class="form-control">
-                <label for="observacao_desaparecido">observação:</label>
-                <textarea name="observacao_desaparecido" id="observacao_desaparecido"></textarea>
-            </div>
+                    <div class="gender-group">
 
-            <div class="form-control">
-                <label for="data_desaparecimento">data desaparecimento</label>
-                <input type="date" name="data_desaparecimento" id="data_desaparecimento" required>
-            </div>
+                        <div class="gender-input">
+                            <input type="radio" id="female" name="gender">
+                            <label for="female">Feminino</label>
+                        </div>
 
-            <div class="form-control">
-                <label for="data_nascimento">data nascimento</label>
-                <input type="date" name="data_nascimento" id="data_nascimento" required>
-            </div>
+                        <div class="gender-input">
+                            <input type="radio" id="male" name="gender">
+                            <label for="male">Masculino</label>
+                        </div>
 
-            <div class="form-control">
-                <label for="local_desaparecimento">região</label>
-                <select name="local_desaparecimento" id="local_desaparecimento">
-                    <option value="zona-norte">
-                        Zona Norte de São Paulo.
-                    </option>
-                    <option value="zona-sul">
-                        Zona Sul de São Paulo.
-                    </option>
-                    <option value="zona-leste">
-                        Zona Leste de São Paulo.
-                    </option>
-                    <option value="zona-oeste">
-                        Zona Oeste de São Paulo.
-                    </option>
-                    <option value="zona-central">
-                        Zona Central de São Paulo.
-                    </option>
-                </select>
-            </div>
+                        <div class="gender-input">
+                            <input type="radio" id="others" name="gender">
+                            <label for="others">Outros</label>
+                        </div>
 
-            <button type="submit" name="btn-cdastre-missing">
-                cadastrar
-            </button>
-        </form>
-    </main>
+                        <div class="gender-input">
+                            <input type="radio" id="none" name="gender">
+                            <label for="none">Prefiro não dizer</label>
+                        </div>
 
-    <!-- sonner -->
-    <?php
-    include './components/sonner.php';
-    ?>
-    <!-- rodapé -->
-    <?php
-    include './components/footer.php'
-    ?>
-    <!-- javascript -->
-    <script src=" ./assets/javascript/handle-form-user.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="./assets/javascript/handler-image-missing-in-form-register.js" defer></script>
+                    </div>
+                    <div class="continue-button">
+                        <button><a href="#">Cadastrar</a></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
