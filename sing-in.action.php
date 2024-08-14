@@ -1,25 +1,26 @@
 <?php
 session_start();
 include './database/database-connection.php';
-
+include './utils/sonner.php';
+include './database/users-repository.php';
 
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = filter_var($_POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-$query = "SELECT id_usuario, email_usuario, senha_usuario, nome_usuario FROM Usuario WHERE email_usuario = '{$email}' ";
+$user = find_by_email($connection, $email);
 
-$result = mysqli_query($connection, $query);
+if (!$user) {
+    sonner('error', 'credencias envalidas');
+    header('Location: index.php');
+}
 
-$row = mysqli_num_rows($result);
-$user = $result->fetch_assoc();
 $is_password_valid = password_verify($password, $user['senha_usuario']);
-if ($row == 1 && $is_password_valid) {
+if ($is_password_valid) {
     $_SESSION['user_id'] = $user['id_usuario'];
-    $_SESSION['sonner-type'] = 'success';
-    $_SESSION['sonner-message'] = ' Bem Vindo ' . $user['nome_usuario'];
+    sonner('success', 'Bem Vindo');
 } else {
     $_SESSION['user_id'] = '';
-    $_SESSION['sonner-type'] = 'error';
-    $_SESSION['sonner-message'] = 'credencias envalidas';
+    sonner('error', 'credencias envalidas');
 }
+
 header('Location: index.php');

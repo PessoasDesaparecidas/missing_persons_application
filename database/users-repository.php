@@ -21,7 +21,7 @@ function find_by_id($connection, $id)
 
 function find_by_email($connection, $email)
 {
-  $query = "SELECT id_usuario, email_usuario, nome_usuario FROM Usuario WHERE email_usuario = '{$email}'";
+  $query = "SELECT * FROM Usuario WHERE email_usuario = '{$email}'";
   $result = $connection->query($query);
 
   return $result->fetch_assoc();
