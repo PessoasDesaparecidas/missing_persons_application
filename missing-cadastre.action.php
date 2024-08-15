@@ -37,6 +37,8 @@ if (isset($_POST['btn-cdastre-missing']) && is_authenticate_user($connection, $u
   );
 
   sonner('success', 'desaparecido cadastrado com sucesso');
+  header("Location: missings-dashboard.php");
 } else {
   sonner('error', 'usuario não autorizado');
+  header("Location: index.php");
 }
