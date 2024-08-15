@@ -1,6 +1,7 @@
 <?php
 session_start();
 include './database/database-connection.php';
+include './utils/protect-page-route.php';
 ?>
 
 <!DOCTYPE html>

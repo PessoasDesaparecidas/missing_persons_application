@@ -2,6 +2,9 @@
 session_start();
 function get_user_id()
 {
-  $usuer_id = $_SESSION['user_id'];
-  return $usuer_id;
+  $user_id = $_SESSION['user_id'];
+  if ($user_id) {
+    return $user_id;
+  }
+  return false;
 }
