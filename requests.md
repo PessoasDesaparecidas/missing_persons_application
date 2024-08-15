@@ -18,4 +18,4 @@
 
 [ x ] utilização do ambiente de desenvolvimento AMP
 [ ] usabilidade
-[ ] segurança
+[ x ] segurança(criptografia de dados , autenticação e autorização )
