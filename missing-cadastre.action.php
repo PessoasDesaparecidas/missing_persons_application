@@ -6,6 +6,7 @@ include "./database/database-connection.php";
 include "./utils/get-user-id.php";
 include "./database/missings-repository.php";
 
+
 $user_id = get_user_id();
 
 if (isset($_POST['btn-cdastre-missing']) && is_authenticate_user($connection, $user_id)) {
@@ -16,7 +17,6 @@ if (isset($_POST['btn-cdastre-missing']) && is_authenticate_user($connection, $u
   $data_desaparecimento = trim($_POST['data_desaparecimento']);
   $idade_desparecido = trim($_POST['idade_desparecido']);
   $local_desaparecimento = filter_var($_POST['local_desaparecimento'], FILTER_SANITIZE_SPECIAL_CHARS);
-
   $extensao = strtolower(substr($_FILE['imagem']['name'], -4));
   $foto_desaparecido = md5(time()) . $extensao;
   $diretorio = "./assets/uploads/";

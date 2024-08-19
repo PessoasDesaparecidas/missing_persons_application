@@ -15,7 +15,7 @@ $create_user_table = "CREATE TABLE IF NOT EXISTS Usuario (
     nome_usuario VARCHAR(50) NOT NULL,
     email_usuario VARCHAR(50) NOT NULL UNIQUE,
     senha_usuario VARCHAR(100) NOT NULL,
-    esta_banido BOOLEAN  DEFAULT True,
+    esta_banido BOOLEAN  DEFAULT false,
    PRIMARY KEY (id_usuario)
 );";
 
@@ -28,8 +28,10 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
    contato_desaparecido VARCHAR(255) NOT NULL,
    observacao_desaparecido TEXT NOT NULL,
    idade_desparecido INT NOT NULL,
-   data_desaparecimento DATE NOT NULL,
+   data_desaparecimento DATETIME NOT NULL,
    local_desaparecimento VARCHAR(255) NOT NULL,
+   created_at datetime DEFAULT CURRENT_TIMESTAMP,
+   updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
    PRIMARY KEY(id_desaparecido),
    foreign key (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 );";

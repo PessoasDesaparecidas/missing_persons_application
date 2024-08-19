@@ -32,3 +32,13 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   $preparement_query_to_created_missing->close();
 }
+
+function fetch_missings_by_user_id($connection, int $user_id, int $skip)
+{
+  $offset_missing = $skip ? $skip : 0;
+  $query = "SELECT *  FROM Desaparecido WHERE id_usuario = '{$user_id}' LIMIT 10 OFFSET '{$offset_missing}'";
+
+  $result = $connection->query($query);
+
+  return $result->fetch_assoc();
+}

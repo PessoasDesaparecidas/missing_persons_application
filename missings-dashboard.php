@@ -1,7 +1,10 @@
 <?php
 session_start();
+
+
 include './database/database-connection.php';
-include './utils/protect-page-route.php';
+include './database/missings-repository.php';
+include './utils/get-user-id.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,9 +40,9 @@ include './utils/protect-page-route.php';
     </ul>
     <section>
       <!-- TODO:exibir desaparecidos de um determinado usuario admin -->
-      <?php
-      $queyr = "SELECT *  FROM Usuario WHERE"
-      ?>
+      <code>
+
+      </code>
     </section>
   </main>
   <!-- sonner -->
@@ -51,6 +54,7 @@ include './utils/protect-page-route.php';
   <?php
   include './components/footer.php'
   ?>
+
 
   <!-- javascript -->
   <script src=" ./assets/javascript/handle-form-user.js"></script>

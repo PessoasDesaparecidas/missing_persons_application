@@ -7,12 +7,6 @@ include './database/users-repository.php';
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = filter_var($_POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-$user = find_by_email($connection, $email);
-
-if (!$user) {
-    sonner('error', 'credencias envalidas');
-    header('Location: index.php');
-}
 
 $is_password_valid = password_verify($password, $user['senha_usuario']);
 if ($is_password_valid) {
