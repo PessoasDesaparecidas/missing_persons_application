@@ -1,10 +1,6 @@
 <?php
-session_start();
-
-
-include './database/database-connection.php';
-include './database/missings-repository.php';
-include './utils/get-user-id.php';
+include './utils/protect-page-route.php';
+include './database/missings-repository.php'
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +34,24 @@ include './utils/get-user-id.php';
         </a>
       </li>
     </ul>
+
     <section>
       <!-- TODO:exibir desaparecidos de um determinado usuario admin -->
-      <code>
-
-      </code>
+      <?php
+      $missings = fetch_missings_by_user_id($connection, get_user_id(), 1);
+      if ($missings->num_rows > 0) :
+      ?>
+        <?php
+        while ($missing = $missings->fetch_assoc()): ?>
+          <div>
+            <?php
+            print_r($missing);
+            ?>
+          </div>
+        <?php endwhile ?>
+      <?php endif; ?>
     </section>
+
   </main>
   <!-- sonner -->
   <?php
