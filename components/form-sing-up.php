@@ -1,6 +1,6 @@
 <div class="form-box register" id="register">
     <h2>Cadastro</h2>
-    <form action="sing-up.action.php" method="POST">
+    <form action="./sing-up.action.php" method="POST">
 
         <div class="input-box">
             <span class="icon">
