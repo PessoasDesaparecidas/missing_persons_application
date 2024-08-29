@@ -48,6 +48,17 @@
     </svg>
   </div>
 </div>
+
+<h1>
+  <?php
+  $type_sonner = $_SESSION['sonner-type'];
+  $message_sonner = $_SESSION['sonner-message'];
+
+  echo $type_sonner;
+  echo $message_sonner;
+  ?>
+</h1>
+
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script type="module">
@@ -187,11 +198,8 @@
     toastError.close();
   });
 
-  <?php
-  session_start();
-  $type_sonner = $_SESSION['sonner-type'];
-  $message_sonner = $_SESSION['sonner-message'];
-  ?>
+
+
   <?php if ($type_sonner == 'error') : ?>
     toast.error({
       message: "<?php echo $message_sonner; ?>",

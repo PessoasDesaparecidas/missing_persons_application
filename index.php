@@ -41,11 +41,7 @@ include './database/database-connection.php';
             ?>
         </div>
     <?php endif ?>
-    <h1>
-        <?php
-        echo $_SESSION['message'];
-        ?>
-    </h1>
+
 
     <section>
 
@@ -140,6 +136,8 @@ include './database/database-connection.php';
             </ul>
         </div>
     </section>
+
+
 
     <!-- sonner -->
     <?php
