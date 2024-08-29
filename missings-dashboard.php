@@ -47,6 +47,11 @@ include './database/missings-repository.php'
             <?php
             print_r($missing);
             ?>
+
+            <a href="missing-delete.action.php?
+            missing_id=" <?php echo $missing["id_desaparecido"] ?>"">
+              deletar
+            </a>
           </div>
         <?php endwhile ?>
       <?php endif; ?>
