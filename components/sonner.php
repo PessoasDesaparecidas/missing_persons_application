@@ -49,15 +49,7 @@
   </div>
 </div>
 
-<h1>
-  <?php
-  $type_sonner = $_SESSION['sonner-type'];
-  $message_sonner = $_SESSION['sonner-message'];
 
-  echo $type_sonner;
-  echo $message_sonner;
-  ?>
-</h1>
 
 <script src="https://cdn.tailwindcss.com"></script>
 

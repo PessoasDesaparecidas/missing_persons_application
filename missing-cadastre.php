@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -58,7 +55,7 @@ session_start();
 
                 <div class="input-box">
                     <label for="hist">Historia</label>
-                    <input id="hist" type="text" name="hist" placeholder="Digite a historia do desaparecido" required>
+                    <input id="hist" type="text" name="historia_desaparecido" placeholder="Digite a historia do desaparecido" required>
                 </div>
 
                 <div class="input-box">
