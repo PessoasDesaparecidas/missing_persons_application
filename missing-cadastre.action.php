@@ -1,7 +1,7 @@
 <?php
 include "./utils/is-authenticate-user.php";
 include "./utils/sonner.php";
-session_abort();
+session_abort(); // 2 modulos usam inicialização de session
 include "./database/database-connection.php";
 include "./utils/get-user-id.php";
 include "./database/missings-repository.php";

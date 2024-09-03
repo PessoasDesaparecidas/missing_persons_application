@@ -18,17 +18,18 @@ include './database/missings-repository.php'
       <img src="./assets/images/sample-example-profile.svg">
     </div>
     <div class="form">
+      <?php
+      $missing_id = $_GET["missing_id"];
+      $missing = get_missing_by_id($connection, $missing_id);
+      ?>
       <form
-        action="missing-update.action.php" method="POST" class="form-register-missing" enctype="multipart/form-data">
+        action="missing-update.action.php?missing_id=<?php echo $missing_id ?>" method="POST" class="form-register-missing" enctype="multipart/form-data">
         <div class="form-header">
           <div class="title">
             <h1>Atuzalizar o desaparecido</h1>
           </div>
         </div>
-        <?php
-        $missing_id = $_GET["missing_id"];
-        $missing = get_missing_by_id($connection, $missing_id);
-        ?>
+
 
         <div class="input-group">
           <div class="input-box">
@@ -73,7 +74,7 @@ include './database/missings-repository.php'
 
         <div class="input-box">
           <label for="hist">Historia</label>
-          <input id="hist" type="text" name="hist" placeholder="Digite a historia do desaparecido"
+          <input id="hist" type="text" name="historia_desaparecido" placeholder="Digite a historia do desaparecido"
             value="<?php echo $missing["historia_desaparecido"] ?>"
             required>
         </div>
@@ -95,29 +96,50 @@ include './database/missings-repository.php'
           <div class="gender-group">
 
             <div class="gender-input">
-              <input type="radio" id="female" name="genero_desaparecido" value="Feminino">
+              <?php
+              if ($missing["genero_desaparecido"] === "Feminino"):
+              ?>
+                <input type="radio" id="female" name="genero_desaparecido" value="Feminino" checked>
+              <?php else: ?>
+                <input type="radio" id="female" name="genero_desaparecido" value="Feminino">
+              <?php endif ?>
+
               <label for="female">Feminino</label>
             </div>
 
             <div class="gender-input">
-              <input type="radio" id="male" name="genero_desaparecido" value="Masculino">
+              <?php if ($missing["genero_desaparecido"] === "Masculino"): ?>
+                <input type="radio" id="male" name="genero_desaparecido" value="Masculino" checked>
+              <?php else: ?>
+                <input type="radio" id="male" name="genero_desaparecido" value="Masculino" checked>
+              <?php endif ?>
+
               <label for="male">Masculino</label>
             </div>
 
             <div class="gender-input">
-              <input type="radio" id="others" name="genero_desaparecido" value="Outros">
+              <?php if ($missing["genero_desaparecido"] === "Outros"): ?>
+                <input type="radio" id="others" name="genero_desaparecido" value="Outros" checked>
+              <?php else: ?>
+                <input type="radio" id="others" name="genero_desaparecido" value="Outros">
+              <?php endif ?>
+
               <label for="others">Outros</label>
             </div>
 
             <div class="gender-input">
-              <input type="radio" id="none" name="genero_desaparecido" value="Prefiro não dizer">
+              <?php if ($missing["genero_desaparecido"] === "Prefiro não dizer"): ?>
+                <input type="radio" id="none" name="genero_desaparecido" value="Prefiro não dizer" checked>
+              <?php else: ?>
+                <input type="radio" id="none" name="genero_desaparecido" value="Prefiro não dizer">
+              <?php endif; ?>
               <label for="none">Prefiro não dizer</label>
             </div>
 
           </div>
           <div class="continue-button">
             <button
-              type="submit" name="btn-cdastre-missing">
+              type="submit" name="btn-update-missing">
               atuzalizar
             </button>
           </div>
