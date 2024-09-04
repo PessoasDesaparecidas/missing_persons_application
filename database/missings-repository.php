@@ -65,36 +65,9 @@ function update_missing_by_user_id(
   $idade_desparecido,
   $local_desaparecimento
 ) {
-  $preparement_query_to_updated_missing = $connection->prepare("UPDATE Desaparecido 
-            SET nome_desaparecido = ?,
-            SET genero_desaparecido = ?,
-            SET foto_desaparecido = ?,
-            SET contato_desaparecido = ?,
-            SET historia_desaparecido = ?,
-            SET observacao_desaparecido = ?,
-            SET data_desaparecimento = ?,
-            SET idade_desparecido = ?,
-            SET local_desaparecimento = ?,
-            WHERE id_desaparecido = ?
-            AND id_usuario = ? ;");
+  $preparement_query_to_updated_missing = "UPDATE `desaparecido` SET `nome_desaparecido`='$nome_desaparecido',`genero_desaparecido`='$genero_desaparecido',`foto_desaparecido`='$foto_desaparecido',`contato_desaparecido`='$contato_desaparecido',`historia_desaparecido`='$historia_desaparecido',`observacao_desaparecido`='$observacao_desaparecido',`idade_desparecido`='$idade_desparecido',`data_desaparecimento`='$data_desaparecimento',`local_desaparecimento`='$local_desaparecimento' WHERE id_desaparecido = '$missing_id' AND id_usuario = '$user_id' ";
 
-  $preparement_query_to_updated_missing->bind_param(
-    "sssssssssii",
-    $nome_desaparecido,
-    $genero_desaparecido,
-    $foto_desaparecido,
-    $contato_desaparecido,
-    $historia_desaparecido,
-    $observacao_desaparecido,
-    $data_desaparecimento,
-    $idade_desparecido,
-    $local_desaparecimento,
-    $missing_id,
-    $user_id
-  );
-
-  $preparement_query_to_updated_missing->execute();
-  $preparement_query_to_updated_missing->close();
+  $connection->query($preparement_query_to_updated_missing);
 }
 
 

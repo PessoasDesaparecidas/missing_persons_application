@@ -1,7 +1,7 @@
 <?php
 include "./utils/protect-page-route.php";
 include "./database/missings-repository.php";
-
+include "./utils/sonner.php";
 
 if (isset($_POST["btn-update-missing"])) {
   $missing_id = $_GET["missing_id"];
@@ -19,6 +19,7 @@ if (isset($_POST["btn-update-missing"])) {
   move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);
   $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
 
+  echo get_user_id();
   echo $missing_id;
   echo $nome_desaparecido;
   echo $genero_desaparecido;
@@ -32,7 +33,7 @@ if (isset($_POST["btn-update-missing"])) {
 
   update_missing_by_user_id(
     $connection,
-    $user_id,
+    get_user_id(),
     $missing_id,
     $nome_desaparecido,
     $genero_desaparecido,
@@ -44,4 +45,6 @@ if (isset($_POST["btn-update-missing"])) {
     $idade_desparecido,
     $local_desaparecimento
   );
+  sonner("success", "sucesso em atualizar desaparecido");
+  header('Location: missings-dashboard.php');
 }
