@@ -19,17 +19,6 @@ if (isset($_POST["btn-update-missing"])) {
   move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);
   $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-  echo get_user_id();
-  echo $missing_id;
-  echo $nome_desaparecido;
-  echo $genero_desaparecido;
-  echo $foto_desaparecido;
-  echo $contato_desaparecido;
-  echo $historia_desaparecido;
-  echo $observacao_desaparecido;
-  echo $data_desaparecimento;
-  echo $idade_desparecido;
-  echo $local_desaparecimento;
 
   update_missing_by_user_id(
     $connection,
@@ -45,6 +34,7 @@ if (isset($_POST["btn-update-missing"])) {
     $idade_desparecido,
     $local_desaparecimento
   );
+
   sonner("success", "sucesso em atualizar desaparecido");
   header('Location: missings-dashboard.php');
 }
