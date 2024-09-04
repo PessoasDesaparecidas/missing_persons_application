@@ -191,7 +191,11 @@
   });
 
 
+  <?php
 
+  $type_sonner = $_SESSION['sonner-type'];
+  $message_sonner = $_SESSION['sonner-message'];
+  ?>
   <?php if ($type_sonner == 'error') : ?>
     toast.error({
       message: "<?php echo $message_sonner; ?>",

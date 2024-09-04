@@ -63,6 +63,7 @@ include './database/missings-repository.php'
   </main>
   <!-- sonner -->
   <?php
+
   include './components/sonner.php';
   ?>
 
@@ -73,9 +74,8 @@ include './database/missings-repository.php'
 
 
   <!-- javascript -->
-  <script src=" ./assets/javascript/handle-form-user.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

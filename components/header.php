@@ -9,8 +9,8 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#inicio" id="inicio">Inicio</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="./index.php" id="inicio">Inicio</a></li>
+            <li><a href="./aboult.php">Sobre</a></li>
             <?php if ($_SESSION['user_id']) : ?>
                 <li><a href="missings-dashboard.php">desaparecido</a></li>
                 <li><a href="sing-out.action.php"> logout </a></li>
