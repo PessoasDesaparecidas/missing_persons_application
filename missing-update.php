@@ -1,6 +1,9 @@
 <?php
 include './utils/protect-page-route.php';
-include './database/missings-repository.php'
+include './database/missings-repository.php';
+session_abort();
+include './utils/sonner.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,6 +24,18 @@ include './database/missings-repository.php'
       <?php
       $missing_id = $_GET["missing_id"];
       $missing = get_missing_by_id($connection, $missing_id);
+
+
+      if (!$missing) {
+        sonner("error", "desaparecido não encontrado");
+        header('Location: missings-dashboard.php');
+      }
+
+      if ($missing["id_usuario"] != get_user_id()) {
+        sonner("error", "usuario não autorizado");
+        header('Location: missings-dashboard.php');
+      }
+
       ?>
       <form
         action="missing-update.action.php?missing_id=<?php echo $missing_id ?>" method="POST" class="form-register-missing" enctype="multipart/form-data">

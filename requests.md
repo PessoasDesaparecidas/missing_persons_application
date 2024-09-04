@@ -4,8 +4,8 @@
 [ X ] fazer login e logout na plataforma
 [ ] ver pessoas desaparecidas
 [ x ] cadastrar pessoas desparecidas
-[ ] deletar pessoas desaparecidas
-[ ] atualizar pessoas desparecidas
+[ x ] deletar pessoas desaparecidas
+[ x ] atualizar pessoas desparecidas
 [ ] envio de email ao usuario
 
 ## REGRAS DE NEGOCIO
