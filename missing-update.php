@@ -98,7 +98,6 @@ include './utils/sonner.php';
           <label class="picture" tabindex="0" for="imagem">Foto</label>
           <input type="file" accept="image/*" class="picture_input"
             id="imagem" name="imagem"
-
             required>
         </div>
 

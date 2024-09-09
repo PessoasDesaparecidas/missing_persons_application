@@ -35,10 +35,13 @@ include './database/missings-repository.php'
       </li>
     </ul>
 
+    <!-- listagem de desaparecidos -->
     <section>
-      <!-- TODO:exibir desaparecidos de um determinado usuario admin -->
       <?php
-      $missings = fetch_missings_by_user_id($connection, get_user_id(), 1);
+      $page = $_GET["page"];
+
+      $skip = $page - 1;
+      $missings = fetch_missings_by_user_id($connection, get_user_id(), $skip);
       if ($missings->num_rows > 0) :
       ?>
         <?php
@@ -60,6 +63,20 @@ include './database/missings-repository.php'
       <?php endif; ?>
     </section>
 
+    <!-- paginação -->
+    <div>
+      <?php
+      $quantity_pages = get_quantity_pages_by_user_id($connection, get_user_id());
+
+      for ($page = 1; $page <= $quantity_pages; $page++):
+      ?>
+        <a href="./missings-dashboard?page=<?php echo $page ?>">
+          <?php
+          echo $page;
+          ?>
+        </a>
+      <?php endfor; ?>
+    </div>
   </main>
   <!-- sonner -->
   <?php

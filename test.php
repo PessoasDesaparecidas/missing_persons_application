@@ -29,6 +29,13 @@
       <input type="radio" id="none" name="genero_desaparecido" value="Prefiro não dizer">
       <label for="none">Prefiro não dizer</label>
     </div>
+
+    <div class="gender-input">
+      <input type="file" accept="image/*" class="picture_input"
+        id="imagem" name="imagem"
+        value="./assets/images/missing-image-example-form.jpg"
+        required>
+    </div>
   </div>
 </body>
 

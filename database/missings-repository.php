@@ -37,8 +37,19 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 function fetch_missings_by_user_id($connection, int $user_id, int $skip)
 {
-  $offset_missing = $skip ? $skip : 0;
-  $query = "SELECT *  FROM Desaparecido WHERE id_usuario = '{$user_id}' LIMIT 10 ";
+  $quantity_missings = 10;
+  $offset_missings = $skip * $quantity_missings;
+  $query = "SELECT *  FROM Desaparecido WHERE id_usuario = '{$user_id}' ORDER BY created_at DESC LIMIT {$quantity_missings} OFFSET {$offset_missings} ";
+
+  $result = $connection->query($query);
+  return $result;
+}
+
+function fetch_missings_recents($connection, int $skip)
+{
+  $quantity_missings = 10;
+  $offset_missings = $skip * $quantity_missings;
+  $query = "SELECT *  FROM Desaparecido  ORDER BY created_at DESC LIMIT {$quantity_missings} OFFSET {$offset_missings} ";
 
   $result = $connection->query($query);
   return $result;
@@ -50,6 +61,33 @@ function delete_missing_by_user_id($connection, int $user_id, int $missing_id)
 
   $connection->query($query);
 }
+
+function get_quantity_pages($connection)
+{
+  $sql = "SELECT COUNT(*) AS quantity_missings FROM Desaparecido WHERE";
+  $result = $connection->query($sql);
+
+  $row = $result->fetch_assoc();
+  $quantity_missings = $row['quantity_missings'];
+  $quantity_missing_per_page = 10;
+  $quantity_pages = ceil($quantity_missings / $quantity_missing_per_page);
+
+  return $quantity_pages;
+}
+
+function get_quantity_pages_by_user_id($connection, $user_id)
+{
+  $sql = "SELECT COUNT(*) AS quantity_missings FROM Desaparecido WHERE id_usuario = '{$user_id}'";
+  $result = $connection->query($sql);
+
+  $row = $result->fetch_assoc();
+  $quantity_missings = $row['quantity_missings'];
+  $quantity_missing_per_page = 10;
+  $quantity_pages = ceil($quantity_missings / $quantity_missing_per_page);
+
+  return $quantity_pages;
+}
+
 
 function update_missing_by_user_id(
   $connection,
