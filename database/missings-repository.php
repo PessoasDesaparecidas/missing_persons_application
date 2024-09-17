@@ -85,6 +85,11 @@ function get_quantity_pages_by_user_id($connection, $user_id)
   $quantity_missing_per_page = 10;
   $quantity_pages = ceil($quantity_missings / $quantity_missing_per_page);
 
+  //Não posso ter 0 paginas , no minimo uma pagina
+  if($quantity_pages==0){
+    return 1;
+  }
+
   return $quantity_pages;
 }
 
