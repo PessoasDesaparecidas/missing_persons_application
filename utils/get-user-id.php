@@ -6,5 +6,6 @@ function get_user_id()
   if ($user_id) {
     return $user_id;
   }
+  $_SESSION['user_id'] = "";
   return false;
 }
