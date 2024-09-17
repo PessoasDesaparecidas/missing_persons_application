@@ -38,4 +38,4 @@ if (isset($_POST["btn-update-missing"])) {
 
   sonner("success", "sucesso em atualizar desaparecido");
 }
-header('Location: missings-dashboard.php?page='.$page);
+header('Location: missings-dashboard.php?page=' . $page);

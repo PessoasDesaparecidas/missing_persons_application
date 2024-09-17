@@ -20,8 +20,8 @@ include './utils/get-user-id.php'
 
   <!-- navbar -->
   <?php
-    include './components/header.php';
-    ?>
+  include './components/header.php';
+  ?>
 
   <!-- se estiver logado não precisa fazer cadatro ou login  -->
   <!-- validação -->
@@ -29,12 +29,12 @@ include './utils/get-user-id.php'
   <div class="wrapper">
     <!-- tela de login -->
     <?php
-            include './components/form-sing-in.php'
-            ?>
+      include './components/form-sing-in.php'
+      ?>
     <!--tela cadastro-->
     <?php
-            include './components/form-sing-up.php'
-            ?>
+      include './components/form-sing-up.php'
+      ?>
   </div>
 
   <?php endif ?>
@@ -139,14 +139,14 @@ include './utils/get-user-id.php'
 
   <!-- sonner -->
   <?php
-    include './components/sonner.php';
-    ?>
+  include './components/sonner.php';
+  ?>
 
 
   <!-- rodapé -->
   <?php
-    include './components/footer.php'
-    ?>
+  include './components/footer.php'
+  ?>
   <!-- javascript -->
   <script src="./assets/javascript/handle-form-user.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
