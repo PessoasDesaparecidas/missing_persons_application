@@ -1,7 +1,7 @@
 <?php
 
-
-$pessoas_desaparecidas = [
+function seed_missings($connection,$user_id,int $quantity_missings = 1){
+    $missings = [
     [
         'nome_desaparecido' => 'Maria Silva',
         'genero_desaparecido' => 'Feminino',
@@ -24,7 +24,6 @@ $pessoas_desaparecidas = [
         'idade_desparecido' => 35,
         'local_desaparecimento' => 'Rio de Janeiro, RJ'
     ],
-    // Adicione mais 28 pessoas com dados fictícios semelhantes para completar o array
     [
         'nome_desaparecido' => 'Ana Costa',
         'genero_desaparecido' => 'Feminino',
@@ -36,7 +35,6 @@ $pessoas_desaparecidas = [
         'idade_desparecido' => 22,
         'local_desaparecimento' => 'Belo Horizonte, MG'
     ],
-    // Continue adicionando os dados fictícios até o 30º elemento
     [
         'nome_desaparecido' => 'Carlos Santos',
         'genero_desaparecido' => 'Masculino',
@@ -48,11 +46,6 @@ $pessoas_desaparecidas = [
         'idade_desparecido' => 30,
         'local_desaparecimento' => 'Curitiba, PR'
     ],
-    // Continue preenchendo até o 30º elemento
-    // Adicione dados variados para cada entrada
-    
-    // Supondo que você preencha os dados até aqui, o código final seria como abaixo:
-
     [
         'nome_desaparecido' => 'Lucas Martins',
         'genero_desaparecido' => 'Masculino',
@@ -66,20 +59,28 @@ $pessoas_desaparecidas = [
     ],
     // Continue adicionando elementos para completar 30 pessoas
 ];
-foreach ($pessoas_desaparecidas as $pessoa) {
+
+include "./database/missings-repository.php";
+
+
+for($i=0; $i<$quantity ;$i++){
+    $random_index_missing = rand(0,count($missings));
+    $current_missing = $missings[$random_index_missing];
     create_missing(
-        $connection,
-  get_user_id(),
-  $pessoa["nome_desaparecido"],
-  $pessoa["genero_desaparecido"],
-  $pessoa["foto_desaparecido"],
-  $pessoa["contato_desaparecido"],
-  $pessoa["historia_desaparecido"],
-  $pessoa["observacao_desaparecido"],
-  $pessoa["data_desaparecimento"],
-  $pessoa["idade_desparecido"],
-  $pessoa["local_desaparecimento"]
-      );
+$connection,
+  $user_id,
+  $current_missing["nome_desaparecido"],
+  $current_missing["genero_desaparecido"],
+  $current_missing["foto_desaparecido"],
+  $current_missing["contato_desaparecido"],
+  $current_missing["historia_desaparecido"],
+  $current_missing["observacao_desaparecido"],
+  $current_missing["data_desaparecimento"],
+  $current_missing["idade_desparecido"],
+  $current_missing["local_desaparecimento"]
+);
+
+}
 }
       
   
