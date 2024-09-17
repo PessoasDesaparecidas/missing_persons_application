@@ -3,6 +3,7 @@ include "./utils/protect-page-route.php";
 include "./database/missings-repository.php";
 include "./utils/sonner.php";
 
+$page = $_GET["page"];
 if (isset($_POST["btn-update-missing"])) {
   $missing_id = $_GET["missing_id"];
 
@@ -36,5 +37,5 @@ if (isset($_POST["btn-update-missing"])) {
   );
 
   sonner("success", "sucesso em atualizar desaparecido");
-  header('Location: missings-dashboard.php?page=1');
 }
+header('Location: missings-dashboard.php?page='.$page);

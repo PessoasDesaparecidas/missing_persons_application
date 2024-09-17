@@ -22,6 +22,7 @@ include './utils/sonner.php';
         </div>
         <div class="form">
             <?php
+            $page = $_GET["page"];
       $missing_id = $_GET["missing_id"];
       $missing = get_missing_by_id($connection, $missing_id);
 
@@ -37,8 +38,8 @@ include './utils/sonner.php';
       }
 
       ?>
-            <form action="missing-update.action.php?missing_id=<?php echo $missing_id ?>" method="POST"
-                class="form-register-missing" enctype="multipart/form-data">
+            <form action="missing-update.action.php?missing_id=<?php echo $missing_id ?>&page=<?php echo $page?>"
+                method="POST" class="form-register-missing" enctype="multipart/form-data">
                 <div class="form-header">
                     <div class="title">
                         <h1>Atuzalizar o desaparecido</h1>
