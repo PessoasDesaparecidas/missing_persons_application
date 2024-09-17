@@ -20,8 +20,8 @@ include './database/missings-repository.php'
 <body>
   <!-- navbar -->
   <?php
-    include './components/header.php';
-    ?>
+  include './components/header.php';
+  ?>
 
   <!-- content  -->
 
@@ -38,31 +38,33 @@ include './database/missings-repository.php'
     <!-- listagem de desaparecidos -->
     <section>
       <?php
-            $page = $_GET["page"];
-            $max_pages = get_quantity_pages_by_user_id($connection, get_user_id());
+      $page = $_GET["page"];
+      $max_pages = get_quantity_pages_by_user_id($connection, get_user_id());
 
+      if (empty($page)) {
+        header("Location:missings-dashboard.php?page=1");
+      }
+      if ($page < 1) {
+        header("Location:missings-dashboard.php?page=1");
+      }
+      if ($page > $max_pages) {
+        header("Location:missings-dashboard.php?page=1");
+      }
 
-
-            if (empty($page)) {
-                header("Location:missings-dashboard.php?page=1");
-            }
-            if ($page < 1) {
-                header("Location:missings-dashboard.php?page=1");
-            }
-            if ($page > $max_pages) {
-                header("Location:missings-dashboard.php?page=1");
-            }
-
-            $skip = $page - 1;
-            $missings = fetch_missings_by_user_id($connection, get_user_id(), $skip);
-            if ($missings->num_rows > 0) :
-            ?>
+      $skip = $page - 1;
+      $missings = fetch_missings_by_user_id($connection, get_user_id(), $skip);
+      if ($missings->num_rows > 0) :
+      ?>
       <?php
-                while ($missing = $missings->fetch_assoc()): ?>
+        while ($missing = $missings->fetch_assoc()): ?>
       <div>
-        <?php
-                        print_r($missing);
-                        ?>
+        <div>
+          <?php
+              print_r($missing);
+              ?>
+          <br>
+          <br>
+        </div>
 
         <a href="./missing-delete.action.php?
             missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
@@ -74,33 +76,43 @@ include './database/missings-repository.php'
       </div>
       <?php endwhile ?>
       <?php endif; ?>
+
     </section>
 
     <!-- paginação -->
     <div>
-      <?php
-            $quantity_pages = get_quantity_pages_by_user_id($connection, get_user_id());
 
-            for ($page = 1; $page <= $quantity_pages; $page++):
-            ?>
-      <a href="./missings-dashboard.php?page=<?php echo $page ?>">
+      <a href="./missings-dashboard.php?page=<?php echo $page == 1 ? 1 : $page - 1 ?>">
+        preview
+      </a>
+      <?php
+      $quantity_pages = get_quantity_pages_by_user_id($connection, get_user_id());
+
+      for ($current_page = 1; $current_page <= $quantity_pages; $current_page++):
+      ?>
+      <a href="./missings-dashboard.php?page=<?php echo $current_page ?>">
         <?php
-                    echo $page;
-                    ?>
+          echo $current_page;
+          ?>
       </a>
       <?php endfor; ?>
+
+      <a href="./missings-dashboard.php?page=<?php echo $page == $max_pages ? $page : $page + 1  ?>">
+        next
+      </a>
+
     </div>
   </main>
   <!-- sonner -->
   <?php
 
-    include './components/sonner.php';
-    ?>
+  include './components/sonner.php';
+  ?>
 
   <!-- rodapé -->
   <?php
-    include './components/footer.php'
-    ?>
+  include './components/footer.php'
+  ?>
 
 
   <!-- javascript -->
