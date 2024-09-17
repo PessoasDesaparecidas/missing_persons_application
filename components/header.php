@@ -12,10 +12,10 @@
             <li><a href="./index.php" id="inicio">Inicio</a></li>
             <li><a href="./aboult.php">Sobre</a></li>
             <?php if ($_SESSION['user_id']) : ?>
-                <li><a href="missings-dashboard.php">desaparecido</a></li>
-                <li><a href="sing-out.action.php"> logout </a></li>
+            <li><a href="missings-dashboard.php?page=1">desaparecido</a></li>
+            <li><a href="sing-out.action.php"> logout </a></li>
             <?php else : ?>
-                <button class="btnLogin-popup"><a>Login</a></button>
+            <button class="btnLogin-popup"><a>Login</a></button>
             <?php endif ?>
         </ul>
     </nav>

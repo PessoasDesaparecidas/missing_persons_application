@@ -1,10 +1,10 @@
 <?php
-$servername = "localhost:3307";
+$host = "localhost:3306";
 $username = "root";
 $password = "";
 $database = "tcc";
 
-$connection = new mysqli($servername, $username, $password, $database);
+$connection = new mysqli($host, $username, $password, $database);
 
 if ($connection->error) {
     print_r($connection->error);

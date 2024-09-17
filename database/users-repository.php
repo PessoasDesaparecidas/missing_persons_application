@@ -3,12 +3,7 @@ function create_user($connection, $username, $email, $password)
 {
   $create_user_query = "INSERT INTO Usuario (nome_usuario, email_usuario , senha_usuario, esta_banido)
         VALUES('{$username}', '{$email}', '{$password}', False)";
-  $result  = mysqli_query($connection, $create_user_query);
-  if (mysqli_num_rows($result) > 0) {
-    return true;
-  } else {
-    return false;
-  }
+  mysqli_query($connection, $create_user_query);
 }
 
 function find_by_id($connection, $id)

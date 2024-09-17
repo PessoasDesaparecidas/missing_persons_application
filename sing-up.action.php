@@ -1,5 +1,4 @@
 <?php
-session_start();
 include './database/database-connection.php';
 include './database/users-repository.php';
 include './utils/sonner.php';
@@ -9,7 +8,7 @@ if (isset($_POST['submit-form-register'])) {
   $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
   $password = filter_var($_POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-  $is_validated_the_data_user = !empty($email) || !empty($name) || !empty($password);
+  $is_validated_the_data_user = !empty($email) && !empty($name) && !empty($password);
 
   if ($is_validated_the_data_user) {
 
@@ -22,7 +21,7 @@ if (isset($_POST['submit-form-register'])) {
       $user = find_by_email($connection, $email);
       $_SESSION['user_id'] = $user['id_usuario'];
 
-      sonner('success', ' Bem Vindo ' . $user);
+      sonner('success', ' Bem Vindo ' . $user["nome_usuario"]);
     } else {
       $_SESSION['user_id'] = '';
       sonner('alert', 'usuario com email existente');
