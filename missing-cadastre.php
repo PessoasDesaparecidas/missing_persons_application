@@ -59,6 +59,7 @@
           </div>
         </div>
 
+
         <div class="input-box">
           <label for="hist">Historia</label>
           <input id="hist" type="text" name="historia_desaparecido" placeholder="Digite a historia do desaparecido"
@@ -70,12 +71,11 @@
           <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" required>
         </div>
 
-        <div class="gender-inputs">
 
+        <div class="gender-inputs">
           <div class="gender-title">
             <h6>Gênero</h6>
           </div>
-
           <div class="gender-group">
 
             <div class="gender-input">
@@ -99,11 +99,46 @@
             </div>
 
           </div>
-          <div class="continue-button">
-            <button type="submit" name="btn-cdastre-missing">
-              Cadastrar
-            </button>
+        </div>
+        <br>
+        <div class="gender-inputs">
+          <div class="gender-title">
+            <h6>Mais informações</h6>
           </div>
+          <div class="gender-group">
+
+            <div>
+              <div class="gender-input">
+                <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao-1"
+                  value="é uma pessoa com doença mental">
+                <label for="mais_infromacao-1">é uma pessoa com doença mental</label>
+              </div>
+
+              <div class="gender-input">
+                <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao"
+                  value="usava telefone quando desapareceu">
+                <label for="male">usava telefone quando desapareceu</label>
+              </div>
+            </div>
+
+            <div>
+              <div class="gender-input">
+                <input type="checkbox" id="others" name="mais_infromacao" value="pussui perfil em alguma rede social">
+                <label for="others">pussui perfil em alguma rede social</label>
+              </div>
+
+              <div class="gender-input">
+                <input type="checkbox" id="none" name="mais_infromacao" value="dirigia algum veiculo">
+                <label for="none">dirigia algum veiculo</label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="continue-button">
+          <button type="submit" name="btn-cdastre-missing">
+            Cadastrar
+          </button>
         </div>
       </form>
     </div>
