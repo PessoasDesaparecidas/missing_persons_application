@@ -22,22 +22,22 @@ include './utils/sonner.php';
     </div>
     <div class="form">
       <?php
-            $page = $_GET["page"];
-            $missing_id = $_GET["missing_id"];
-            $missing = get_missing_by_id($connection, $missing_id);
+      $page = $_GET["page"];
+      $missing_id = $_GET["missing_id"];
+      $missing = get_missing_by_id($connection, $missing_id);
 
 
-            if (!$missing) {
-                sonner("error", "desaparecido não encontrado");
-                header('Location: missings-dashboard.php?page=1');
-            }
+      if (!$missing) {
+        sonner("error", "desaparecido não encontrado");
+        header('Location: missings-dashboard.php?page=1');
+      }
 
-            if ($missing["id_usuario"] != get_user_id()) {
-                sonner("error", "usuario não autorizado");
-                header('Location: missings-dashboard.php?page=1');
-            }
+      if ($missing["id_usuario"] != get_user_id()) {
+        sonner("error", "usuario não autorizado");
+        header('Location: missings-dashboard.php?page=1');
+      }
 
-            ?>
+      ?>
       <form action="missing-update.action.php?missing_id=<?php echo $missing_id ?>&page=<?php echo $page ?>"
         method="POST" class="form-register-missing" enctype="multipart/form-data">
         <div class="form-header">
@@ -110,8 +110,8 @@ include './utils/sonner.php';
 
             <div class="gender-input">
               <?php
-                            if ($missing["genero_desaparecido"] === "Feminino"):
-                            ?>
+              if ($missing["genero_desaparecido"] === "Feminino"):
+              ?>
               <input type="radio" id="female" name="genero_desaparecido" value="Feminino" checked>
               <?php else: ?>
               <input type="radio" id="female" name="genero_desaparecido" value="Feminino">
