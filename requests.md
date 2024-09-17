@@ -2,7 +2,7 @@
 
 [ X ] se cadastrar na plataforma
 [ X ] fazer login e logout na plataforma
-[ ] ver pessoas desaparecidas
+[ x ] ver pessoas desaparecidas
 [ x ] cadastrar pessoas desparecidas
 [ x ] deletar pessoas desaparecidas
 [ x ] atualizar pessoas desparecidas

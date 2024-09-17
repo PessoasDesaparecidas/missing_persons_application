@@ -62,8 +62,7 @@ include './database/missings-repository.php'
           <?php
               print_r($missing);
               ?>
-          <br>
-          <br>
+
         </div>
 
         <a href="./missing-delete.action.php?
@@ -73,6 +72,12 @@ include './database/missings-repository.php'
         <a href="./missing-update.php?missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
           editar
         </a>
+
+        <a href="./missing.php?missing_id=<?php echo $missing["id_desaparecido"] ?>">
+          ver
+        </a>
+        <br>
+        <br>
       </div>
       <?php endwhile ?>
       <?php endif; ?>
