@@ -33,6 +33,7 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
    idade_desparecido INT NOT NULL,
    data_desaparecimento DATETIME NOT NULL,
    local_desaparecimento VARCHAR(255) NOT NULL,
+   mais_informacao TEXT , 
    created_at datetime DEFAULT CURRENT_TIMESTAMP,
    updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
    PRIMARY KEY(id_desaparecido),

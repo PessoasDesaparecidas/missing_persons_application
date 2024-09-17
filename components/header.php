@@ -11,7 +11,7 @@
     <ul>
       <li><a href="./index.php" id="inicio">Inicio</a></li>
       <li><a href="./aboult.php">Sobre</a></li>
-      <?php if ($_SESSION['user_id']) : ?>
+      <?php if (get_user_id()) : ?>
       <li><a href="missings-dashboard.php?page=1">desaparecido</a></li>
       <li><a href="sing-out.action.php"> logout </a></li>
       <?php else : ?>
