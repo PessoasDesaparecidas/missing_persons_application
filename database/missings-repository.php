@@ -94,6 +94,11 @@ function get_quantity_pages_by_user_id($connection, $user_id)
 }
 
 
+function calculate_quantity_pages($per_page,$total)  {
+  $quantity_pages = ceil($total / $per_page);
+  return $quantity_pages;
+}
+
 function update_missing_by_user_id(
   $connection,
   $user_id,

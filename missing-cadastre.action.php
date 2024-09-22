@@ -1,15 +1,10 @@
 <?php
-include "./utils/is-authenticate-user.php";
+include './utils/protect-page-route.php';
 include "./utils/sonner.php";
-session_abort(); // 2 modulos usam inicialização de session
 include "./database/database-connection.php";
-include "./utils/get-user-id.php";
 include "./database/missings-repository.php";
 
-
-$user_id = get_user_id();
-
-if (isset($_POST['btn-cdastre-missing']) && is_authenticate_user($connection, $user_id)) {
+if (isset($_POST['btn-cadastre-missing']) ) {
 
   $nome_desaparecido = filter_var($_POST['nome_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
   $contato_desaparecido = filter_var($_POST['contato_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -24,9 +19,11 @@ if (isset($_POST['btn-cdastre-missing']) && is_authenticate_user($connection, $u
   move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);
   $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
 
+
+  
   create_missing(
     $connection,
-    $user_id,
+     get_user_id(),
     $nome_desaparecido,
     $genero_desaparecido,
     $foto_desaparecido,

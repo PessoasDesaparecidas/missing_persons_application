@@ -1,3 +1,6 @@
+<?php
+include './utils/protect-page-route.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -54,14 +57,20 @@
 
                     <div class="input-box">
                         <label for="local_desaparecimento">Região</label>
-                        <input id="local_desaparecimento" type="text" name="local_desaparecimento"
-                            placeholder="Digite a região do desaparecido" required>
+
+                        <select name="local_desaparecimento" id="local_desaparecimento" required>
+                            <option value="zona central">zona central</option>
+                            <option value="zona norte">zona norte</option>
+                            <option value="zona sul">zona sul</option>
+                            <option value="zona oeste">zona oeste</option>
+                            <option value="zona leste">zona leste</option>
+                        </select>
                     </div>
                 </div>
 
 
                 <div class="input-box">
-                    <label for="hist">Historia</label>
+                    <label for="hist">o que fazia quando desapareceu</label>
                     <input id="hist" type="text" name="historia_desaparecido"
                         placeholder="Digite a historia do desaparecido" required>
                 </div>
@@ -116,22 +125,23 @@
                             </div>
 
                             <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao"
+                                <input type="checkbox" id="mais_infromacao-2" name="mais_infromacao-2"
                                     value="usava telefone quando desapareceu">
-                                <label for="male">usava telefone quando desapareceu</label>
+                                <label for="mais_infromacao-2">usava telefone quando desapareceu</label>
                             </div>
                         </div>
 
                         <div>
                             <div class="gender-input">
-                                <input type="checkbox" id="others" name="mais_infromacao"
+                                <input type="checkbox" id="mais_infromacao-3" name="mais_infromacao-3"
                                     value="pussui perfil em alguma rede social">
-                                <label for="others">pussui perfil em alguma rede social</label>
+                                <label for="mais_infromacao-3">pussui perfil em alguma rede social</label>
                             </div>
 
                             <div class="gender-input">
-                                <input type="checkbox" id="none" name="mais_infromacao" value="dirigia algum veiculo">
-                                <label for="none">dirigia algum veiculo</label>
+                                <input type="checkbox" id="mais_infromacao-4" name="mais_infromacao-4"
+                                    value="dirigia algum veiculo">
+                                <label for="mais_infromacao-4">dirigia algum veiculo</label>
                             </div>
                         </div>
 
@@ -139,7 +149,7 @@
                 </div>
 
                 <div class="continue-button">
-                    <button type="submit" name="btn-cdastre-missing">
+                    <button type="submit" name="btn-cadastre-missing">
                         Cadastrar
                     </button>
                 </div>

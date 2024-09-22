@@ -1,5 +1,4 @@
 <?php
-session_start();
 function sonner(string $type, string $message)
 {
   $_SESSION["sonner-type"] = $type;

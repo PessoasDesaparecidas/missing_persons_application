@@ -83,15 +83,37 @@ include './utils/sonner.php';
                     </div>
 
                     <div class="input-box">
+
                         <label for="local_desaparecimento">Região</label>
-                        <input id="local_desaparecimento" type="text" name="local_desaparecimento"
-                            placeholder="Digite a região do desaparecido"
-                            value="<?php echo $missing["local_desaparecimento"] ?>" required>
+
+                        <select name="local_desaparecimento" id="local_desaparecimento" required>
+                            <option value="zona central"
+                                <?php $missing["local_desaparecimento"]==="zona central" && print_r( "selected='selected'")?>>
+                                zona central
+                            </option>
+                            <option value="zona norte"
+                                <?php $missing["local_desaparecimento"]==="zona norte" && print_r( "selected='selected'")?>>
+                                zona
+                                norte</option>
+                            <option value="zona sul"
+                                <?php $missing["local_desaparecimento"]==="zona sul" && print_r( "selected='selected'")?>>
+                                zona sul
+                            </option>
+                            <option value="zona oeste"
+                                <?php $missing["local_desaparecimento"]==="zona oeste" && print_r( "selected='selected'")?>>
+                                zona
+                                oeste</option>
+                            <option value="zona leste"
+                                <?php $missing["local_desaparecimento"]==="zona leste" && print_r( "selected='selected'")?>>
+                                zona
+                                leste</option>
+                        </select>
+
                     </div>
                 </div>
 
                 <div class="input-box">
-                    <label for="hist">Historia</label>
+                    <label for="hist"> o que fazia quando desapareceu</label>
                     <input id="hist" type="text" name="historia_desaparecido"
                         placeholder="Digite a historia do desaparecido"
                         value="<?php echo $missing["historia_desaparecido"] ?>" required>
