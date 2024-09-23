@@ -41,18 +41,14 @@ include './database/missings-repository.php'
       $page = $_GET["page"];
       $max_pages = get_quantity_pages_by_user_id($connection, get_user_id());
 
-      if (empty($page)) {
+      if (empty($page) ||$page < 1| $page > $max_pages) {
         header("Location:missings-dashboard.php?page=1");
       }
-      if ($page < 1) {
-        header("Location:missings-dashboard.php?page=1");
-      }
-      if ($page > $max_pages) {
-        header("Location:missings-dashboard.php?page=1");
-      }
+   
 
       $skip = $page - 1;
       $missings = fetch_missings_by_user_id($connection, get_user_id(), $skip);
+
       if ($missings->num_rows > 0) :
       ?>
             <?php

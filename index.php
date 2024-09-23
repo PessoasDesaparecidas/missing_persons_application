@@ -1,6 +1,7 @@
 <?php
 include './database/database-connection.php';
-include './utils/get-user-id.php'
+include './utils/get-user-id.php';
+include './database/missings-repository.php';
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +83,52 @@ include './utils/get-user-id.php'
     <section>
         <h1 class="tit">DESAPARECIDOS</h1>
         <div class="content">
+
+            <?php
+                $page = $_GET["page"];
+
+                
+                
+                
+                if (empty($page) ||$page < 1) {
+                    header("Location:inde.php?page=1");
+                }
+
+                $skip = $page - 1;
+                $missings = fetch_missings($connection,  $skip);
+   
+
+    
+      if ($missings->num_rows > 0) :
+      ?>
+            <?php
+        while ($missing = $missings->fetch_assoc()): ?>
+            <div>
+                <div>
+                    <?php
+              print_r($missing);
+              ?>
+
+                </div>
+
+                <a href="./missing-delete.action.php?
+            missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
+                    deletar
+                </a>
+                <a
+                    href="./missing-update.php?missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
+                    editar
+                </a>
+
+                <a href="./missing.php?missing_id=<?php echo $missing["id_desaparecido"] ?>">
+                    ver
+                </a>
+                <br>
+                <br>
+            </div>
+            <?php endwhile ?>
+            <?php endif; ?>
+
             <ul class="uld">
                 <div class="image">
                     <img src="./assets/images/person-random.jpg" alt="" href="#">
@@ -134,6 +181,29 @@ include './utils/get-user-id.php'
                 <p>
                 <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
             </ul>
+        </div>
+
+
+        <div>
+
+            <a href="./index.php?page=<?php echo $page == 1 ? 1 : $page - 1 ?>">
+                preview
+            </a>
+            <?php
+            $max_pages = ceil($missings->num_rows/10);
+      for ($current_page = 1; $current_page <= $max_pages; $current_page++):
+      ?>
+            <a href="./index.php?page=<?php echo $current_page ?>">
+                <?php
+          echo $current_page;
+          ?>
+            </a>
+            <?php endfor; ?>
+
+            <a href="./index.php?page=<?php echo $page == $max_pages ? $page : $page + 1  ?>">
+                next
+            </a>
+
         </div>
     </section>
 
