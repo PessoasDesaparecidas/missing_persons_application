@@ -84,11 +84,70 @@ include './database/missings-repository.php';
         <h1 class="tit">DESAPARECIDOS</h1>
         <div class="content">
 
-            <?php
+
+            <ul class="uld">
+                <div class="image">
+                    <img src="./assets/images/person-random.jpg" alt="" href="#">
+                </div>
+                <p>
+                <h3>Nome:</h3>Fulaninho da Silva</p>
+                <p>
+                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
+                <p>
+                <h3>Local:</h3> Rua Taltal, 123</p>
+                <p>
+                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
+            </ul>
+            <ul class="uld">
+                <div class="image">
+                    <img src="./assets/images/person-random.jpg" alt="" href="#">
+                </div>
+                <p>
+                <h3>Nome:</h3>Fulaninho da Silva</p>
+                <p>
+                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
+                <p>
+                <h3>Local:</h3> Rua Taltal, 123</p>
+                <p>
+                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
+            </ul>
+            <ul class="uld">
+                <div class="image">
+                    <img src="./assets/images/person-random.jpg" alt="" href="#">
+                </div>
+                <p>
+                <h3>Nome:</h3>Fulaninho da Silva</p>
+                <p>
+                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
+                <p>
+                <h3>Local:</h3> Rua Taltal, 123</p>
+                <p>
+                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
+            </ul>
+            <ul class="uld">
+                <div class="image">
+                    <img src="./assets/images/person-random.jpg" alt="" href="#">
+                </div>
+                <p>
+                <h3>Nome:</h3>Fulaninho da Silva</p>
+                <p>
+                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
+                <p>
+                <h3>Local:</h3> Rua Taltal, 123</p>
+                <p>
+                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
+            </ul>
+
+
+
+        </div>
+
+
+        <?php
                 $page = $_GET["page"];
 
                 
-                
+    
                 
                 if (empty($page) ||$page < 1) {
                     header("Location:inde.php?page=1");
@@ -101,88 +160,33 @@ include './database/missings-repository.php';
     
       if ($missings->num_rows > 0) :
       ?>
-            <?php
+        <?php
         while ($missing = $missings->fetch_assoc()): ?>
+        <div>
             <div>
-                <div>
-                    <?php
+                <?php
               print_r($missing);
               ?>
 
-                </div>
-
-                <a href="./missing-delete.action.php?
-            missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
-                    deletar
-                </a>
-                <a
-                    href="./missing-update.php?missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
-                    editar
-                </a>
-
-                <a href="./missing.php?missing_id=<?php echo $missing["id_desaparecido"] ?>">
-                    ver
-                </a>
-                <br>
-                <br>
             </div>
-            <?php endwhile ?>
-            <?php endif; ?>
 
-            <ul class="uld">
-                <div class="image">
-                    <img src="./assets/images/person-random.jpg" alt="" href="#">
-                </div>
-                <p>
-                <h3>Nome:</h3>Fulaninho da Silva</p>
-                <p>
-                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
-                <p>
-                <h3>Local:</h3> Rua Taltal, 123</p>
-                <p>
-                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
-            </ul>
-            <ul class="uld">
-                <div class="image">
-                    <img src="./assets/images/person-random.jpg" alt="" href="#">
-                </div>
-                <p>
-                <h3>Nome:</h3>Fulaninho da Silva</p>
-                <p>
-                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
-                <p>
-                <h3>Local:</h3> Rua Taltal, 123</p>
-                <p>
-                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
-            </ul>
-            <ul class="uld">
-                <div class="image">
-                    <img src="./assets/images/person-random.jpg" alt="" href="#">
-                </div>
-                <p>
-                <h3>Nome:</h3>Fulaninho da Silva</p>
-                <p>
-                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
-                <p>
-                <h3>Local:</h3> Rua Taltal, 123</p>
-                <p>
-                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
-            </ul>
-            <ul class="uld">
-                <div class="image">
-                    <img src="./assets/images/person-random.jpg" alt="" href="#">
-                </div>
-                <p>
-                <h3>Nome:</h3>Fulaninho da Silva</p>
-                <p>
-                <h3>Desapareceu em:</h3>DD/MM/AAAA</p>
-                <p>
-                <h3>Local:</h3> Rua Taltal, 123</p>
-                <p>
-                <h3>Endereço:</h3>Rua Taltal, 123. Zona Tal.</p>
-            </ul>
+            <a href="./missing-delete.action.php?
+            missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
+                deletar
+            </a>
+            <a
+                href="./missing-update.php?missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
+                editar
+            </a>
+
+            <a href="./missing.php?missing_id=<?php echo $missing["id_desaparecido"] ?>">
+                ver
+            </a>
+            <br>
+            <br>
         </div>
-
+        <?php endwhile ?>
+        <?php endif; ?>
 
         <div>
 
