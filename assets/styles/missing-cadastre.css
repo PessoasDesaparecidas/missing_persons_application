@@ -70,7 +70,7 @@ body {
   padding: 0.5rem 0;
 }
 
-.input-box {
+.input-box{
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -85,11 +85,11 @@ body {
   box-shadow: 1px 1px 6px #0000001c;
 }
 
-.input-box input:hover {
+.input-box input:hover ,.input-box select:hover {
   background-color: #f0efed;
 }
 
-.input-box input:focus-visible {
+.input-box input:focus-visible ,.input-box select:hover{
   outline: 1px solid #000000;
 }
 
@@ -100,7 +100,7 @@ body {
   color: #000000c0;
 }
 
-.input-box input::placeholder {
+.input-box input::placeholder, .input-box select::placeholder {
   color: #000000be;
 }
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include './database/database-connection.php';
 include './database/users-repository.php';
 include './utils/sonner.php';
