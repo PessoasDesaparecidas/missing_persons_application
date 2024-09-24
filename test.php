@@ -1,10 +1,7 @@
-<?php
-include "./database/database-connection.php";
-include "./utils/populate-database.php";
-include "./utils/get-user-id.php";
-
-// seed_missings($connection, get_user_id(), 10);
+<?php 
+    include './database/database-connection.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,20 +12,46 @@ include "./utils/get-user-id.php";
 </head>
 
 <body>
+    <?php
+    $page = $_GET["page"];
+    if (empty($page) || $page < 1) {
+        header("Location:test.php?page=1");
+    }
 
-    <select name="local_desaparecimento" id="local_desaparecimento" required>
-        <option value="zona central">
-            zona central
-        </option>
-        <option value="zona norte">zona
-            norte</option>
-        <option value="zona sul">zona sul
-        </option>
-        <option value="zona oeste">zona
-            oeste</option>
-        <option value="zona leste">zona
-            leste</option>
-    </select>
+    $skip = ($page - 1)*10;
+    $query_all_missing = "SELECT * FROM Desaparecido LIMIT 10 OFFSET $skip";
+    $query_quantity_missings = "SELECT COUNT(*) AS quantity_missings FROM Desaparecido";
+
+    if(isset($_GET["name"])){
+        $name = $_GET["name"];
+        $query_all_missing = "SELECT * FROM Desaparecido WHERE nome_desaparecido LIKE '%$name%' LIMIT 10 OFFSET $skip";
+        $query_quantity_missings = "SELECT COUNT(*) AS quantity_missings FROM Desaparecido WHERE nome_desaparecido LIKE '%$name%'";
+    }
+
+    $result = $connection->query($query_quantity_missings);
+    $row = $result->fetch_assoc();
+    $query_quantity_missings = $row['quantity_missings'];
+    print_r($query_quantity_missings);
+
+    $missings = $connection->query($query_all_missing);
+    if ($missings->num_rows > 0):
+    ?>
+        <?php
+        while ($missing = $missings->fetch_assoc()): ?>
+             <div>
+                <div>
+                    <?php
+                    print_r($missing);
+                    ?>
+
+                </div>
+                <br>
+                <br>
+            </div>
+        <?php endwhile ?>
+    <?php endif; ?>
+
+ 
 </body>
 
 </html>
