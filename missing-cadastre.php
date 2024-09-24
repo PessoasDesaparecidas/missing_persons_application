@@ -120,14 +120,14 @@ include './utils/protect-page-route.php';
                         <div>
                             <div class="gender-input">
                                 <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao-1"
-                                    value="é uma pessoa com doença mental">
+                                    value="é uma pessoa com doença mental" >
                                 <label for="mais_infromacao-1">é uma pessoa com doença mental</label>
                             </div>
 
                             <div class="gender-input">
                                 <input type="checkbox" id="mais_infromacao-2" name="mais_infromacao-2"
-                                    value="usava telefone quando desapareceu">
-                                <label for="mais_infromacao-2">usava telefone quando desapareceu</label>
+                                    value="dependente quimico">
+                                <label for="mais_infromacao-2">dependente quimico</label>
                             </div>
                         </div>
 
@@ -156,6 +156,49 @@ include './utils/protect-page-route.php';
             </form>
         </div>
     </div>
+
+    <script>
+        const chekcboxOne =document.getElementById("mais_infromacao-1")
+        const chekcboxTwo =document.getElementById("mais_infromacao-2")
+        const chekcboxThree =document.getElementById("mais_infromacao-3")
+        const chekcboxFour =document.getElementById("mais_infromacao-4")
+
+        chekcboxOne.addEventListener("change",()=>{
+            if (chekcboxOne.checked) {
+                const value =prompt("qual a doea mental ?")
+                chekcboxOne.value = value;
+            } else {
+                chekcboxOne.value = '';
+            }
+        })
+
+        chekcboxTwo.addEventListener("change",()=>{
+            if (chekcboxTwo.checked) {
+                const value =prompt("que tipo de dependente quimico ele é?")
+                chekcboxTwo.value = value;
+            } else {
+                chekcboxTwo.value = '';
+            }
+        })
+
+        chekcboxThree.addEventListener("change",()=>{
+            if (chekcboxThree.checked) {
+                const value =prompt("link da rede social?")
+                chekcboxThree.value = value;
+            } else {
+                chekcboxThree.value = '';
+            }
+        })
+
+        chekcboxFour.addEventListener("change",()=>{
+            if (chekcboxFour.checked) {
+                const value =prompt("placa do carro?")
+                chekcboxFour.value = value;
+            } else {
+                chekcboxFour.value = '';
+            }
+        })
+    </script>
 </body>
 
 </html>
