@@ -40,6 +40,16 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido (
    foreign key (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 );";
 
+$create_missing_comments_table = "CREATE TABLE IF NOT EXISTS Comentario(
+   id_desaparecido INT ,
+   id_usuario INT ,
+   conteudo TEXT NOT NULL,
+   created_at datetime DEFAULT CURRENT_TIMESTAMP,
+   foreign key (id_desaparecido) REFERENCES Desaparecido(id_desaparecido) ON DELETE CASCADE ON UPDATE CASCADE,
+   foreign key (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
+    )
+";
+$connection->query($create_missing_comments_table);
 
 $connection->query($create_user_table);
 $connection->query($create_missing_persons_table);
