@@ -35,6 +35,8 @@ if (isset($_POST['btn-cadastre-missing']) ) {
     $local_desaparecimento
   );
 
+  
+
   sonner('success', 'desaparecido cadastrado com sucesso');
   header("Location: missings-dashboard.php?page=1");
 } else {
