@@ -5,7 +5,7 @@ const checkBoxFour = document.getElementById("mais-infromacao-4");
 
 checkBoxOne.addEventListener("change", () => {
   if (checkBoxOne.checked) {
-    const value = prompt("qual a doea mental ?");
+    const value = prompt("qual a doença mental ?");
     checkBoxOne.value = value;
   } else {
     checkBoxOne.value = "";

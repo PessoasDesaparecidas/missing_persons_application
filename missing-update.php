@@ -4,6 +4,22 @@ include './database/missings-repository.php';
 session_abort();
 include './utils/sonner.php';
 
+$page = $_GET["page"];
+$missing_id = $_GET["missing_id"];
+$missing = get_missing_by_id($connection, $missing_id);
+
+
+if (!$missing) {
+    sonner("error", "desaparecido não encontrado");
+    header('Location: missings-dashboard.php?page=1');
+}
+
+if ($missing["id_usuario"] != get_user_id()) {
+    sonner("error", "usuario não autorizado");
+    header('Location: missings-dashboard.php?page=1');
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,7 +28,8 @@ include './utils/sonner.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
-    <title>Atualização de Desaparecido</title>
+    <link rel="icon" href="./assets/images/favicon.png">
+    <title>Desaparecido | <?php echo $missing["nome_desaparecido"]?></title>
 </head>
 
 <body>
@@ -21,23 +38,6 @@ include './utils/sonner.php';
             <img src="./assets/images/sample-example-profile.svg">
         </div>
         <div class="form">
-            <?php
-      $page = $_GET["page"];
-      $missing_id = $_GET["missing_id"];
-      $missing = get_missing_by_id($connection, $missing_id);
-
-
-      if (!$missing) {
-        sonner("error", "desaparecido não encontrado");
-        header('Location: missings-dashboard.php?page=1');
-      }
-
-      if ($missing["id_usuario"] != get_user_id()) {
-        sonner("error", "usuario não autorizado");
-        header('Location: missings-dashboard.php?page=1');
-      }
-
-      ?>
             <form action="missing-update.action.php?missing_id=<?php echo $missing_id ?>&page=<?php echo $page ?>"
                 method="POST" class="form-register-missing" enctype="multipart/form-data" id="form">
                 <div class="form-header">
@@ -124,7 +124,7 @@ include './utils/sonner.php';
 
                 <div class="input-box">
                     <label class="picture" tabindex="0" for="imagem">Foto</label>
-                    <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" required>
+                    <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" >
                 </div>
                 <div class="continue-button" id="next-state-form">
                     <button type="button">
@@ -197,13 +197,21 @@ include './utils/sonner.php';
                         <div> 
                             <div class="gender-input  ">
                                 <input type="checkbox" id="mais-infromacao-1" name="mais-infromacao-1"
-                                    value="" >
+                                    value="<?php echo $missing["doencas"]?>" 
+                                    <?php if(!empty($missing["doencas"])){
+                                        print_r("checked");
+                                    }?>
+                                    >
                                 <label for="mais-infromacao-1">é uma pessoa com doença mental</label>
                             </div>
 
                             <div class="gender-input ">
                                 <input type="checkbox" id="mais-infromacao-2" name="mais-infromacao-2"
-                                    value="">
+                                    value="<?php echo $missing["dependente_quimico"]?>" 
+                                    <?php if(!empty($missing["dependente_quimico"])){
+                                        print_r("checked");
+                                    }?>
+                                    >
                                 <label for="mais-infromacao-2">dependente quimico</label>
                             </div>
                         </div>
@@ -211,13 +219,21 @@ include './utils/sonner.php';
                         <div>
                             <div class="gender-input ">
                                 <input type="checkbox" id="mais-infromacao-3" name="mais-infromacao-3"
-                                    value="">
+                                    value="<?php echo $missing["perfil"]?>" 
+                                    <?php if(!empty($missing["perfil"])){
+                                        print_r("checked");
+                                    }?>
+                                    >
                                 <label for="mais-infromacao-3">pussui perfil em alguma rede social</label>
                             </div>
 
                             <div class="gender-input ">
                                 <input type="checkbox" id="mais-infromacao-4" name="mais-infromacao-4"
-                                    value="">
+                                    value="<?php echo $missing["placa_do_carro"]?>" 
+                                    <?php if(!empty($missing["placa_do_carro"])){
+                                        print_r("checked");
+                                    }?>
+                                    >
                                 <label for="mais-infromacao-4">dirigia algum veiculo</label>
                             </div>
                         </div>

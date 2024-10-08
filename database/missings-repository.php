@@ -11,7 +11,7 @@ function create_missing(
   $data_desaparecimento,
   $idade_desparecido,
   $local_desaparecimento,
-  $doecas, 
+  $doencas, 
   $depende_quimico, 
   $perfil, 
   $placa_do_carro
@@ -32,7 +32,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $data_desaparecimento,
     $idade_desparecido,
     $local_desaparecimento,
-    $doecas, 
+    $doencas, 
     $depende_quimico, 
     $perfil, 
     $placa_do_carro
