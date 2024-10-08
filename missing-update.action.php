@@ -7,6 +7,20 @@ $page = $_GET["page"];
 if (isset($_POST["btn-update-missing"])) {
   $missing_id = $_GET["missing_id"];
 
+  $missing = get_missing_by_id($connection,$missing_id);
+
+  $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
+
+  $foto_desaparecido = $missing["foto_desaparecido"];
+ 
+
+  if($extensao){
+    $foto_desaparecido = md5(time()) . $extensao;
+    $diretorio = "./assets/uploads/";
+    move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);  
+    unlink($diretorio.$missing["foto_desaparecido"]);
+  }
+
   $nome_desaparecido = filter_var($_POST['nome_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
   $contato_desaparecido = filter_var($_POST['contato_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
   $historia_desaparecido = filter_var($_POST['historia_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -14,10 +28,7 @@ if (isset($_POST["btn-update-missing"])) {
   $data_desaparecimento = trim($_POST['data_desaparecimento']);
   $idade_desparecido = trim($_POST['idade_desparecido']);
   $local_desaparecimento = filter_var($_POST['local_desaparecimento'], FILTER_SANITIZE_SPECIAL_CHARS);
-  $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
-  $foto_desaparecido = md5(time()) . $extensao;
-  $diretorio = "./assets/uploads/";
-  move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);
+  
   $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   $doencas = filter_var($_POST['mais-infromacao-1'], FILTER_SANITIZE_SPECIAL_CHARS);;
