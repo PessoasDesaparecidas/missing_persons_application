@@ -39,14 +39,17 @@ include './utils/sonner.php';
 
       ?>
             <form action="missing-update.action.php?missing_id=<?php echo $missing_id ?>&page=<?php echo $page ?>"
-                method="POST" class="form-register-missing" enctype="multipart/form-data">
+                method="POST" class="form-register-missing" enctype="multipart/form-data" id="form">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Atuzalizar o desaparecido</h1>
+                        <h1>Desaparecido: <?php echo strtoupper($missing["nome_desaparecido"])?></h1>
                     </div>
+                    <button class="btn-previous-state-form" id="btn-previous-state-form" type="button">
+                     <-voltar
+                    </button>
                 </div>
 
-
+                <section id="form-state-one">
                 <div class="input-group">
                     <div class="input-box">
                         <label for="nome_desaparecido">Nome completo</label>
@@ -123,7 +126,14 @@ include './utils/sonner.php';
                     <label class="picture" tabindex="0" for="imagem">Foto</label>
                     <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" required>
                 </div>
+                <div class="continue-button" id="next-state-form">
+                    <button type="button">
+                        Proxima
+                    </button>
+                </div>
+                </section>
 
+                <section id="form-state-two">
                 <div class="gender-inputs">
 
                     <div class="gender-title">
@@ -134,8 +144,8 @@ include './utils/sonner.php';
 
                         <div class="gender-input">
                             <?php
-              if ($missing["genero_desaparecido"] === "Feminino"):
-              ?>
+                            if ($missing["genero_desaparecido"] === "Feminino"):
+                            ?>
                             <input type="radio" id="female" name="genero_desaparecido" value="Feminino" checked>
                             <?php else: ?>
                             <input type="radio" id="female" name="genero_desaparecido" value="Feminino">
@@ -184,30 +194,31 @@ include './utils/sonner.php';
                     </div>
                     <div class="gender-group group-plus-information">
 
-                        <div>
-                            <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao-1"
-                                    value="é uma pessoa com doença mental">
-                                <label for="mais_infromacao-1">é uma pessoa com doença mental</label>
+                        <div> 
+                            <div class="gender-input  ">
+                                <input type="checkbox" id="mais-infromacao-1" name="mais-infromacao-1"
+                                    value="" >
+                                <label for="mais-infromacao-1">é uma pessoa com doença mental</label>
                             </div>
 
-                            <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao"
-                                    value="usava telefone quando desapareceu">
-                                <label for="male">usava telefone quando desapareceu</label>
+                            <div class="gender-input ">
+                                <input type="checkbox" id="mais-infromacao-2" name="mais-infromacao-2"
+                                    value="">
+                                <label for="mais-infromacao-2">dependente quimico</label>
                             </div>
                         </div>
 
                         <div>
-                            <div class="gender-input">
-                                <input type="checkbox" id="others" name="mais_infromacao"
-                                    value="pussui perfil em alguma rede social">
-                                <label for="others">pussui perfil em alguma rede social</label>
+                            <div class="gender-input ">
+                                <input type="checkbox" id="mais-infromacao-3" name="mais-infromacao-3"
+                                    value="">
+                                <label for="mais-infromacao-3">pussui perfil em alguma rede social</label>
                             </div>
 
-                            <div class="gender-input">
-                                <input type="checkbox" id="none" name="mais_infromacao" value="dirigia algum veiculo">
-                                <label for="none">dirigia algum veiculo</label>
+                            <div class="gender-input ">
+                                <input type="checkbox" id="mais-infromacao-4" name="mais-infromacao-4"
+                                    value="">
+                                <label for="mais-infromacao-4">dirigia algum veiculo</label>
                             </div>
                         </div>
 
@@ -219,9 +230,16 @@ include './utils/sonner.php';
                         atuzalizar
                     </button>
                 </div>
+                </section>
+
             </form>
         </div>
     </div>
+
+    <!-- javascript do fomulario -->
+    <script src="./assets/javascript/aply-phone-mask.js" defer></script>
+     <script src="./assets/javascript/prompsts-check-boxs-form.js" defer></script>
+     <script src="./assets/javascript/control-state-form.js" defer></script>
 </body>
 
 </html>

@@ -21,11 +21,7 @@ include './utils/protect-page-route.php';
                 enctype="multipart/form-data" id="form">
                 <div class="form-header">
                     <div class="title">
-
                         <h1>Cadastre o desaparecido</h1>
-                    
-
-                        
                     </div>
                     <button class="btn-previous-state-form" id="btn-previous-state-form" type="button">
                      <-voltar
