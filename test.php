@@ -40,6 +40,11 @@
         $filters[] = "genero_desaparecido = '$gender'";
     }
 
+    if(isset($_GET["local_desaparecimento"]) && !empty($_GET["local_desaparecimento"])){
+        $locale = $connection->real_escape_string($_GET["local_desaparecimento"]);
+        $filters[] = "local_desaparecimento = '$locale'"
+    }
+
     // Montagem da cláusula WHERE com base nos filtros
     if (!empty($filters)) {
         $where_clause = " WHERE " . implode(" AND ", $filters);

@@ -12,8 +12,13 @@ function seed_missings($connection, $user_id, int $quantity_missings = 1)
             'observacao_desaparecido' => 'Possui uma tatuagem de estrela no pulso.',
             'data_desaparecimento' => '2024-09-01',
             'idade_desparecido' => 28,
-            'local_desaparecimento' => 'São Paulo, SP'
-        ],
+            'local_desaparecimento' => 'São Paulo, SP',
+            'doencas'=> 'ezquizofrenia',
+            'dependente_quimico' => 'alcool',
+            'perfil' => '@maria',
+            'placa_do_carro' =>'123A54'
+        ]
+        ,
         [
             'nome_desaparecido' => 'João Pereira',
             'genero_desaparecido' => 'Masculino',
@@ -23,8 +28,13 @@ function seed_missings($connection, $user_id, int $quantity_missings = 1)
             'observacao_desaparecido' => 'Usava óculos de grau.',
             'data_desaparecimento' => '2024-08-15',
             'idade_desparecido' => 35,
-            'local_desaparecimento' => 'Rio de Janeiro, RJ'
-        ],
+            'local_desaparecimento' => 'Rio de Janeiro, RJ',
+            'doencas'=> 'ezquizofrenia',
+            'dependente_quimico' => 'alcool',
+            'perfil' => '@joao',
+            'placa_do_carro' =>'123A54'
+        ]
+        ,
         [
             'nome_desaparecido' => 'Ana Costa',
             'genero_desaparecido' => 'Feminino',
@@ -34,8 +44,13 @@ function seed_missings($connection, $user_id, int $quantity_missings = 1)
             'observacao_desaparecido' => 'Tem uma cicatriz na testa.',
             'data_desaparecimento' => '2024-09-10',
             'idade_desparecido' => 22,
-            'local_desaparecimento' => 'Belo Horizonte, MG'
-        ],
+            'local_desaparecimento' => 'Belo Horizonte, MG',
+            'doencas'=> 'ezquizofrenia',
+            'dependente_quimico' => 'alcool',
+            'perfil' => '@ana',
+            'placa_do_carro' =>'123A54'
+        ]
+        ,
         [
             'nome_desaparecido' => 'Carlos Santos',
             'genero_desaparecido' => 'Masculino',
@@ -45,8 +60,13 @@ function seed_missings($connection, $user_id, int $quantity_missings = 1)
             'observacao_desaparecido' => 'Usava uma jaqueta vermelha.',
             'data_desaparecimento' => '2024-07-25',
             'idade_desparecido' => 30,
-            'local_desaparecimento' => 'Curitiba, PR'
-        ],
+            'local_desaparecimento' => 'Curitiba, PR',
+            'doencas'=> 'ezquizofrenia',
+            'dependente_quimico' => 'alcool',
+            'perfil' => '@joao',
+            'placa_do_carro' =>'123A54'
+        ]
+        ,
         [
             'nome_desaparecido' => 'Lucas Martins',
             'genero_desaparecido' => 'Masculino',
@@ -56,7 +76,11 @@ function seed_missings($connection, $user_id, int $quantity_missings = 1)
             'observacao_desaparecido' => 'Tem um piercing no nariz.',
             'data_desaparecimento' => '2024-06-18',
             'idade_desparecido' => 26,
-            'local_desaparecimento' => 'Porto Alegre, RS'
+            'local_desaparecimento' => 'Porto Alegre, RS',
+            'doencas'=> 'ezquizofrenia',
+            'dependente_quimico' => 'alcool',
+            'perfil' => '@lucas',
+            'placa_do_carro' =>'123A54'
         ]
     ];
 
@@ -78,7 +102,11 @@ function seed_missings($connection, $user_id, int $quantity_missings = 1)
             $current_missing["observacao_desaparecido"],
             $current_missing["data_desaparecimento"],
             $current_missing["idade_desparecido"],
-            $current_missing["local_desaparecimento"]
+            $current_missing["local_desaparecimento"],
+            $current_missing["doencas"],
+            $current_missing["dependente_quimico"],
+            $current_missing["perfil"],
+            $current_missing["placa_do_carro"]
         );
     }
 }
