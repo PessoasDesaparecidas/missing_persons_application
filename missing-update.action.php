@@ -20,6 +20,11 @@ if (isset($_POST["btn-update-missing"])) {
   move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);
   $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
 
+  $doencas = filter_var($_POST['mais-infromacao-1'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $dependente_quimico = filter_var($_POST['mais-infromacao-2'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $perfil = filter_var($_POST['mais-infromacao-3'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $placa_do_carro = filter_var($_POST['mais-infromacao-4'], FILTER_SANITIZE_SPECIAL_CHARS);;
+
 
   update_missing_by_user_id(
     $connection,
@@ -33,7 +38,11 @@ if (isset($_POST["btn-update-missing"])) {
     $observacao_desaparecido,
     $data_desaparecimento,
     $idade_desparecido,
-    $local_desaparecimento
+    $local_desaparecimento,
+    $doencas, 
+    $dependente_quimico, 
+    $perfil, 
+    $placa_do_carro
   );
 
   sonner("success", "sucesso em atualizar desaparecido");

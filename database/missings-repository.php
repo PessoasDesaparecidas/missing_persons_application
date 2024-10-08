@@ -118,9 +118,27 @@ function update_missing_by_user_id(
   $observacao_desaparecido,
   $data_desaparecimento,
   $idade_desparecido,
-  $local_desaparecimento
+  $local_desaparecimento,
+  $doencas, 
+  $dependente_quimico, 
+  $perfil, 
+  $placa_do_carro
 ) {
-  $preparement_query_to_updated_missing = "UPDATE `desaparecido` SET `nome_desaparecido`='$nome_desaparecido',`genero_desaparecido`='$genero_desaparecido',`foto_desaparecido`='$foto_desaparecido',`contato_desaparecido`='$contato_desaparecido',`historia_desaparecido`='$historia_desaparecido',`observacao_desaparecido`='$observacao_desaparecido',`idade_desparecido`='$idade_desparecido',`data_desaparecimento`='$data_desaparecimento',`local_desaparecimento`='$local_desaparecimento' WHERE id_desaparecido = '$missing_id' AND id_usuario = '$user_id' ";
+  $preparement_query_to_updated_missing = "UPDATE `desaparecido` SET 
+  `nome_desaparecido` = '$nome_desaparecido',
+  `genero_desaparecido` = '$genero_desaparecido',
+  `foto_desaparecido` = '$foto_desaparecido',
+  `contato_desaparecido` = '$contato_desaparecido',
+  `historia_desaparecido` = '$historia_desaparecido',
+  `observacao_desaparecido` = '$observacao_desaparecido',
+  `idade_desparecido` = '$idade_desparecido',
+  `data_desaparecimento` = '$data_desaparecimento',
+  `local_desaparecimento` = '$local_desaparecimento',
+  `doencas` = '$doencas',
+  `perfil` = '$perfil',
+  `placa_do_carro` = '$placa_do_carro',
+  `dependente_quimico` = '$dependente_quimico'
+   WHERE id_desaparecido = '$missing_id' AND id_usuario = '$user_id' ";
 
   $connection->query($preparement_query_to_updated_missing);
 }
