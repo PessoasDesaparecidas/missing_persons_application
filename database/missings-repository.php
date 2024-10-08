@@ -43,22 +43,6 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   $preparement_query_to_created_missing->close();
 }
 
-// function create_plus_information_missing($connection,$doecas,$perfil,$ja_abri_bo,$placa_do_carro,$dependente_quimico){
-
-//   $preparement_query_to_created_plus_information =$connection->prepare("INSERT INTO `maisinformacao`(`doencas`, `perfil`, `ja_abriu_bo`, `placa_do_carro`, `dependente_quimico`) 
-//   VALUES (?, ?, ?, ?, ?)");
-//     $preparement_query_to_created_plus_information->bind_param(
-//       "sssss",
-//       $doecas,
-//       $perfil,
-//       $ja_abri_bo,
-//       $placa_do_carro,
-//       $dependente_quimico
-//     );
-//   $preparement_query_to_created_plus_information->execute();
-//   $preparement_query_to_created_plus_information->close();
-// }
-
 function fetch_missings_by_user_id($connection, int $user_id, int $skip)
 {
   $quantity_missings = 10;

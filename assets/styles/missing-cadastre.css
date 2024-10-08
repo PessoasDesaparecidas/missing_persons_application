@@ -36,8 +36,8 @@ body {
   width: 31rem;
 }
 
-form{
-  width:100%;
+form {
+  width: 100%;
 }
 .form {
   width: 50%;
@@ -73,19 +73,18 @@ form{
 }
 
 @media screen and (max-width: 1930px) {
-.input-group {
+  .input-group {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 630px) {
-
   .input-group {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-.input-box{
+.input-box {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -100,11 +99,13 @@ form{
   box-shadow: 1px 1px 6px #0000001c;
 }
 
-.input-box input:hover ,.input-box select:hover {
+.input-box input:hover,
+.input-box select:hover {
   background-color: #f0efed;
 }
 
-.input-box input:focus-visible ,.input-box select:hover{
+.input-box input:focus-visible,
+.input-box select:hover {
   outline: 1px solid #000000;
 }
 
@@ -115,10 +116,10 @@ form{
   color: #000000c0;
 }
 
-.input-box input::placeholder, .input-box select::placeholder {
+.input-box input::placeholder,
+.input-box select::placeholder {
   color: #000000be;
 }
-
 
 .continue-button button {
   width: 100%;
@@ -164,19 +165,14 @@ form{
     flex-wrap: nowrap;
     max-height: 10rem;
   }
-  
 }
-
-
 
 @media screen and (max-width: 550px) {
-
-.gender-group {
-  flex-direction: column;
-  gap: .5rem;
+  .gender-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
-}
-
 
 .group-plus-information > div {
   display: flex;
@@ -184,17 +180,16 @@ form{
   gap: 0.5rem;
 }
 
-
-.close{
+.close {
   visibility: hidden;
   display: none;
 }
 
-.gender-inputs{
+.gender-inputs {
   margin-top: 1.5rem;
 }
 
-#form-state-two{
+#form-state-two {
   width: 100%;
 }
 
@@ -220,17 +215,17 @@ form{
   color: #000000c0;
 }
 
-.input-box select{
+.input-box select {
   display: block;
-} 
+}
 
-.btn-previus-state-form{
+.btn-previous-state-form {
   all: unset;
   text-decoration: underline;
-  animation: .2s;
+  animation: 0.2s;
   cursor: pointer;
 }
 
-.btn-previus-state-form:hover{
+.btn-previous-state-form:hover {
   color: #9c0000;
 }

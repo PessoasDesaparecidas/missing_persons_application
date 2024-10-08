@@ -27,7 +27,7 @@ include './utils/protect-page-route.php';
 
                         
                     </div>
-                    <button class="btn-previus-state-form" id="btn-previus-state-form" type="button">
+                    <button class="btn-previous-state-form" id="btn-previous-state-form" type="button">
                      <-voltar
                     </button>
                 </div>
@@ -172,103 +172,10 @@ include './utils/protect-page-route.php';
         </div>
     </div>
 
-    <script>
-
-        function applyPhoneMask() {
-            const input = document.getElementById('contato_desaparecido');
-            input.addEventListener('input', function (e) {
-               let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-               if (value.length > 0) {
-                 value = value.replace(/^(\d{2})(\d)/g, '($1) $2'); // Adiciona os parênteses e espaço
-               }
-               if (value.length >= 10) {
-                 value = value.replace(/(\d{5})(\d{4})$/, '$1-$2'); // Adiciona o traço no número
-               }
-               input.value = value;
-             });
-        }
-        
-        applyPhoneMask();
-
-        const chekcboxOne =document.getElementById("mais-infromacao-1")
-        const chekcboxTwo =document.getElementById("mais-infromacao-2")
-        const chekcboxThree =document.getElementById("mais-infromacao-3")
-        const chekcboxFour =document.getElementById("mais-infromacao-4")
-
-        chekcboxOne.addEventListener("change",()=>{
-            if (chekcboxOne.checked) {
-                const value =prompt("qual a doea mental ?")
-                chekcboxOne.value = value;
-            } else {
-                chekcboxOne.value = '';
-            }
-        })
-
-        chekcboxTwo.addEventListener("change",()=>{
-            if (chekcboxTwo.checked) {
-                const value =prompt("que tipo de dependente quimico ele é?")
-                chekcboxTwo.value = value;
-            } else {
-                chekcboxTwo.value = '';
-            }
-        })
-
-        chekcboxThree.addEventListener("change",()=>{
-            if (chekcboxThree.checked) {
-                const value =prompt("link da rede social?")
-                chekcboxThree.value = value;
-            } else {
-                chekcboxThree.value = '';
-            }
-        })
-
-        chekcboxFour.addEventListener("change",()=>{
-            if (chekcboxFour.checked) {
-                const value =prompt("placa do carro?")
-                chekcboxFour.value = value;
-            } else {
-                chekcboxFour.value = '';
-            }
-        })
-
-
-        const buttonNextStateForm = document.getElementById("next-state-form");
-        const buttonPreviusForm = document.getElementById("btn-previus-state-form")
-
-        const formStateOne = document.getElementById("form-state-one");
-
-        const formStateTwo = document.getElementById("form-state-two");
-        formStateTwo.classList = "close"
-        buttonPreviusForm.classList = "close"
-
-
-
-        buttonPreviusForm.addEventListener("click",()=>{
-          previusStateForm()  
-        })
-
-        buttonNextStateForm.addEventListener("click", ()=>{
-            const form = document.getElementById("form")
-            if(form.checkValidity()){
-                nextStateForm()
-            }else{
-                form.reportValidity();
-            }
-        })
-
-        function nextStateForm(){
-            formStateTwo.classList.remove("close")
-            formStateOne.classList = "close"
-            buttonPreviusForm.classList = "btn-previus-state-form"
-        }
-
-
-         function previusStateForm(){
-            formStateTwo.classList.add("close")
-            formStateOne.classList.remove("close")
-            buttonPreviusForm.classList = "close"
-        }
-    </script>
+    <!-- javascript do fomulario -->
+     <script src="./assets/javascript/aply-phone-mask.js" defer></script>
+     <script src="./assets/javascript/prompsts-check-boxs-form.js" defer></script>
+     <script src="./assets/javascript/control-state-form.js" defer></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-$host = "localhost:3306";
+$host = "localhost:3307";
 $username = "root";
 $password = "";
 $database = "tcc";
@@ -51,18 +51,6 @@ $create_missing_comments_table = "CREATE TABLE IF NOT EXISTS Comentario(
    foreign key (id_desaparecido) REFERENCES Desaparecido(id_desaparecido) ON DELETE CASCADE ON UPDATE CASCADE,
    foreign key (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE)";
 
-$create_missing_plus_information_table = "CREATE TABLE IF NOT EXISTS MaisInformacao(
-    id_mais_informacao INT AUTO_INCREMENT PRIMARY KEY,
-    id_desaparecido INT,
-    doencas VARCHAR(255),
-    perfil VARCHAR(255),
-    placa_do_carro VARCHAR(9),
-    depende_quimico VARCHAR(255),
-     foreign key (id_desaparecido) REFERENCES Desaparecido(id_desaparecido) ON DELETE CASCADE ON UPDATE CASCADE)";
-
-
-
 $connection->query($create_user_table);
 $connection->query($create_missing_persons_table);
-// $connection->query($create_missing_plus_information_table);
 $connection->query($create_missing_comments_table);
