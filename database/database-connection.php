@@ -33,6 +33,10 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS Desaparecido(
    idade_desparecido INT NOT NULL,
    data_desaparecimento DATETIME NOT NULL,
    local_desaparecimento VARCHAR(255) NOT NULL,
+   doencas VARCHAR(255),
+   dependente_quimico VARCHAR(255),
+   perfil VARCHAR(255),
+   placa_do_carro VARCHAR(9),
    created_at datetime DEFAULT CURRENT_TIMESTAMP,
    updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
    PRIMARY KEY(id_desaparecido),
@@ -50,9 +54,8 @@ $create_missing_comments_table = "CREATE TABLE IF NOT EXISTS Comentario(
 $create_missing_plus_information_table = "CREATE TABLE IF NOT EXISTS MaisInformacao(
     id_mais_informacao INT AUTO_INCREMENT PRIMARY KEY,
     id_desaparecido INT,
-    doencas VARCHAR(50),
-    perfil VARCHAR(50),
-    ja_abriu_bo BOOLEAN,
+    doencas VARCHAR(255),
+    perfil VARCHAR(255),
     placa_do_carro VARCHAR(9),
     depende_quimico VARCHAR(255),
      foreign key (id_desaparecido) REFERENCES Desaparecido(id_desaparecido) ON DELETE CASCADE ON UPDATE CASCADE)";
@@ -61,5 +64,5 @@ $create_missing_plus_information_table = "CREATE TABLE IF NOT EXISTS MaisInforma
 
 $connection->query($create_user_table);
 $connection->query($create_missing_persons_table);
-$connection->query($create_missing_plus_information_table);
+// $connection->query($create_missing_plus_information_table);
 $connection->query($create_missing_comments_table);

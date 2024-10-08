@@ -18,13 +18,21 @@ include './utils/protect-page-route.php';
         </div>
         <div class="form">
             <form action="missing-cadastre.action.php" method="POST" class="form-register-missing"
-                enctype="multipart/form-data">
+                enctype="multipart/form-data" id="form">
                 <div class="form-header">
                     <div class="title">
+
                         <h1>Cadastre o desaparecido</h1>
+                    
+
+                        
                     </div>
+                    <button class="btn-previus-state-form" id="btn-previus-state-form" type="button">
+                     <-voltar
+                    </button>
                 </div>
-                <div class="input-group">
+                <section id="form-state-one">
+                    <div class="input-group">
                     <div class="input-box">
                         <label for="nome_desaparecido">Nome completo</label>
                         <input id="nome_desaparecido" type="text" name="nome_desaparecido"
@@ -46,7 +54,7 @@ include './utils/protect-page-route.php';
                     <div class="input-box">
                         <label for="contato_desaparecido">Telefone para contato</label>
                         <input id="contato_desaparecido" type="tel" name="contato_desaparecido"
-                            placeholder="(xx) xxxxx-xxxx" minlength="9" maxlength="9" required>
+                            placeholder="(xx) xxxxx-xxxx" minlength="11" maxlength="15" required>
                     </div>
 
                     <div class="input-box">
@@ -79,13 +87,19 @@ include './utils/protect-page-route.php';
                     <label class="picture" tabindex="0" for="imagem">Foto</label>
                     <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" required>
                 </div>
+                <div class="continue-button" id="next-state-form">
+                    <button type="button">
+                        Proxima
+                    </button>
+                </div>
+                </section>
 
-
-                <div class="gender-inputs">
+                <section id="form-state-two">
+                    <div class="gender-inputs">
                     <div class="gender-title">
                         <h6>Gênero</h6>
                     </div>
-                    <div class="gender-group">
+                    <div class="gender-group ">
 
                         <div class="gender-input">
                             <input type="radio" id="female" name="genero_desaparecido" value="Feminino">
@@ -117,31 +131,31 @@ include './utils/protect-page-route.php';
                     </div>
                     <div class="gender-group group-plus-information">
 
-                        <div>
-                            <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-1" name="mais_infromacao-1"
-                                    value="é uma pessoa com doença mental" >
-                                <label for="mais_infromacao-1">é uma pessoa com doença mental</label>
+                        <div> 
+                            <div class="gender-input  ">
+                                <input type="checkbox" id="mais-infromacao-1" name="mais-infromacao-1"
+                                    value="" >
+                                <label for="mais-infromacao-1">é uma pessoa com doença mental</label>
                             </div>
 
-                            <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-2" name="mais_infromacao-2"
-                                    value="dependente quimico">
-                                <label for="mais_infromacao-2">dependente quimico</label>
+                            <div class="gender-input ">
+                                <input type="checkbox" id="mais-infromacao-2" name="mais-infromacao-2"
+                                    value="">
+                                <label for="mais-infromacao-2">dependente quimico</label>
                             </div>
                         </div>
 
                         <div>
-                            <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-3" name="mais_infromacao-3"
-                                    value="pussui perfil em alguma rede social">
-                                <label for="mais_infromacao-3">pussui perfil em alguma rede social</label>
+                            <div class="gender-input ">
+                                <input type="checkbox" id="mais-infromacao-3" name="mais-infromacao-3"
+                                    value="">
+                                <label for="mais-infromacao-3">pussui perfil em alguma rede social</label>
                             </div>
 
-                            <div class="gender-input">
-                                <input type="checkbox" id="mais_infromacao-4" name="mais_infromacao-4"
-                                    value="dirigia algum veiculo">
-                                <label for="mais_infromacao-4">dirigia algum veiculo</label>
+                            <div class="gender-input ">
+                                <input type="checkbox" id="mais-infromacao-4" name="mais-infromacao-4"
+                                    value="">
+                                <label for="mais-infromacao-4">dirigia algum veiculo</label>
                             </div>
                         </div>
 
@@ -153,15 +167,33 @@ include './utils/protect-page-route.php';
                         Cadastrar
                     </button>
                 </div>
+                </section>
             </form>
         </div>
     </div>
 
     <script>
-        const chekcboxOne =document.getElementById("mais_infromacao-1")
-        const chekcboxTwo =document.getElementById("mais_infromacao-2")
-        const chekcboxThree =document.getElementById("mais_infromacao-3")
-        const chekcboxFour =document.getElementById("mais_infromacao-4")
+
+        function applyPhoneMask() {
+            const input = document.getElementById('contato_desaparecido');
+            input.addEventListener('input', function (e) {
+               let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+               if (value.length > 0) {
+                 value = value.replace(/^(\d{2})(\d)/g, '($1) $2'); // Adiciona os parênteses e espaço
+               }
+               if (value.length >= 10) {
+                 value = value.replace(/(\d{5})(\d{4})$/, '$1-$2'); // Adiciona o traço no número
+               }
+               input.value = value;
+             });
+        }
+        
+        applyPhoneMask();
+
+        const chekcboxOne =document.getElementById("mais-infromacao-1")
+        const chekcboxTwo =document.getElementById("mais-infromacao-2")
+        const chekcboxThree =document.getElementById("mais-infromacao-3")
+        const chekcboxFour =document.getElementById("mais-infromacao-4")
 
         chekcboxOne.addEventListener("change",()=>{
             if (chekcboxOne.checked) {
@@ -198,6 +230,44 @@ include './utils/protect-page-route.php';
                 chekcboxFour.value = '';
             }
         })
+
+
+        const buttonNextStateForm = document.getElementById("next-state-form");
+        const buttonPreviusForm = document.getElementById("btn-previus-state-form")
+
+        const formStateOne = document.getElementById("form-state-one");
+
+        const formStateTwo = document.getElementById("form-state-two");
+        formStateTwo.classList = "close"
+        buttonPreviusForm.classList = "close"
+
+
+
+        buttonPreviusForm.addEventListener("click",()=>{
+          previusStateForm()  
+        })
+
+        buttonNextStateForm.addEventListener("click", ()=>{
+            const form = document.getElementById("form")
+            if(form.checkValidity()){
+                nextStateForm()
+            }else{
+                form.reportValidity();
+            }
+        })
+
+        function nextStateForm(){
+            formStateTwo.classList.remove("close")
+            formStateOne.classList = "close"
+            buttonPreviusForm.classList = "btn-previus-state-form"
+        }
+
+
+         function previusStateForm(){
+            formStateTwo.classList.add("close")
+            formStateOne.classList.remove("close")
+            buttonPreviusForm.classList = "close"
+        }
     </script>
 </body>
 

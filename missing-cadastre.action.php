@@ -19,8 +19,11 @@ if (isset($_POST['btn-cadastre-missing']) ) {
   move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);
   $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
 
+  $doecas = filter_var($_POST['mais-infromacao-1'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $dependente_quimico = filter_var($_POST['mais-infromacao-2'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $perfil = filter_var($_POST['mais-infromacao-3'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $placa_do_carro = filter_var($_POST['mais-infromacao-4'], FILTER_SANITIZE_SPECIAL_CHARS);;
 
-  
   create_missing(
     $connection,
      get_user_id(),
@@ -32,10 +35,12 @@ if (isset($_POST['btn-cadastre-missing']) ) {
     $observacao_desaparecido,
     $data_desaparecimento,
     $idade_desparecido,
-    $local_desaparecimento
+    $local_desaparecimento,
+    $doecas, 
+    $dependente_quimico, 
+    $perfil, 
+    $placa_do_carro
   );
-
-  
 
   sonner('success', 'desaparecido cadastrado com sucesso');
   header("Location: missings-dashboard.php?page=1");

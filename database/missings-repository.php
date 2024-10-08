@@ -10,14 +10,18 @@ function create_missing(
   $observacao_desaparecido,
   $data_desaparecimento,
   $idade_desparecido,
-  $local_desaparecimento
+  $local_desaparecimento,
+  $doecas, 
+  $depende_quimico, 
+  $perfil, 
+  $placa_do_carro
 ) {
   $preparement_query_to_created_missing = $connection->prepare("INSERT INTO Desaparecido 
-(id_usuario, nome_desaparecido,genero_desaparecido, foto_desaparecido, contato_desaparecido, historia_desaparecido, observacao_desaparecido, data_desaparecimento ,idade_desparecido, local_desaparecimento)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+(id_usuario, nome_desaparecido,genero_desaparecido, foto_desaparecido, contato_desaparecido, historia_desaparecido, observacao_desaparecido, data_desaparecimento ,idade_desparecido, local_desaparecimento, doencas, perfil, placa_do_carro, dependente_quimico)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   $preparement_query_to_created_missing->bind_param(
-    "ssssssssss",
+    "ssssssssssssss",
     $user_id,
     $nome_desaparecido,
     $genero_desaparecido,
@@ -27,7 +31,11 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $observacao_desaparecido,
     $data_desaparecimento,
     $idade_desparecido,
-    $local_desaparecimento
+    $local_desaparecimento,
+    $doecas, 
+    $depende_quimico, 
+    $perfil, 
+    $placa_do_carro
   );
 
   $preparement_query_to_created_missing->execute();
@@ -35,21 +43,21 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   $preparement_query_to_created_missing->close();
 }
 
-function create_plus_information_missing($connection,$doecas,$perfil,$ja_abri_bo,$placa_do_carro,$dependente_quimico){
+// function create_plus_information_missing($connection,$doecas,$perfil,$ja_abri_bo,$placa_do_carro,$dependente_quimico){
 
-  $preparement_query_to_created_plus_information =$connection->prepare("INSERT INTO `maisinformacao`(`doencas`, `perfil`, `ja_abriu_bo`, `placa_do_carro`, `dependente_quimico`) 
-  VALUES (?, ?, ?, ?, ?)");
-    $preparement_query_to_created_plus_information->bind_param(
-      "sssss",
-      $doecas,
-      $perfil,
-      $ja_abri_bo,
-      $placa_do_carro,
-      $dependente_quimico
-    );
-  $preparement_query_to_created_plus_information->execute();
-  $preparement_query_to_created_plus_information->close();
-}
+//   $preparement_query_to_created_plus_information =$connection->prepare("INSERT INTO `maisinformacao`(`doencas`, `perfil`, `ja_abriu_bo`, `placa_do_carro`, `dependente_quimico`) 
+//   VALUES (?, ?, ?, ?, ?)");
+//     $preparement_query_to_created_plus_information->bind_param(
+//       "sssss",
+//       $doecas,
+//       $perfil,
+//       $ja_abri_bo,
+//       $placa_do_carro,
+//       $dependente_quimico
+//     );
+//   $preparement_query_to_created_plus_information->execute();
+//   $preparement_query_to_created_plus_information->close();
+// }
 
 function fetch_missings_by_user_id($connection, int $user_id, int $skip)
 {
