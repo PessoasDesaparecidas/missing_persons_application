@@ -39,7 +39,6 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   );
 
   $preparement_query_to_created_missing->execute();
-
   $preparement_query_to_created_missing->close();
 }
 
@@ -47,9 +46,11 @@ function fetch_missings_by_user_id($connection, int $user_id, int $skip)
 {
   $quantity_missings = 10;
   $offset_missings = $skip * $quantity_missings;
-  $query = "SELECT *  FROM Desaparecido WHERE id_usuario = '{$user_id}' ORDER BY created_at DESC LIMIT {$quantity_missings} OFFSET {$offset_missings} ";
 
-  $result = $connection->query($query);
+  $preparement_query_to_fetch_missings = $connection->prepare("SELECT * FROM Desaparecido WHERE id_usuario = ? ORDER BY created_at DESC LIMIT ? OFFSET ?");
+  $preparement_query_to_fetch_missings->bind_param("sss", $user_id, $quantity_missings, $offset_missings);
+  $preparement_query_to_fetch_missings->execute();
+  $result = $preparement_query_to_fetch_missings->get_result();
   return $result;
 }
 
@@ -76,9 +77,10 @@ function fetch_missings($connection,  int $skip)
 
 function delete_missing_by_user_id($connection, int $user_id, int $missing_id)
 {
-  $query = "DELETE FROM Desaparecido WHERE id_desaparecido = '{$missing_id}' AND id_usuario = '{$user_id}'";
-
-  $connection->query($query);
+  $preparement_query_to_delete_missing = $connection->prepare("DELETE FROM Desaparecido WHERE id_desaparecido = ? AND id_usuario = ?");
+  $preparement_query_to_delete_missing->bind_param("ss", $missing_id, $user_id);
+  $preparement_query_to_delete_missing->execute();
+  $preparement_query_to_delete_missing->close();
 }
 
 
@@ -124,31 +126,36 @@ function update_missing_by_user_id(
   $perfil, 
   $placa_do_carro
 ) {
-  $preparement_query_to_updated_missing = "UPDATE `desaparecido` SET 
-  `nome_desaparecido` = '$nome_desaparecido',
-  `genero_desaparecido` = '$genero_desaparecido',
-  `foto_desaparecido` = '$foto_desaparecido',
-  `contato_desaparecido` = '$contato_desaparecido',
-  `historia_desaparecido` = '$historia_desaparecido',
-  `observacao_desaparecido` = '$observacao_desaparecido',
-  `idade_desparecido` = '$idade_desparecido',
-  `data_desaparecimento` = '$data_desaparecimento',
-  `local_desaparecimento` = '$local_desaparecimento',
-  `doencas` = '$doencas',
-  `perfil` = '$perfil',
-  `placa_do_carro` = '$placa_do_carro',
-  `dependente_quimico` = '$dependente_quimico'
-   WHERE id_desaparecido = '$missing_id' AND id_usuario = '$user_id' ";
+  
+  $preparement_query_to_update_missing = $connection->prepare("UPDATE Desaparecido SET nome_desaparecido = ?, genero_desaparecido = ?, foto_desaparecido = ?, contato_desaparecido = ?, historia_desaparecido = ?, observacao_desaparecido = ?, data_desaparecimento = ?, idade_desparecido = ?, local_desaparecimento = ?, doencas = ?, dependente_quimico = ?, perfil = ?, placa_do_carro = ? WHERE id_desaparecido = ? AND id_usuario = ?");
+  $preparement_query_to_update_missing->bind_param(
+    "sssssssssssssss",
+    $nome_desaparecido,
+    $genero_desaparecido,
+    $foto_desaparecido,
+    $contato_desaparecido,
+    $historia_desaparecido,
+    $observacao_desaparecido,
+    $data_desaparecimento,
+    $idade_desparecido,
+    $local_desaparecimento,
+    $doencas, 
+    $dependente_quimico, 
+    $perfil, 
+    $placa_do_carro,
+    $missing_id,
+    $user_id
+  );
 
-  $connection->query($preparement_query_to_updated_missing);
+  $preparement_query_to_update_missing->execute();
+  $preparement_query_to_update_missing->close();
 }
 
 
 function get_missing_by_id($connection,  $missing_id)
 {
-  $query = "SELECT * FROM Desaparecido WHERE id_desaparecido = '{$missing_id}'";
-
-  $missing = $connection->query($query);
-
-  return $missing->fetch_array(MYSQLI_ASSOC);
+  $preparement_query_to_select_missing= $connection->prepare("SELECT * FROM Desaparecido WHERE id_desaparecido = ?");
+  $preparement_query_to_select_missing->bind_param("s", $missing_id);
+  $preparement_query_to_select_missing->execute();
+  return $preparement_query_to_select_missing->get_result()->fetch_assoc();
 }
