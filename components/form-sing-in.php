@@ -15,8 +15,8 @@
       <span class="icon">
         <ion-icon name="lock-closed"></ion-icon>
       </span>
-      <input type="password" required name="senha">
-      <label>Senha</label>
+      <input type="password" required name="password">
+      <label>password</label>
     </div>
     <button type="submit" class="btn" name="btn-login">Login</button>
     <div class="login-register">

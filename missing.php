@@ -23,7 +23,7 @@ if (!$missing) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desaparecido | <?php echo $missing["nome_desaparecido"] ?></title>
+    <title>Desaparecido | <?php echo $missing["missing_person_name"] ?></title>
     <link rel="icon" href="./assets/images/favicon.png">
     <link rel="stylesheet" href="./assets/styles/globals.css">
     <link rel="stylesheet" href="./assets/styles/missing.css">
@@ -46,10 +46,10 @@ if (!$missing) {
                 while ($comment = $comments->fetch_assoc()) {
                 ?>
                 <div class="comment">
-                    <p><?php echo $comment["conteudo"] ?></p>
+                    <p><?php echo $comment["content"] ?></p>
                     <div class="comment-actions">
-                        <a href="edit-comment.php?comment_id=<?php echo $comment["id_comentario"] ?>">Editar</a>
-                        <a href="delete-comment.php?comment_id=<?php echo $comment["id_comentario"] ?>">Excluir</a>
+                        <a href="edit-comment.php?comment_id=<?php echo $comment["comment_id"] ?>">Editar</a>
+                        <a href="delete-comment.php?comment_id=<?php echo $comment["comment_id"] ?>">Excluir</a>
                     </div>
                 </div>
                 <?php

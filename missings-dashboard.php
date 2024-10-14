@@ -62,15 +62,15 @@ include './database/missings-repository.php'
                 </div>
 
                 <a href="./missing-delete.action.php?
-            missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
+            missing_id=<?php echo $missing["missing_person_id"] ?>&page=<?php echo $page ?>">
                     deletar
                 </a>
                 <a
-                    href="./missing-update.php?missing_id=<?php echo $missing["id_desaparecido"] ?>&page=<?php echo $page ?>">
+                    href="./missing-update.php?missing_id=<?php echo $missing["missing_person_id"] ?>&page=<?php echo $page ?>">
                     editar
                 </a>
 
-                <a href="./missing.php?missing_id=<?php echo $missing["id_desaparecido"] ?>">
+                <a href="./missing.php?missing_id=<?php echo $missing["missing_person_id"] ?>">
                     ver
                 </a>
                 <br>

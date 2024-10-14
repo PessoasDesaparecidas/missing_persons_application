@@ -24,25 +24,25 @@
     $skip = ($page - 1) * 10;
 
     // Consultas básicas
-    $query_all_missing = "SELECT * FROM Desaparecido";
-    $query_quantity_missings = "SELECT COUNT(*) AS quantity_missings FROM Desaparecido";
+    $query_all_missing = "SELECT * FROM MissingPerson";
+    $query_quantity_missings = "SELECT COUNT(*) AS quantity_missings FROM MissingPerson";
 
     // Filtros dinâmicos
     $filters = [];
 
     if (isset($_GET["name"]) && !empty($_GET["name"])) {
         $name = $connection->real_escape_string($_GET["name"]);
-        $filters[] = "nome_desaparecido LIKE '%$name%'";
+        $filters[] = "missing_person_name LIKE '%$name%'";
     }
     
     if (isset($_GET["gender"]) && !empty($_GET["gender"])) {
         $gender = $connection->real_escape_string($_GET["gender"]);
-        $filters[] = "genero_desaparecido = '$gender'";
+        $filters[] = "missing_person_gender = '$gender'";
     }
 
-    if(isset($_GET["local_desaparecimento"]) && !empty($_GET["local_desaparecimento"])){
-        $locale = $connection->real_escape_string($_GET["local_desaparecimento"]);
-        $filters[] = "local_desaparecimento = '$locale'";
+    if(isset($_GET["missing_location"]) && !empty($_GET["missing_location"])){
+        $locale = $connection->real_escape_string($_GET["missing_location"]);
+        $filters[] = "missing_location = '$locale'";
     }
 
     // Montagem da cláusula WHERE com base nos filtros
@@ -68,25 +68,25 @@
     $quantity_missings = $row['quantity_missings'];
 
     // Exibindo a quantidade total de registros encontrados
-    echo "<p>Total de desaparecidos: $quantity_missings</p>";
+    echo "<p>Total de MissingPersons: $quantity_missings</p>";
 
-    // Executando a consulta para listar os desaparecidos
+    // Executando a consulta para listar os MissingPersons
     $missings = $connection->query($query_all_missing);
     if ($missings->num_rows > 0):
     ?>
         <?php while ($missing = $missings->fetch_assoc()): ?>
             <div>
-                <p>Nome: <?= htmlspecialchars($missing['nome_desaparecido']) ?></p>
-                <p>Gênero: <?= htmlspecialchars($missing['genero_desaparecido']) ?></p>
-                <p>Data de Desaparecimento: <?= htmlspecialchars($missing['data_desaparecimento']) ?></p>
-                <p>Local de Desaparecimento: <?= htmlspecialchars($missing['local_desaparecimento']) ?></p>
-                <p>Contato: <?= htmlspecialchars($missing['contato_desaparecido']) ?></p>
-                <p>Observação: <?= htmlspecialchars($missing['observacao_desaparecido']) ?></p>
+                <p>Nome: <?= htmlspecialchars($missing['missing_person_name']) ?></p>
+                <p>Gênero: <?= htmlspecialchars($missing['missing_person_gender']) ?></p>
+                <p>Data de Desaparecimento: <?= htmlspecialchars($missing['missing_date']) ?></p>
+                <p>Local de Desaparecimento: <?= htmlspecialchars($missing['missing_location']) ?></p>
+                <p>Contato: <?= htmlspecialchars($missing['missing_person_contact']) ?></p>
+                <p>Observação: <?= htmlspecialchars($missing['missing_person_note']) ?></p>
                 <hr>
             </div>
         <?php endwhile ?>
     <?php else: ?>
-        <p>Nenhum desaparecido encontrado.</p>
+        <p>nenhum desaparecido encontrado.</p>
     <?php endif; ?>
 
     <!-- Links de navegação para a paginação -->

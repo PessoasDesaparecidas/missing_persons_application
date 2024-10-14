@@ -6,7 +6,7 @@
       <span class="icon">
         <ion-icon name="person"></ion-icon>
       </span>
-      <input type="text" required name="nome">
+      <input type="text" required name="username">
       <label>Usuário</label>
     </div>
     <div class="input-box">
@@ -20,8 +20,8 @@
       <span class="icon">
         <ion-icon name="lock-closed"></ion-icon>
       </span>
-      <input type="password" required name="senha">
-      <label>Senha</label>
+      <input type="password" required name="password">
+      <label>password</label>
     </div>
     <button type="submit" class="btn" name="submit-form-register">Cadastrar</button>
     <div class="login-register">

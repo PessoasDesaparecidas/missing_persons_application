@@ -38,6 +38,10 @@ include './database/missings-repository.php';
             ?>
     </div>
     <?php endif ?>
+
+    <?php 
+        echo get_user_id();
+    ?>
     <section>
         <div class="content">
             <ul class="ul1">

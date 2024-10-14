@@ -31,39 +31,39 @@ include './utils/protect-page-route.php';
                 <section id="form-state-one">
                     <div class="input-group">
                     <div class="input-box">
-                        <label for="nome_desaparecido">Nome completo</label>
-                        <input id="nome_desaparecido" type="text" name="nome_desaparecido"
-                            placeholder="Digite o nome completo do desaparecido" required>
+                        <label for="missing_person_name">username completo</label>
+                        <input id="missing_person_name" type="text" name="missing_person_name"
+                            placeholder="Digite o username completo do desaparecido" required>
                     </div>
 
                     <div class="input-box">
-                        <label for="idade_desparecido">Idade do desaparecido</label>
-                        <input id="idade_desparecido" type="text" name="idade_desparecido"
+                        <label for="missing_person_age">Idade do desaparecido</label>
+                        <input id="missing_person_age" type="text" name="missing_person_age"
                             placeholder="Digite a idade atual do desaparecido" required>
                     </div>
 
                     <div class="input-box">
-                        <label for="observacao_desaparecido">Caracteristicas do desaparecido</label>
-                        <input id="observacao_desaparecido" type="text" name="observacao_desaparecido"
+                        <label for="missing_person_note">Caracteristicas do desaparecido</label>
+                        <input id="missing_person_note" type="text" name="missing_person_note"
                             placeholder="Digite as caraceristicas do desaparecido" required>
                     </div>
 
                     <div class="input-box">
-                        <label for="contato_desaparecido">Telefone para contato</label>
-                        <input id="contato_desaparecido" type="tel" name="contato_desaparecido"
+                        <label for="missing_person_contact">Telefone para contato</label>
+                        <input id="missing_person_contact" type="tel" name="missing_person_contact"
                             placeholder="(xx) xxxxx-xxxx" minlength="11" maxlength="15" required>
                     </div>
 
                     <div class="input-box">
-                        <label for="data_desaparecimento">Foi visto por último em</label>
-                        <input id="data_desaparecimento" type="datetime-local" name="data_desaparecimento"
+                        <label for="missing_date">Foi visto por último em</label>
+                        <input id="missing_date" type="datetime-local" name="missing_date"
                             style="width: 215px;" required>
                     </div>
 
                     <div class="input-box">
-                        <label for="local_desaparecimento">Região</label>
+                        <label for="missing_location">Região</label>
 
-                        <select name="local_desaparecimento" id="local_desaparecimento" required>
+                        <select name="missing_location" id="missing_location" required>
                             <option value="zona central">zona central</option>
                             <option value="zona norte">zona norte</option>
                             <option value="zona sul">zona sul</option>
@@ -76,7 +76,7 @@ include './utils/protect-page-route.php';
 
                 <div class="input-box">
                     <label for="hist">o que fazia quando desapareceu</label>
-                    <input id="hist" type="text" name="historia_desaparecido"
+                    <input id="hist" type="text" name="missing_person_story"
                         placeholder="Digite a historia do desaparecido" required>
                 </div>
 
@@ -99,22 +99,22 @@ include './utils/protect-page-route.php';
                     <div class="gender-group ">
 
                         <div class="gender-input">
-                            <input type="radio" id="female" name="genero_desaparecido" value="Feminino">
+                            <input type="radio" id="female" name="missing_person_gender" value="Feminino">
                             <label for="female">Feminino</label>
                         </div>
 
                         <div class="gender-input">
-                            <input type="radio" id="male" name="genero_desaparecido" value="Masculino">
+                            <input type="radio" id="male" name="missing_person_gender" value="Masculino">
                             <label for="male">Masculino</label>
                         </div>
 
                         <div class="gender-input">
-                            <input type="radio" id="others" name="genero_desaparecido" value="Outros">
+                            <input type="radio" id="others" name="missing_person_gender" value="Outros">
                             <label for="others">Outros</label>
                         </div>
 
                         <div class="gender-input">
-                            <input type="radio" id="none" name="genero_desaparecido" value="Prefiro não dizer">
+                            <input type="radio" id="none" name="missing_person_gender" value="Prefiro não dizer">
                             <label for="none">Prefiro não dizer</label>
                         </div>
 
@@ -146,7 +146,7 @@ include './utils/protect-page-route.php';
                             <div class="gender-input ">
                                 <input type="checkbox" id="mais-infromacao-3" name="mais-infromacao-3"
                                     value="">
-                                <label for="mais-infromacao-3">pussui perfil em alguma rede social</label>
+                                <label for="mais-infromacao-3">pussui profile em alguma rede social</label>
                             </div>
 
                             <div class="gender-input ">

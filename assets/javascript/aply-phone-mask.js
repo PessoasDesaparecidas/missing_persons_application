@@ -1,5 +1,5 @@
 function applyPhoneMask() {
-  const input = document.getElementById("contato_desaparecido");
+  const input = document.getElementById("missing_person_contact");
   input.addEventListener("input", function (e) {
     let value = input.value.replace(/\D/g, ""); // Remove tudo que não for número
     if (value.length > 0) {

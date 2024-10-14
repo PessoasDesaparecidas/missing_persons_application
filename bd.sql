@@ -6,26 +6,26 @@ DROP TABLE Desaparecido;
 DROP TABLE Usuario;
 
 CREATE TABLE IF NOT EXISTS Usuario (
-	 id_usuario INT AUTO_INCREMENT,
-	 nome_usuario VARCHAR(50) NOT NULL,
+	 user_id INT AUTO_INCREMENT,
+	 username VARCHAR(50) NOT NULL,
 	 email_usuario VARCHAR(50) NOT NULL UNIQUE,
-	 senha_usuario VARCHAR(20) NOT NULL,
+	 password_usuario VARCHAR(20) NOT NULL,
      esta_banido BOOLEAN  DEFAULT True,
-	PRIMARY KEY (id_usuario)
+	PRIMARY KEY (user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Desaparecido (
-	id_desaparecido INT  AUTO_INCREMENT ,
-    id_usuario INT,
-	nome_desaparecido VARCHAR(50) NOT NULL,
-	foto_desaparecido VARCHAR(255) NOT NULL,
-    contato_desaparecido INT NOT NULL,
-    observacao_desaparecido TEXT NOT NULL,
+	missing_person_id INT  AUTO_INCREMENT ,
+    user_id INT,
+	missing_person_name VARCHAR(50) NOT NULL,
+	missing_person_photo VARCHAR(255) NOT NULL,
+    missing_person_contact INT NOT NULL,
+    missing_person_note TEXT NOT NULL,
     data_nascimento DATE NOT NULL,
-    data_desaparecimento DATE NOT NULL,
-    local_desaparecimento VARCHAR(255) NOT NULL,
-    PRIMARY KEY(id_desaparecido),
-    foreign key (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
+    missing_date DATE NOT NULL,
+    missing_location VARCHAR(255) NOT NULL,
+    PRIMARY KEY(missing_person_id),
+    foreign key (user_id) REFERENCES Usuario(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -33,15 +33,15 @@ CREATE TABLE IF NOT EXISTS Desaparecido (
 /* Populando o Banco de dados */
 
 -- Populando a tabela Usuario
-INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, esta_banido)
+INSERT INTO Usuario (username, email_usuario, password_usuario, esta_banido)
 VALUES
     ('João Silva', 'joao.silva@email.com', '123456', False),
-    ('Maria Santos', 'maria.santos@email.com', 'senha123', False),
-    ('Carlos Oliveira', 'carlos.oliveira@email.com', 'minhasenha', True);
+    ('Maria Santos', 'maria.santos@email.com', 'password123', False),
+    ('Carlos Oliveira', 'carlos.oliveira@email.com', 'minhapassword', True);
 
 -- Populando a tabela Desaparecido
 INSERT INTO Desaparecido 
-(id_usuario, nome_desaparecido, foto_desaparecido, contato_desaparecido, observacao_desaparecido, data_desaparecimento ,data_nascimento, local_desaparecimento)
+(user_id, missing_person_name, missing_person_photo, missing_person_contact, missing_person_note, missing_date ,data_nascimento, missing_location)
 VALUES
     (1, 'Ana Silva', 'ImagemB64aqui', 123456789, 'Descrição do desaparecimento...','2024-01-24', '1990-05-15', 'Cidade A'),
     (2, 'Pedro Santos', 'ImagemB64aqui', 987654321, 'Outra descrição...', '2023-11-04','1985-10-20', 'Cidade B'),
@@ -55,34 +55,34 @@ VALUES
 
 /* selecionando dados */
  -- usuario
-SELECT nome_usuario,email_usuario,senha_usuario  FROM Usuario;
+SELECT username,email_usuario,password_usuario  FROM Usuario;
 -- um derteminado usuario 
-SELECT nome_usuario,email_usuario,senha_usuario  FROM Usuario  WHERE id_usuario= 1; 
+SELECT username,email_usuario,password_usuario  FROM Usuario  WHERE user_id= 1; 
 
 -- verificando se esta banido 
-SELECT nome_usuario,email_usuario,senha_usuario  FROM Usuario  
-WHERE id_usuario= 1 AND esta_banido = FALSE;
+SELECT username,email_usuario,password_usuario  FROM Usuario  
+WHERE user_id= 1 AND esta_banido = FALSE;
 
 -- usuario com seu desaparecidos
 
 SELECT Desaparecido.*  FROM Usuario LEFT  JOIN  Desaparecido 
-ON Desaparecido.id_usuario = Usuario.id_usuario 
-WHERE Usuario.id_usuario =  1 AND Usuario.esta_banido=FALSE;
+ON Desaparecido.user_id = Usuario.user_id 
+WHERE Usuario.user_id =  1 AND Usuario.esta_banido=FALSE;
 
 SELECT * FROM Desaparecido;
 
 -- deletar 
 
-DELETE FROM Usuario WHERE id_usuario = 3;
-DELETE FROM Desaparecido WHERE id_usuario = 3;
-DELETE FROM `desaparecido` WHERE `desaparecido`.`id_desaparecido` = 3
+DELETE FROM Usuario WHERE user_id = 3;
+DELETE FROM Desaparecido WHERE user_id = 3;
+DELETE FROM `desaparecido` WHERE `desaparecido`.`missing_person_id` = 3
 
 -- atualizar 
 
 UPDATE Usuario 
-SET nome_usuario = "Henry"
-WHERE id_usuario = 1;
+SET username = "Henry"
+WHERE user_id = 1;
 
 UPDATE Desaparecido 
-SET nome_desaparecido = "fulano"
-WHERE id_desaparecido = 1;
+SET missing_person_name = "fulano"
+WHERE missing_person_id = 1;

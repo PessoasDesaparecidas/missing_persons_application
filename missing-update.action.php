@@ -11,49 +11,49 @@ if (isset($_POST["btn-update-missing"])) {
 
   $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
 
-  $foto_desaparecido = $missing["foto_desaparecido"];
+  $missing_person_photo = $missing["missing_person_photo"];
  
 
   if($extensao){
-    $foto_desaparecido = md5(time()) . $extensao;
+    $missing_person_photo = md5(time()) . $extensao;
     $diretorio = "./assets/uploads/";
-    move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $foto_desaparecido);  
-    unlink($diretorio.$missing["foto_desaparecido"]);
+    move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $missing_person_photo);  
+    unlink($diretorio.$missing["missing_person_photo"]);
   }
 
-  $nome_desaparecido = filter_var($_POST['nome_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
-  $contato_desaparecido = filter_var($_POST['contato_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
-  $historia_desaparecido = filter_var($_POST['historia_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
-  $observacao_desaparecido = filter_var($_POST['observacao_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
-  $data_desaparecimento = trim($_POST['data_desaparecimento']);
-  $idade_desparecido = trim($_POST['idade_desparecido']);
-  $local_desaparecimento = filter_var($_POST['local_desaparecimento'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $missing_person_name = filter_var($_POST['missing_person_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $missing_person_contact = filter_var($_POST['missing_person_contact'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $missing_person_story = filter_var($_POST['missing_person_story'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $missing_person_note = filter_var($_POST['missing_person_note'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $missing_date = trim($_POST['missing_date']);
+  $missing_person_age = trim($_POST['missing_person_age']);
+  $missing_location = filter_var($_POST['missing_location'], FILTER_SANITIZE_SPECIAL_CHARS);
   
-  $genero_desaparecido = filter_var($_POST['genero_desaparecido'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $missing_person_gender = filter_var($_POST['missing_person_gender'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-  $doencas = filter_var($_POST['mais-infromacao-1'], FILTER_SANITIZE_SPECIAL_CHARS);;
-  $dependente_quimico = filter_var($_POST['mais-infromacao-2'], FILTER_SANITIZE_SPECIAL_CHARS);;
-  $perfil = filter_var($_POST['mais-infromacao-3'], FILTER_SANITIZE_SPECIAL_CHARS);;
-  $placa_do_carro = filter_var($_POST['mais-infromacao-4'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $illnesses = filter_var($_POST['mais-infromacao-1'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $chemical_dependency = filter_var($_POST['mais-infromacao-2'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $profile = filter_var($_POST['mais-infromacao-3'], FILTER_SANITIZE_SPECIAL_CHARS);;
+  $car_plate = filter_var($_POST['mais-infromacao-4'], FILTER_SANITIZE_SPECIAL_CHARS);;
 
 
   update_missing_by_user_id(
     $connection,
     get_user_id(),
     $missing_id,
-    $nome_desaparecido,
-    $genero_desaparecido,
-    $foto_desaparecido,
-    $contato_desaparecido,
-    $historia_desaparecido,
-    $observacao_desaparecido,
-    $data_desaparecimento,
-    $idade_desparecido,
-    $local_desaparecimento,
-    $doencas, 
-    $dependente_quimico, 
-    $perfil, 
-    $placa_do_carro
+    $missing_person_name,
+    $missing_person_gender,
+    $missing_person_photo,
+    $missing_person_contact,
+    $missing_person_story,
+    $missing_person_note,
+    $missing_date,
+    $missing_person_age,
+    $missing_location,
+    $illnesses, 
+    $chemical_dependency, 
+    $profile, 
+    $car_plate
   );
 
   sonner("success", "sucesso em atualizar desaparecido");
