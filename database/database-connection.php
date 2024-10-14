@@ -7,9 +7,9 @@ $database = "tcc";
 $connection = new mysqli($host, $username, $password, $database);
 
 if ($connection->error) {
-    print_r($connection->error);
-      die("error connecting to database".$connection->error);
-   }
+   print_r($connection->error);
+   die("error connecting to database" . $connection->error);
+}
 
 $create_user_table = "CREATE TABLE IF NOT EXISTS User (
    user_id INT AUTO_INCREMENT,

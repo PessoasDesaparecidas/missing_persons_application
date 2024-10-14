@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function create_missing(
   $connection,
@@ -12,9 +12,9 @@ function create_missing(
   $missing_date,
   $missing_person_age,
   $missing_location,
-  $illnesses, 
-  $chemical_dependency, 
-  $profile, 
+  $illnesses,
+  $chemical_dependency,
+  $profile,
   $car_plate
 ) {
   $preparement_query_to_create_missing = $connection->prepare("INSERT INTO MissingPerson 
@@ -33,9 +33,9 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $missing_date,
     $missing_person_age,
     $missing_location,
-    $illnesses, 
-    $chemical_dependency, 
-    $profile, 
+    $illnesses,
+    $chemical_dependency,
+    $profile,
     $car_plate
   );
 
@@ -67,12 +67,12 @@ function fetch_recent_missings($connection, int $skip)
 
 function fetch_missings($connection, int $skip)
 {
-   $quantity_missings = 10;
-   $offset_missings = $skip * $quantity_missings;
-   $query = "SELECT * FROM MissingPerson ORDER BY created_at DESC LIMIT {$quantity_missings} OFFSET {$offset_missings}";
+  $quantity_missings = 10;
+  $offset_missings = $skip * $quantity_missings;
+  $query = "SELECT * FROM MissingPerson ORDER BY created_at DESC LIMIT {$quantity_missings} OFFSET {$offset_missings}";
 
-   $result = $connection->query($query);
-   return $result;
+  $result = $connection->query($query);
+  return $result;
 }
 
 function delete_missing_by_user_id($connection, int $user_id, int $missing_id)
@@ -101,7 +101,8 @@ function get_quantity_pages_by_user_id($connection, $user_id)
   return $quantity_pages;
 }
 
-function calculate_quantity_pages($per_page, $total) {
+function calculate_quantity_pages($per_page, $total)
+{
   $quantity_pages = ceil($total / $per_page);
   return $quantity_pages;
 }
@@ -119,12 +120,12 @@ function update_missing_by_user_id(
   $missing_date,
   $missing_person_age,
   $missing_location,
-  $illnesses, 
-  $chemical_dependency, 
-  $profile, 
+  $illnesses,
+  $chemical_dependency,
+  $profile,
   $car_plate
 ) {
-  
+
   $preparement_query_to_update_missing = $connection->prepare("UPDATE MissingPerson SET missing_person_name = ?, missing_person_gender = ?, missing_person_photo = ?, missing_person_contact = ?, missing_person_story = ?, missing_person_note = ?, missing_date = ?, missing_person_age = ?, missing_location = ?, illnesses = ?, chemical_dependency = ?, profile = ?, car_plate = ? WHERE missing_person_id = ? AND user_id = ?");
   $preparement_query_to_update_missing->bind_param(
     "sssssssssssssss",
@@ -137,9 +138,9 @@ function update_missing_by_user_id(
     $missing_date,
     $missing_person_age,
     $missing_location,
-    $illnesses, 
-    $chemical_dependency, 
-    $profile, 
+    $illnesses,
+    $chemical_dependency,
+    $profile,
     $car_plate,
     $missing_id,
     $user_id
@@ -156,6 +157,3 @@ function get_missing_by_id($connection, $missing_id)
   $preparement_query_to_select_missing->execute();
   return $preparement_query_to_select_missing->get_result()->fetch_assoc();
 }
-
-
-?>

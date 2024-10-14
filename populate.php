@@ -1,11 +1,9 @@
-<?php 
+<?php
 include "./utils/populate-database.php";
 include "./database/database-connection.php";
 include "./utils/get-user-id.php";
 
 
-seed_missings($connection,get_user_id(),100);
+seed_missings($connection, get_user_id(), 100);
 
 echo "sucessp em popular banco de dadosa ";
-
-?>

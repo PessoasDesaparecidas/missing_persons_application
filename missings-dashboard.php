@@ -20,8 +20,8 @@ include './database/missings-repository.php'
 <body>
     <!-- navbar -->
     <?php
-  include './components/header.php';
-  ?>
+    include './components/header.php';
+    ?>
 
     <!-- content  -->
 
@@ -38,45 +38,45 @@ include './database/missings-repository.php'
         <!-- listagem de desaparecidos -->
         <section>
             <?php
-      $page = $_GET["page"];
-      $max_pages = get_quantity_pages_by_user_id($connection, get_user_id());
+            $page = $_GET["page"];
+            $max_pages = get_quantity_pages_by_user_id($connection, get_user_id());
 
-      if (empty($page) ||$page < 1| $page > $max_pages) {
-        header("Location:missings-dashboard.php?page=1");
-      }
-   
+            if (empty($page) || $page < 1 | $page > $max_pages) {
+                header("Location:missings-dashboard.php?page=1");
+            }
 
-      $skip = $page - 1;
-      $missings = fetch_missings_by_user_id($connection, get_user_id(), $skip);
 
-      if ($missings->num_rows > 0) :
-      ?>
-            <?php
-        while ($missing = $missings->fetch_assoc()): ?>
-            <div>
-                <div>
-                    <?php
-              print_r($missing);
-              ?>
+            $skip = $page - 1;
+            $missings = fetch_missings_by_user_id($connection, get_user_id(), $skip);
 
-                </div>
+            if ($missings->num_rows > 0) :
+            ?>
+                <?php
+                while ($missing = $missings->fetch_assoc()): ?>
+                    <div>
+                        <div>
+                            <?php
+                            print_r($missing);
+                            ?>
 
-                <a href="./missing-delete.action.php?
+                        </div>
+
+                        <a href="./missing-delete.action.php?
             missing_id=<?php echo $missing["missing_person_id"] ?>&page=<?php echo $page ?>">
-                    deletar
-                </a>
-                <a
-                    href="./missing-update.php?missing_id=<?php echo $missing["missing_person_id"] ?>&page=<?php echo $page ?>">
-                    editar
-                </a>
+                            deletar
+                        </a>
+                        <a
+                            href="./missing-update.php?missing_id=<?php echo $missing["missing_person_id"] ?>&page=<?php echo $page ?>">
+                            editar
+                        </a>
 
-                <a href="./missing.php?missing_id=<?php echo $missing["missing_person_id"] ?>">
-                    ver
-                </a>
-                <br>
-                <br>
-            </div>
-            <?php endwhile ?>
+                        <a href="./missing.php?missing_id=<?php echo $missing["missing_person_id"] ?>">
+                            ver
+                        </a>
+                        <br>
+                        <br>
+                    </div>
+                <?php endwhile ?>
             <?php endif; ?>
 
         </section>
@@ -88,15 +88,15 @@ include './database/missings-repository.php'
                 preview
             </a>
             <?php
-      $quantity_pages = get_quantity_pages_by_user_id($connection, get_user_id());
+            $quantity_pages = get_quantity_pages_by_user_id($connection, get_user_id());
 
-      for ($current_page = 1; $current_page <= $quantity_pages; $current_page++):
-      ?>
-            <a href="./missings-dashboard.php?page=<?php echo $current_page ?>">
-                <?php
-          echo $current_page;
-          ?>
-            </a>
+            for ($current_page = 1; $current_page <= $quantity_pages; $current_page++):
+            ?>
+                <a href="./missings-dashboard.php?page=<?php echo $current_page ?>">
+                    <?php
+                    echo $current_page;
+                    ?>
+                </a>
             <?php endfor; ?>
 
             <a href="./missings-dashboard.php?page=<?php echo $page == $max_pages ? $page : $page + 1  ?>">
@@ -108,13 +108,13 @@ include './database/missings-repository.php'
     <!-- sonner -->
     <?php
 
-  include './components/sonner.php';
-  ?>
+    include './components/sonner.php';
+    ?>
 
     <!-- rodapé -->
     <?php
-  include './components/footer.php'
-  ?>
+    include './components/footer.php'
+    ?>
 
 
     <!-- javascript -->

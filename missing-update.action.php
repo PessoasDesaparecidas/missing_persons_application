@@ -4,7 +4,7 @@ include "./database/missings-repository.php";
 include "./utils/sonner.php";
 include "./utils/get-missing-id.php";
 
-if(!get_missing_id()){
+if (!get_missing_id()) {
   sonner("error", "Desaparecido não encontrado");
   header("Location: index.php");
 }
@@ -13,9 +13,9 @@ $page = $_GET["page"];
 if (isset($_POST["btn-update-missing"])) {
 
 
-  $missing = get_missing_by_id($connection,get_missing_id());
+  $missing = get_missing_by_id($connection, get_missing_id());
 
-  if(!$missing){
+  if (!$missing) {
     sonner("error", "Desaparecido não encontrado");
     header("Location: index.php");
   }
@@ -23,13 +23,13 @@ if (isset($_POST["btn-update-missing"])) {
   $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
 
   $missing_person_photo = $missing["missing_person_photo"];
- 
 
-  if($extensao){
+
+  if ($extensao) {
     $missing_person_photo = md5(time()) . $extensao;
     $diretorio = "./assets/uploads/";
-    move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $missing_person_photo);  
-    unlink($diretorio.$missing["missing_person_photo"]);
+    move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $missing_person_photo);
+    unlink($diretorio . $missing["missing_person_photo"]);
   }
 
   $missing_person_name = filter_var($_POST['missing_person_name'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -39,7 +39,7 @@ if (isset($_POST["btn-update-missing"])) {
   $missing_date = trim($_POST['missing_date']);
   $missing_person_age = trim($_POST['missing_person_age']);
   $missing_location = filter_var($_POST['missing_location'], FILTER_SANITIZE_SPECIAL_CHARS);
-  
+
   $missing_person_gender = filter_var($_POST['missing_person_gender'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   $illnesses = filter_var($_POST['mais-infromacao-1'], FILTER_SANITIZE_SPECIAL_CHARS);;
@@ -61,9 +61,9 @@ if (isset($_POST["btn-update-missing"])) {
     $missing_date,
     $missing_person_age,
     $missing_location,
-    $illnesses, 
-    $chemical_dependency, 
-    $profile, 
+    $illnesses,
+    $chemical_dependency,
+    $profile,
     $car_plate
   );
 

@@ -27,20 +27,20 @@ include './database/missings-repository.php';
     <!-- se estiver logado não precisa fazer cadatro ou login  -->
     <!-- validação -->
     <?php if (empty(get_user_id())): ?>
-    <div class="wrapper">
-        <!-- tela de login -->
-        <?php
+        <div class="wrapper">
+            <!-- tela de login -->
+            <?php
             include './components/form-sing-in.php'
             ?>
-        <!--tela cadastro-->
-        <?php
+            <!--tela cadastro-->
+            <?php
             include './components/form-sing-up.php'
             ?>
-    </div>
+        </div>
     <?php endif ?>
 
-    <?php 
-        echo get_user_id();
+    <?php
+    echo get_user_id();
     ?>
     <section>
         <div class="content">

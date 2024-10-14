@@ -4,7 +4,7 @@ include "./utils/sonner.php";
 include "./database/database-connection.php";
 include "./database/missings-repository.php";
 
-if (isset($_POST['btn-cadastre-missing']) ) {
+if (isset($_POST['btn-cadastre-missing'])) {
 
   $missing_person_name = filter_var($_POST['missing_person_name'], FILTER_SANITIZE_SPECIAL_CHARS);
   $missing_person_contact = filter_var($_POST['missing_person_contact'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,7 +26,7 @@ if (isset($_POST['btn-cadastre-missing']) ) {
 
   create_missing(
     $connection,
-     get_user_id(),
+    get_user_id(),
     $missing_person_name,
     $missing_person_gender,
     $missing_person_photo,
@@ -36,9 +36,9 @@ if (isset($_POST['btn-cadastre-missing']) ) {
     $missing_date,
     $missing_person_age,
     $missing_location,
-    $illnesses, 
-    $chemical_dependency, 
-    $profile, 
+    $illnesses,
+    $chemical_dependency,
+    $profile,
     $car_plate
   );
 
