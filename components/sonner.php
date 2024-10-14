@@ -1,5 +1,5 @@
 <div
-  class="w-auto roundend border border-2 border-green-500 px-5 py-2 bg-green-300 absolute right-0 bottom-10 rounded-l transition-all translate-x-full"
+  class="w-auto z-1000 roundend border border-2 border-green-500 px-5 py-2 bg-green-300 fixed right-0 bottom-10 rounded-l transition-all translate-x-full"
   id="sonner-success">
   <div class="flex justify-between items-center gap-10">
     <div class="flex gap-1 items-center">
@@ -21,7 +21,7 @@
 </div>
 
 <div
-  class="w-auto roundend border border-2 border-red-500 px-5 py-2 bg-red-300 absolute right-0 bottom-10 rounded-l transition-all translate-x-full"
+  class="w-auto z-1000 roundend border border-2 border-red-500 px-5 py-2 bg-red-300 fixed right-0 bottom-10 rounded-l transition-all translate-x-full"
   id="sonner-error">
   <div class="flex justify-between items-center gap-10">
     <div class="flex gap-1 items-center">
@@ -44,7 +44,7 @@
 </div>
 
 <div
-  class="w-auto roundend border border-2 border-yellow-500 px-5 py-2 bg-yellow-300 absolute right-0 bottom-10 rounded-l transition-all translate-x-full"
+  class="w-auto z-1000 roundend border border-2 border-yellow-500 px-5 py-2 bg-yellow-300 fixed right-0 bottom-10 rounded-l transition-all translate-x-full"
   id="sonner-alert">
   <div class="flex justify-between items-center gap-10">
     <div class="flex gap-1 items-center">

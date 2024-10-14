@@ -27,6 +27,7 @@ if ($missing["user_id"] != get_user_id()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/globals.css">
     <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
     <link rel="icon" href="./assets/images/favicon.png">
     <title>Desaparecido | <?php echo $missing["missing_person_name"]?></title>
