@@ -2,12 +2,23 @@
 include "./utils/protect-page-route.php";
 include "./database/missings-repository.php";
 include "./utils/sonner.php";
+include "./utils/get-missing-id.php";
+
+if(!get_missing_id()){
+  sonner("error", "Desaparecido não encontrado");
+  header("Location: index.php");
+}
 
 $page = $_GET["page"];
 if (isset($_POST["btn-update-missing"])) {
-  $missing_id = $_GET["missing_id"];
 
-  $missing = get_missing_by_id($connection,$missing_id);
+
+  $missing = get_missing_by_id($connection,get_missing_id());
+
+  if(!$missing){
+    sonner("error", "Desaparecido não encontrado");
+    header("Location: index.php");
+  }
 
   $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
 
@@ -40,7 +51,7 @@ if (isset($_POST["btn-update-missing"])) {
   update_missing_by_user_id(
     $connection,
     get_user_id(),
-    $missing_id,
+    get_missing_id(),
     $missing_person_name,
     $missing_person_gender,
     $missing_person_photo,

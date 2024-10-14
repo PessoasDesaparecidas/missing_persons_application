@@ -4,13 +4,14 @@ include "./database/database-connection.php";
 include "./database/missings-repository.php";
 include "./database/comments-repository.php";
 include "./utils/sonner.php";
-$missing_id = $_GET["missing_id"];
+include "./utils/get-missing-id.php";
 
-if (empty($missing_id)) {
-  sonner("error", "desaparecido não encontrado");
-  header("Location index.php");
+if(!get_missing_id()){
+  sonner("error", "Desaparecido não encontrado");
+  header("Location: index.php");
 }
-$missing = get_missing_by_id($connection, $missing_id);
+
+$missing = get_missing_by_id($connection, get_missing_id());
 
 if (!$missing) {
   sonner("error", "desaparecido não encontrado");
@@ -42,7 +43,7 @@ if (!$missing) {
             <h2>Comentários</h2>
             <div id="comments-list">
                 <?php
-                $comments = fetch_comments_by_missing_id($connection, $missing_id);
+                $comments = fetch_comments_by_missing_id($connection, get_missing_id());
                 while ($comment = $comments->fetch_assoc()) {
                 ?>
                 <div class="comment">
@@ -56,7 +57,7 @@ if (!$missing) {
                 }
                 ?>
             </div>
-            <form action="create-comment-by-missing.action.php?missing_id=<?php echo $missing_id?>" method="POST">
+            <form action="create-comment-by-missing.action.php?missing_id=<?php echo get_missing_id()?>" method="POST">
                 <textarea name="comment" id="comment" placeholder="Escreva um comentário"></textarea>
                 <button type="submit">Comentar</button>
             </form>

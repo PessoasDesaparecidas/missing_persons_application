@@ -3,10 +3,16 @@ include './utils/protect-page-route.php';
 include './database/missings-repository.php';
 session_abort();
 include './utils/sonner.php';
+include './utils/get-missing-id.php';
 
 $page = $_GET["page"];
-$missing_id = $_GET["missing_id"];
-$missing = get_missing_by_id($connection, $missing_id);
+
+if (!get_missing_id()) {
+    sonner("error", "Desaparecido não encontrado");
+    header('Location: missings-dashboard.php?page=1');
+}
+
+$missing = get_missing_by_id($connection,get_missing_id());
 
 
 if (!$missing) {
@@ -39,7 +45,7 @@ if ($missing["user_id"] != get_user_id()) {
             <img src="./assets/images/sample-example-profile.svg">
         </div>
         <div class="form">
-            <form action="missing-update.action.php?missing_id=<?php echo $missing_id ?>&page=<?php echo $page ?>"
+            <form action="missing-update.action.php?missing_id=<?php echo get_missing_id() ?>&page=<?php echo $page ?>"
                 method="POST" class="form-register-missing" enctype="multipart/form-data" id="form">
                 <div class="form-header">
                     <div class="title">
