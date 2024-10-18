@@ -42,6 +42,7 @@ include './database/missings-repository.php';
     <?php
     echo get_user_id();
     ?>
+
     <section>
         <div class="content">
             <ul class="ul1">
@@ -137,6 +138,18 @@ include './database/missings-repository.php';
         </div>
     </section>
 
+
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'es,en,fr,it,de', // Lista de idiomas
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
     <!-- sonner -->
