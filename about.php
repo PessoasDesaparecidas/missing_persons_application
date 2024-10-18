@@ -9,6 +9,11 @@
 
 <body>
   <p>blablablabla</p>
+
+  <!-- libras -->
+  <?php
+  include './components/libras.php'
+  ?>
 </body>
 
 </html>

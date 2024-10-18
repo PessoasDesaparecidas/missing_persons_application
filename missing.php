@@ -82,9 +82,22 @@ if (!$missing) {
 
   </div>
 
+
+
+  <!-- sonner -->
   <?php
-  include "./components/footer.php";
-  include "./components/sonner.php";
+  include './components/sonner.php';
+  ?>
+
+
+  <!-- rodapé -->
+  <?php
+  include './components/footer.php'
+  ?>
+
+  <!-- libras -->
+  <?php
+  include './components/libras.php'
   ?>
 
   <script src="./assets/javascript/format-relative-date.js" defer>

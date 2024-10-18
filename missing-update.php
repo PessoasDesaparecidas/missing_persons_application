@@ -255,6 +255,12 @@ if ($missing["user_id"] != get_user_id()) {
         </div>
     </div>
 
+
+    <!-- libras -->
+    <?php
+    include './components/libras.php'
+    ?>
+
     <!-- javascript do fomulario -->
     <script src="./assets/javascript/aply-phone-mask.js" defer></script>
     <script src="./assets/javascript/prompsts-check-boxs-form.js" defer></script>

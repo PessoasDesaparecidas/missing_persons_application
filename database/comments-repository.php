@@ -1,7 +1,10 @@
 <?php
 function create_comment($connection, $missing_id, $user_id, $content)
 {
-    $preparement_query_to_created_comment = $connection->prepare("INSERT INTO Comment (missing_person_id, user_id, content) VALUES (?, ?, ?)");
+    $preparement_query_to_created_comment = $connection->prepare(
+        "INSERT INTO Comment (missing_person_id, user_id, content)
+         VALUES (?, ?, ?)"
+    );
     $preparement_query_to_created_comment->bind_param("sss", $missing_id, $user_id, $content);
     $preparement_query_to_created_comment->execute();
     $preparement_query_to_created_comment->close();
@@ -9,14 +12,13 @@ function create_comment($connection, $missing_id, $user_id, $content)
 
 function fetch_comments_by_missing_id($connection, $missing_id)
 {
-    $query = "
-        SELECT Comment.*, User.username as author_name 
+    $preparement_query_to_fetch_comments = $connection->prepare(
+        "SELECT Comment.*, User.username as author_name 
         FROM Comment 
         JOIN User ON Comment.user_id = User.user_id 
         WHERE Comment.missing_person_id = ?
-    ";
-
-    $preparement_query_to_fetch_comments = $connection->prepare($query);
+        "
+    );
     $preparement_query_to_fetch_comments->bind_param("i", $missing_id);
     $preparement_query_to_fetch_comments->execute();
 

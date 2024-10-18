@@ -149,6 +149,12 @@ include './database/missings-repository.php';
     <?php
     include './components/footer.php'
     ?>
+
+    <!-- libras -->
+    <?php
+    include './components/libras.php'
+    ?>
+
     <!-- javascript -->
     <script src="./assets/javascript/handle-form-user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

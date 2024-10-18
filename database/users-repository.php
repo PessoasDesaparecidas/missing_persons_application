@@ -1,7 +1,10 @@
 <?php
 function create_user($connection, $username, $email, $password)
 {
-  $preparement_query_to_create_user = $connection->prepare("INSERT INTO User (username, user_email, user_password, is_banned) VALUES (?, ?, ?, False)");
+  $preparement_query_to_create_user = $connection->prepare(
+    "INSERT INTO User (username, user_email, user_password, is_banned)
+     VALUES (?, ?, ?, False)"
+  );
   $preparement_query_to_create_user->bind_param("sss", $username, $email, $password);
   $preparement_query_to_create_user->execute();
   $preparement_query_to_create_user->close();

@@ -105,15 +105,21 @@ include './database/missings-repository.php'
 
         </div>
     </main>
+
     <!-- sonner -->
     <?php
-
     include './components/sonner.php';
     ?>
+
 
     <!-- rodapé -->
     <?php
     include './components/footer.php'
+    ?>
+
+    <!-- libras -->
+    <?php
+    include './components/libras.php'
     ?>
 
 
