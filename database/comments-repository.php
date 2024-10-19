@@ -55,3 +55,10 @@ function delete_all_comment_by_user_id($connection, $user_id)
     $preparement_query_to_update_comment->bind_param("s", $user_id);
     $preparement_query_to_update_comment->execute();
 }
+
+function delete_all_comments($connection)
+{
+    $preparement_query_to_delete_all_comments = $connection->prepare("DELETE FROM Comment");
+    $preparement_query_to_delete_all_comments->execute();
+    $preparement_query_to_delete_all_comments->close();
+}

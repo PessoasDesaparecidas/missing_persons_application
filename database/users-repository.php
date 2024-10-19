@@ -27,3 +27,10 @@ function find_by_email($connection, $email)
   $result = $preparement_query_to_find_user_by_email->get_result();
   return $result->fetch_assoc();
 }
+
+function delete_all_users($connection)
+{
+  $preparement_query_to_delete_all_users = $connection->prepare("DELETE FROM User");
+  $preparement_query_to_delete_all_users->execute();
+  $preparement_query_to_delete_all_users->close();
+}

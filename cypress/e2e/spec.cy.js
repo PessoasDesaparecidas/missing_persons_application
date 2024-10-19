@@ -25,11 +25,17 @@ class FormSingUp {
     this.inputs.password.type(password);
   }
 }
-beforeEach(() => {
-  cy.visit("");
-});
-describe("funcionalidade de cadastrar na plataforma", () => {
-  it("deveria ser possivel fazer cadastro", () => {
+
+describe("sing up", () => {
+  beforeEach(() => {
+    cy.visit("");
+  });
+
+  afterEach(() => {
+    cy.visit("/delete-data-in-application.php");
+  });
+
+  it("It should be possible to register a user", () => {
     let formSingUp = new FormSingUp();
 
     cy.get("#button-login").click();

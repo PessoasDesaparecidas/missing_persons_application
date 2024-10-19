@@ -157,3 +157,10 @@ function get_missing_by_id($connection, $missing_id)
   $preparement_query_to_select_missing->execute();
   return $preparement_query_to_select_missing->get_result()->fetch_assoc();
 }
+
+function delete_all_missings($connection)
+{
+  $preparement_query_to_delete_all_missing = $connection->prepare("DELETE FROM MissingPerson");
+  $preparement_query_to_delete_all_missing->execute();
+  $preparement_query_to_delete_all_missing->close();
+}
