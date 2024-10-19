@@ -1,6 +1,6 @@
 <div class="form-box register" id="register">
   <h2>Cadastro</h2>
-  <form action="sing-up.action.php" method="POST">
+  <form action="sing-up.action.php" method="POST" id="form-sing-up">
 
     <div class="input-box">
       <span class="icon">
@@ -26,7 +26,7 @@
     <button type="submit" class="btn" name="submit-form-register">Cadastrar</button>
     <div class="login-register">
       <p>Já possui uma conta?</p>
-      <a href="#" class="login-link">Login</a>
+      <a href="#" class="login-link" name="button-sing-in-user">Login</a>
     </div>
   </form>
 </div>
