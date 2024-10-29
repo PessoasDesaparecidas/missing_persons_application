@@ -1,8 +1,8 @@
 <?php
-$host = "localhost:3306";
+$host = "localhost:3307";
 $username = "root";
 $password = "";
-$database = "test";
+$database = "tcc";
 
 $connection = new mysqli($host, $username, $password, $database);
 
@@ -17,6 +17,7 @@ $create_user_table = "CREATE TABLE IF NOT EXISTS User (
    user_email VARCHAR(50) NOT NULL UNIQUE,
    user_password VARCHAR(100) NOT NULL,
    is_banned BOOLEAN DEFAULT false,
+
    PRIMARY KEY (user_id)
 );";
 
@@ -36,6 +37,7 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS MissingPerson (
    chemical_dependency VARCHAR(255),
    profile VARCHAR(255),
    car_plate VARCHAR(9),
+
    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
    PRIMARY KEY(missing_person_id),
@@ -47,7 +49,10 @@ $create_missing_comments_table = "CREATE TABLE IF NOT EXISTS Comment (
    missing_person_id INT NOT NULL,
    user_id INT NOT NULL,
    content TEXT NOT NULL,
+   latitude FLOAT ,
+   longitude FLOAT ,
    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
    PRIMARY KEY (comment_id),
    FOREIGN KEY (missing_person_id) REFERENCES MissingPerson(missing_person_id) ON DELETE CASCADE ON UPDATE CASCADE,
    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE

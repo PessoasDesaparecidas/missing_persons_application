@@ -1,14 +1,27 @@
 <?php
-function create_comment($connection, $missing_id, $user_id, $content)
+function create_comment($connection, $missing_id, $user_id, $content, $latitude, $longitude)
 {
     $preparement_query_to_created_comment = $connection->prepare(
-        "INSERT INTO Comment (missing_person_id, user_id, content)
-         VALUES (?, ?, ?)"
+        "INSERT INTO Comment (missing_person_id, user_id, content, latitude, longitude)
+         VALUES (?, ?, ?, ?, ?)"
     );
-    $preparement_query_to_created_comment->bind_param("sss", $missing_id, $user_id, $content);
+    $preparement_query_to_created_comment->bind_param("sssss", $missing_id, $user_id, $content, $latitude, $longitude);
     $preparement_query_to_created_comment->execute();
     $preparement_query_to_created_comment->close();
 }
+
+function update_comment($connection, $comment_id, $content, $latitude, $longitude)
+{
+    $preparement_query_to_update_comment = $connection->prepare("UPDATE Comment SET 
+    content = ? 
+    latitude = ?
+    longitude = ?
+    WHERE comment_id = ?");
+    $preparement_query_to_update_comment->bind_param("ssss", $content, $latitude, $longitude, $comment_id);
+    $preparement_query_to_update_comment->execute();
+    $preparement_query_to_update_comment->close();
+}
+
 
 function fetch_comments_by_missing_id($connection, $missing_id)
 {
@@ -27,13 +40,6 @@ function fetch_comments_by_missing_id($connection, $missing_id)
     return $result;
 }
 
-function update_comment($connection, $comment_id, $content)
-{
-    $preparement_query_to_update_comment = $connection->prepare("UPDATE Comment SET content = ? WHERE comment_id = ?");
-    $preparement_query_to_update_comment->bind_param("ss", $content, $comment_id);
-    $preparement_query_to_update_comment->execute();
-    $preparement_query_to_update_comment->close();
-}
 function delete_comment($connection, $comment_id)
 {
     $preparement_query_to_delete_comment = $connection->prepare("DELETE FROM Comment WHERE comment_id = ?");

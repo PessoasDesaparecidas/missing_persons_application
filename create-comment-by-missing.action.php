@@ -11,7 +11,10 @@ if (!get_missing_id()) {
 
 $missing_id = get_missing_id();
 $comment = filter_var($_POST["comment"], FILTER_SANITIZE_SPECIAL_CHARS);
+$latitude = filter_var($_POST["latitude"], FILTER_SANITIZE_SPECIAL_CHARS);
+$longitude = filter_var($_POST["longitude"], FILTER_SANITIZE_SPECIAL_CHARS);
 
-create_comment($connection, get_missing_id(), get_user_id(), $comment);
+
+create_comment($connection, get_missing_id(), get_user_id(), $comment, $latitude, $longitude);
 sonner("success", "Comentário criado com sucesso");
 header("Location: missing.php?missing_id=$missing_id");
