@@ -1,48 +1,36 @@
-<section class="section-footer">
-  <footer>
-    <div class="container">
-      <ul>
-        <h3>Sobre nós</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, odit nulla quas laboriosam
-          nam maxime nobis nihil doloribus</p>
-
-        <!-- <div class="redes">
-                    <img src="assets/img/facebook.png" alt="facebook" href="#" style="width: 30px; height: 30px; margin-right: 50px; margin-left: 50px;">
-                    <img src="assets/img/insta.png" alt="instagram" href="#" style="width: 27px; height: 27px; margin-right: 50px;">
-                    <img src="assets/img/tiktok.png" alt="youtube" href="#" style="width: 32px; height: 32px;">
-                </div> -->
-      </ul>
-
-      <ul>
-        <h3>Link</h3>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#btn-form">Formulário</a></li>
-        <li><a href="#">Saiba Mais</a></li>
-      </ul>
-
-      <ul>
-        <h3>Suporte</h3>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Objetivo</a></li>
-        <li><a href="#">Resposáveis</a></li>
-      </ul>
-
-      <ul>
-        <h3>Contato</h3>
-        <li>
-          <p>(11) 91234-5678</p>
-        </li>
-        <li>
-          <p>emailtcc@gmail.com</p>
-        </li>
-        <li>
-          <p>Brasil</p>
-        </li>
-        section
-      </ul>
-
+<footer class="rodape" id="contato">
+  <div class="rodape-div">
+    <div class="rodape-div-1">
+      <div class="rodape-div-1-coluna">
+        <span><b>LOGO</b></span>
+        <p>SIA Trecho 5 lote 000 bloco z sala 900 - Guará, Brasília - DF, 70000-010</p>
+      </div>
     </div>
-    <!-- <p>Copyright 2024</p> 
-        <p href="#inicio">Volte ao topo</p> -->
-  </footer>
-</section>
+
+    <div class="rodape-div-2">
+      <div class="rodape-div-2-coluna">
+        <span><b>Contatos</b></span>
+        <p>contato@na.na</p>
+        <p>+55 63 99200-0000</p>
+      </div>
+    </div>
+
+    <div class="rodape-div-3">
+      <div class="rodape-div-3-coluna">
+        <span><b>Links</b></span>
+        <p><a href="#servicos">Serviços</a></p>
+        <p><a href="#empresa">Empresa</a></p>
+        <p><a href="#sobre">Sobre</a></p>
+      </div>
+    </div>
+
+    <div class="rodape-div-4">
+      <div class="rodape-div-4-coluna">
+        <span><b>Outros</b></span>
+        <p>Políticas de Privacidade</p>
+      </div>
+    </div>
+
+  </div>
+  <p class="rodape-direitos">Copyright © 2024 – Todos os Direitos Reservados.</p>
+</footer>
