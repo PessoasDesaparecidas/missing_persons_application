@@ -1,11 +1,11 @@
 .one {
   padding: 6%;
-  justify-content: flex-start; /* Alinha o conteúdo à esquerda */
-  align-items: center; /* Centraliza verticalmente */
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-    url("../images/menina.jpg");
+  justify-content: flex-start;
+  align-items: center;
+  background-image: linear-gradient(rgba(43, 43, 43, 0), rgba(0, 0, 0, 0.7)),
+    url("../images/mao.jpg");
   background-size: cover;
-  background-position: center 40%; /* Move a imagem 100px para baixo */
+  background-position: center 40%;
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
@@ -14,44 +14,44 @@
 
 .content-0 {
   text-align: left;
+  min-height: 70%;
+  margin-top: 110px;
   max-width: 50%;
   color: #ffffff;
 }
 
 .content-0 h1 {
-  font-size: 50px;
+  font-size: 45px;
   color: #ffffff;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  line-height: 50px;
 }
 
 .content-0 p {
   line-height: 1.4;
-  font-size: 17px;
-  color: #b62222;
+  font-size: 16px;
+  color: #b9b6b6;
   margin: 20px 0;
   font-weight: 500;
 }
 
+.textin {
+  background: #ccc;
+  width: 85vw;
+  height: 50vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: 7%;
+  padding: 50px;
+  line-height: 2.5rem;
+  border-radius: 30px;
+}
+
 .forms {
-  background-color: #070707;
+  background-color: #ffffff;
   height: 50vh;
 }
-/*#about {
-	background-color: #000000;
-	color: white;
-	padding: 20px;
-	text-align: center;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-direction: column;
-	    flex-direction: column;
-	-ms-flex-pack: center;
-	    justify-content: center;
-	-ms-flex-align: center;
-	    align-items: center;
-}*/
-
-/* Elemento H1 de cada una de la secciones (su título) */
 .one {
   font-weight: 100;
   font-size: 2.8em;
@@ -60,7 +60,6 @@
   align-items: center;
 }
 
-/* Línea inferior al título de cada sección */
 .borde {
   width: 6em;
   height: 0.25em;
@@ -69,18 +68,6 @@
   margin-top: 0.6em;
 }
 
-/* Texto de la sección 'Sobre mí' */
-/*#about p {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
-	font-size: 1.1em;
-	padding: 1.8em;
-	max-width: 800px;
-	letter-spacing: 0.08em;
-	line-height: 1.5em;
-}
-
-/* Ilustración de 'Sobre mí' */
 #girl {
   width: 70vw;
   max-width: 500px;
@@ -88,75 +75,285 @@
   padding: 1.7em 0;
 }
 
-/*barra de pesquisa*/
-.search-bar {
+/* OQ FICA EMBAIXO DO CARROSEL */
+.cta-section {
+  background-color: #000000;
+  padding: 200px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.cta-section::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  right: 50px;
+  bottom: 20px;
+  border-radius: 20px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.1),
+    rgba(255, 0, 0, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+.cta-content h2 {
+  font-size: 2em;
+  font-weight: normal;
   display: flex;
   align-items: center;
-  gap: 8px; /* Espaçamento entre os elementos */
-  background-color: #f0f0f0;
-  border-radius: 15px; /* Bordas arredondadas */
-  padding: 10px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-}
-
-.search-input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  padding: 8px;
-  font-size: 16px;
-  outline: none;
-}
-
-.filter-button {
-  background-color: #101010;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.search-button {
-  background-color: #0b0b0b;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.filter-button:hover {
-  background-color: #b62222;
-}
-
-.search-button:hover {
-  background-color: #b62222;
-}
-
-.video-wrapper {
-  background: linear-gradient(#5c5c47, #161616);
-  padding: 2rem;
-}
-
-#video-in {
-  max-width: 40rem;
-  min-width: 12rem;
-  background-color: #090909;
-  margin: auto;
-  display: block;
-  width: 100%;
-}
-.video {
-  opacity: 0.5;
-}
-.content {
-  max-width: 50%;
-  color: #ffffff;
   justify-content: center;
-  z-index: 10;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.cta-content h2 strong {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Efeito de animação */
+.typing-text {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #b62222;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #ffffff;
+  animation: blink 0.5s step-end infinite alternate;
+}
+
+.typing-text::after {
+  content: "parente";
+  animation: typing 3s steps(8, end) infinite;
+}
+
+@keyframes typing {
+  0% {
+    content: "parente";
+  }
+  33% {
+    content: "amigo";
+  }
+  66% {
+    content: "conhecido";
+  }
+  100% {
+    content: "parente";
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+.cta-content p {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.cta-content small {
+  display: block;
+  margin-bottom: 20px;
+  color: #bbb;
+}
+
+/*final dessa section primeira pagina*/
+
+/* Seção FAQ */
+.faq-section {
+  padding: 40px;
+  background-color: #000000;
+  color: #fff;
+  max-width: 1300px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+.faq-section h2 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.faq-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 55px;
+  border-bottom: 1px solid #333;
+}
+
+.faq-item h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 30%;
+  margin: 0;
+}
+
+.faq-item p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #ccc;
+  width: 60%;
+  margin: 0;
+}
+
+.spsp {
+  height: 80vh;
+  align-items: center;
+  margin-top: 100px;
+}
+.sampa {
+  display: flex;
+  width: 80%;
+  height: 400px;
+  background-color: #b62222; /* Fundo da seção de imagem e texto */
+  overflow: hidden;
+  border-radius: 30px;
+  box-shadow: 10px 10px 10px rgba(220, 206, 206, 0.3);
+}
+
+.image-section {
+  width: 50%; /* Ajusta a largura da seção da imagem */
+}
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cobre a área mantendo a proporção */
+}
+
+.text-section {
+  width: 50%; /* Ajusta a largura da seção de texto */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 2.5em;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/*comeco politiv e prib */
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+dialog {
+  margin: auto;
+  padding: 2rem;
+  border: none;
+  border-radius: 6px;
+  opacity: 0;
+  transition: all 0.3s allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+}
+
+starting-style {
+  dialog[open] {
+    opacity: 0;
+  }
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.3s allow-discrete;
+}
+
+dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+starting-style {
+  dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+/*fim dos termos de priv */
+
+.description {
+  max-width: 40ch;
+  margin: 1rem 0;
+}
+
+.social-media-section {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.social-media-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.feature {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: scale(1.05);
+}
+
+.icon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffc107; /* Cor amarela */
+}
+
+.feature p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ccc;
 }

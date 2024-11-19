@@ -28,7 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white-color);
+  background-color: #fffffb;
   padding: 1rem;
 }
 
@@ -36,62 +36,47 @@ body {
   width: 31rem;
 }
 
-form {
-  width: 100%;
-}
 .form {
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: var(--white-color);
+  background-color: #fffffb;
   padding: 3rem;
 }
 
 .form-header {
-  margin-bottom: 2rem;
+  margin-bottom: 3vh;
   display: flex;
   justify-content: space-between;
 }
 
 .form-header h1::after {
   content: "";
-  display: block;
+  display: flex;
   width: 5rem;
   height: 0.3rem;
-  background-color: var(--secondary-color);
+  background-color: #9c0000;
   position: absolute;
   margin: 0;
   border-radius: 10px;
 }
 
 .input-group {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0 1rem;
-}
-
-@media screen and (max-width: 1930px) {
-  .input-group {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .input-group {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1vh 0;
 }
 
 .input-box {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
-.input-box input,
-.input-box select {
+.input-box input {
   margin: 0.6rem 0;
   padding: 0.8rem 1.2rem;
   border: none;
@@ -99,13 +84,11 @@ form {
   box-shadow: 1px 1px 6px #0000001c;
 }
 
-.input-box input:hover,
-.input-box select:hover {
+.input-box input:hover {
   background-color: #f0efed;
 }
 
-.input-box input:focus-visible,
-.input-box select:hover {
+.input-box input:focus-visible {
   outline: 1px solid #000000;
 }
 
@@ -116,23 +99,44 @@ form {
   color: #000000c0;
 }
 
-.input-box input::placeholder,
-.input-box select::placeholder {
+.input-box input::placeholder {
   color: #000000be;
+}
+
+.gender-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.62rem;
+  padding: 0 0.5rem;
+}
+
+.gender-input {
+  display: flex;
+  align-items: center;
+}
+
+.gender-input input {
+  margin-right: 0.35rem;
+}
+
+.gender-input label {
+  font-size: 0.81rem;
+  font-weight: 600;
+  color: #000000c0;
 }
 
 .continue-button button {
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 2.5vh;
   border: none;
-  background-color: var(--secondary-color);
+  background-color: #9c0000;
   padding: 0.62rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .continue-button button:hover {
-  background-color: var(--secondary-color);
+  background-color: #9c0000;
 }
 
 .continue-button button {
@@ -164,68 +168,15 @@ form {
     overflow-y: scroll;
     flex-wrap: nowrap;
     max-height: 10rem;
+    padding-right: 5rem;
   }
-}
-
-@media screen and (max-width: 550px) {
+  .gender-inputs {
+    margin-top: 2rem;
+  }
   .gender-group {
     flex-direction: column;
-    gap: 0.5rem;
   }
-}
-
-.group-plus-information > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.close {
-  visibility: hidden;
-  display: none;
-}
-
-.gender-inputs {
-  margin-top: 1.5rem;
-}
-
-#form-state-two {
-  width: 100%;
-}
-
-.gender-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.62rem;
-  padding: 0 0.5rem;
-}
-
-.gender-input {
-  display: flex;
-  align-items: center;
-}
-
-.gender-input input {
-  margin-right: 0.35rem;
-}
-
-.gender-input label {
-  font-size: 0.81rem;
-  font-weight: 600;
-  color: #000000c0;
-}
-
-.input-box select {
-  display: block;
-}
-
-.btn-previous-state-form {
-  all: unset;
-  text-decoration: underline;
-  animation: 0.2s;
-  cursor: pointer;
-}
-
-.btn-previous-state-form:hover {
-  color: #9c0000;
+  .gender-input {
+    margin-top: 0.5rem;
+  }
 }

@@ -3,5 +3,6 @@
         "missings",
         "preparement",
         "sonner"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

@@ -1,3 +1,4 @@
+<!--rodapé-->
 <footer class="rodape" id="contato">
   <div class="rodape-div">
     <div class="rodape-div-1">
@@ -27,10 +28,20 @@
     <div class="rodape-div-4">
       <div class="rodape-div-4-coluna">
         <span><b>Outros</b></span>
-        <p>Políticas de Privacidade</p>
+        <p id="button-privacy-policy">Políticas de Privacidade</p>
+        <dialog id="dialog">
+          <h2>Hello, World!</h2>
+          <p class="description">
+            Velit magna qui laborum dolore fugiat elit magna consequat et cupidatat.
+            Minim non anim nostrud dolore officia tempor mollit. Elit sint consequat
+            velit sint ex enim amet exercitation.
+          </p>
+          <button id="close-modal" class="btn" autofocus="">Close</button>
+        </dialog>
       </div>
     </div>
 
   </div>
   <p class="rodape-direitos">Copyright © 2024 – Todos os Direitos Reservados.</p>
 </footer>
+<!--fim rodapé-->

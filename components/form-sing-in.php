@@ -21,7 +21,7 @@
     <button type="submit" class="btn" name="btn-login">Login</button>
     <div class="login-register">
       <p>Não possui uma conta?</p>
-      <a href="#" class="register-link" id="register-link">Cadastrar</a>
+      <a class="register-link" id="register-link">Cadastrar</a>
     </div>
   </form>
 </div>

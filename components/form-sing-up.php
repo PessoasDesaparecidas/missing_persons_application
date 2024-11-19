@@ -26,7 +26,7 @@
     <button type="submit" class="btn" name="submit-form-register">Cadastrar</button>
     <div class="login-register">
       <p>Já possui uma conta?</p>
-      <a href="#" class="login-link" name="button-sing-in-user">Login</a>
+      <a class="login-link" name="button-sing-in-user">Login</a>
     </div>
   </form>
 </div>
