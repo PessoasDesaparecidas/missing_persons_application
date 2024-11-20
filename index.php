@@ -32,7 +32,12 @@ include './database/missings-repository.php';
     <section class="one">
         <div class="content-0" data-aos="fade-up"
             data-aos-anchor-placement="top-bottom">
-            <h1>Ajude-nos a encontrar aqueles que fazem falta.</h1>
+            <h1>Ajude-nos a encontrar aqueles que fazem falta.
+                <?php
+                echo get_user_id();
+                ?>
+
+            </h1>
             <p>O desaparecimento de pessoas no Brasil é uma questão alarmante, com cerca de 80 mil novos casos anuais,
                 segundo o Anuário Brasileiro de Segurança Pública. Diante da falta de informações claras à população sobre
                 o que fazer em casos de desaparecimento, nossa plataforma procura auxiliar, oferecendo um banco de dados e
@@ -50,6 +55,33 @@ include './database/missings-repository.php';
         <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
             <ul class="carousel">
+                <?php
+                $recent_missings = fetch_recent_missings($connection, 0);
+
+                if ($recent_missings->num_rows > 0) :
+                ?>
+                    <?php while ($missing = $recent_missings->fetch_assoc()): ?>
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="./assets/uploads/<?php echo $missing["missing_person_photo"] ?>">
+                            </div>
+                            <div class="card-body">
+                                <p><strong> Nome: </strong> <?php echo $missing["missing_person_name"] ?></p>
+                                <p><strong> Idade: </strong> <?php echo $missing["missing_person_age"] ?></p>
+                                <p><strong> Região: </strong> <?php echo $missing["missing_location"] ?></p>
+
+                                <p><strong>Data do desaparecimento</strong>
+                                    <?php
+                                    $date = new DateTime($missing["missing_date"]);
+                                    $formatted_date = $date->format('d/m/Y');
+                                    echo  $formatted_date ?>
+                                </p>
+                                <a href="./desaparecido.php?missing_id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+                            </div>
+                        </div>
+                    <?php endwhile ?>
+                <?php endif; ?>
+
                 <div class="card">
                     <div class="card-img">
                         <img src="./assets/images/dimi.jpg">
@@ -70,102 +102,6 @@ include './database/missings-repository.php';
                         <p><strong> Nome: </strong> Kauã Lopes</p>
                         <p><strong> Nascimento: </strong> 08/10/2006</p>
                         <p><strong> Visto por último em: </strong> Parque da Juventude</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
-                        <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./assets/images/desapecido.jpg">
-                    </div>
-                    <div class="card-body">
-                        <p><strong> Nome: </strong> Fulaninho da Silva</p>
-                        <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-                        <p><strong> Visto por último em: </strong> endereço endereço</p>
                         <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
                     </div>
                 </div>

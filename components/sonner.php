@@ -1,9 +1,5 @@
 <?php
 session_start();
-
-// Exemplo de dados na sessão, defina conforme sua necessidade
-$_SESSION['sonner-type'] = '';  // Pode ser 'success', 'error', ou 'alert'
-$_SESSION['sonner-message'] = '';
 ?>
 
 <!DOCTYPE html>
@@ -233,8 +229,7 @@ $_SESSION['sonner-message'] = '';
     <?php if (isset($_SESSION['sonner-type']) && isset($_SESSION['sonner-message'])): ?>
       const message = "<?php echo $_SESSION['sonner-message']; ?>";
       const type = "<?php echo $_SESSION['sonner-type']; ?>";
-      const timeInSeconds = 3; // Duração do toast em segundos
-
+      const timeInSeconds = 2;
       switch (type) {
         case 'success':
           toastSuccess.handle({
@@ -260,3 +255,8 @@ $_SESSION['sonner-message'] = '';
 </body>
 
 </html>
+
+<?php
+unset($_SESSION['sonner-type']);
+unset($_SESSION['sonner-message']);
+?>

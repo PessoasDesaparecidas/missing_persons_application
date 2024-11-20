@@ -8,11 +8,50 @@
         <a href="/desaparecidos.html">Desaparecidos</a>
         <a href="#sobre">Sobre</a>
     </nav>
-    <?php if (get_user_id()) : ?>
-        <a class="btn" href="sing-out.action.php" id="sing-out-action"> logout </a>
-    <?php else : ?>
-        <a class="btn" id="button-login">login</a>
-    <?php endif ?>
+
+    <!--começa drop de perfil-->
+    <div class="profile-dropdown     <?php if (!get_user_id()) echo 'invisible' ?> ">
+        <div class="profile-dropdown-btn">
+
+            <div class="profile-img">
+            </div>
+            <span>
+                Victoria
+                <i class="fa-solid fa-angle-down"></i>
+            </span>
+        </div>
+
+        <ul class="profile-dropdown-list">
+            <li class="profile-dropdown-list-item">
+                <a href="#">
+                    <i class="fa-regular fa-user"></i>
+                    Editar perfil
+                </a>
+            </li>
+
+            <li class="profile-dropdown-list-item">
+                <a href="#">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Ver seus desaparecidos
+                </a>
+            </li>
+
+            <li class="profile-dropdown-list-item">
+                <a href="#">
+                    <i class="fa-solid fa-sliders"></i>
+                    Configurações
+                </a>
+            </li>
+            <hr />
+            <li class="profile-dropdown-list-item">
+                <a href="sing-out.action.php" id="sing-out-action">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Log out
+                </a>
+            </li>
+        </ul>
+    </div>
+    <a class="btn <?php if (get_user_id()) echo 'invisible' ?>" id="button-login">login</a>
 </header>
 
 
