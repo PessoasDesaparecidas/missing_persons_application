@@ -77,6 +77,8 @@
   border-radius: 5px;
   height: 225px;
   width: 160px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .card-body {

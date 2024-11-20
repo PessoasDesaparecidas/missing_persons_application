@@ -7,7 +7,6 @@ include './utils/protect-page-route.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/globals.css">
     <link rel="stylesheet" href="./assets/styles/missing-cadastre.css">
     <link rel="icon" href="./assets/images/favicon.png">
     <title>Cadastro de Desaparecido</title>
@@ -178,8 +177,8 @@ include './utils/protect-page-route.php';
     ?>
     <!-- javascript do fomulario -->
     <script src="./assets/javascript/aply-phone-mask.js" defer></script>
-    <script src="./assets/javascript/prompsts-check-boxs-form.js" defer></script>
     <script src="./assets/javascript/control-state-form.js" defer></script>
+    <script src="./assets/javascript/prompsts-check-boxs-form.js" defer></script>
 </body>
 
 </html>
