@@ -15,7 +15,7 @@ if (isset($_POST['btn-cadastre-missing'])) {
   $missing_location = filter_var($_POST['missing_location'], FILTER_SANITIZE_SPECIAL_CHARS);
   $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
   $missing_person_photo = md5(time()) . $extensao;
-  $diretorio = "./assets/uploads/";
+  $diretorio = "./assets/uploads/missings/";
   move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $missing_person_photo);
   $missing_person_gender = filter_var($_POST['missing_person_gender'], FILTER_SANITIZE_SPECIAL_CHARS);
 

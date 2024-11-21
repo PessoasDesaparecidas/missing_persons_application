@@ -17,7 +17,7 @@ if (!$user) {
 $is_password_valid = password_verify($password, $user['user_password']);
 if ($is_password_valid) {
     $_SESSION['user_id'] = $user['user_id'];
-    sonner('success', 'Bem Vindo');
+    sonner('success', 'Bem Vindo ' . $user["username"]);
 } else {
     $_SESSION['user_id'] = '';
     sonner('error', 'password invalida');

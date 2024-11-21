@@ -17,7 +17,7 @@ $create_user_table = "CREATE TABLE IF NOT EXISTS User (
    user_email VARCHAR(50) NOT NULL UNIQUE,
    user_password VARCHAR(100) NOT NULL,
    is_banned BOOLEAN DEFAULT false,
-
+   user_photo VARCHAR(255) NOT NULL,
    PRIMARY KEY (user_id)
 );";
 

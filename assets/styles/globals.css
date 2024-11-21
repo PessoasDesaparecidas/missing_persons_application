@@ -234,8 +234,7 @@ label {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: url(/site\ tcc\ s/assets/imagens/profile-pic.jpg);
-  background-size: cover;
+
 }
 
 .profile-img i {
@@ -244,6 +243,12 @@ label {
   bottom: 0.3rem;
   font-size: 0.5rem;
   color: #fff;
+}
+
+.profile-img img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
 }
 
 .profile-dropdown-btn span {
@@ -469,4 +474,24 @@ label {
 
 .login-register .login-link:hover {
   text-decoration: underline;
+}
+
+.input-terms-of-use{
+  display: flex;
+  width: 100%;
+  font-size: 1rem;
+  color: #fff;
+  align-items: center;
+}
+.input-photo{
+  width: 100%;
+  height: 2rem;
+  background-color: #e4e0e7;
+}
+
+.input-photo input{
+  all: unset;
+  width: 100%;
+  height: 100%;
+  background-color: #e4e0e7;
 }
