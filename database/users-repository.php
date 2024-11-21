@@ -24,6 +24,14 @@ function find_by_id($connection, $id)
   return $result->fetch_assoc();
 }
 
+function delete_user_by_id($connection, $id)
+{
+  $preparement_query_to_delete_user = $connection->prepare("DELETE FROM User WHERE user_id = ?");
+  $preparement_query_to_delete_user->bind_param("s", $id);
+  $preparement_query_to_delete_user->execute();
+  $preparement_query_to_delete_user->close();
+}
+
 function find_by_email($connection, $email)
 {
   $preparement_query_to_find_user_by_email = $connection->prepare("SELECT * FROM User WHERE user_email = ?");
