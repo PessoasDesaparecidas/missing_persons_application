@@ -28,22 +28,16 @@ include './database/missings-repository.php';
   ?>
   <!--fim da nav-->
 
-
   <!--1 section-->
   <section class="one">
     <div class="content-0" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-      <h1>Ajude-nos a encontrar aqueles que fazem falta.
-        <?php
-        echo get_user_id();
-        ?>
-
-      </h1>
+      <h1>Ajude-nos a encontrar aqueles que fazem falta.</h1>
       <p>O desaparecimento de pessoas no Brasil é uma questão alarmante, com cerca de 80 mil novos casos anuais,
         segundo o Anuário Brasileiro de Segurança Pública. Diante da falta de informações claras à população sobre
         o que fazer em casos de desaparecimento, nossa plataforma procura auxiliar, oferecendo um banco de dados e
         um sistema para cadastro de pessoas desaparecidas.
       </p>
-      <a href="/missing-cadastre.html" class="btn">Cadastre aqui</a>
+      <a href="./missing-cadastre.php" class="btn">Cadastre aqui</a>
     </div>
   </section>
   <!--fim-->
@@ -118,6 +112,42 @@ include './database/missings-repository.php';
             <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
           </div>
         </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="./assets/images/desapecido.jpg">
+          </div>
+          <div class="card-body">
+            <p><strong> Nome: </strong> Fulaninho da Silva</p>
+            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+            <p><strong> Visto por último em: </strong> endereço endereço</p>
+            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="./assets/images/desapecido.jpg">
+          </div>
+          <div class="card-body">
+            <p><strong> Nome: </strong> Fulaninho da Silva</p>
+            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+            <p><strong> Visto por último em: </strong> endereço endereço</p>
+            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="./assets/images/desapecido.jpg">
+          </div>
+          <div class="card-body">
+            <p><strong> Nome: </strong> Fulaninho da Silva</p>
+            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+            <p><strong> Visto por último em: </strong> endereço endereço</p>
+            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+          </div>
+        </div>
+
 
       </ul>
       <i id="right" class="fa-solid fa-angle-right"></i>

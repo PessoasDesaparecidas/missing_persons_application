@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 100vh;
     color: #ffffff;
     background: linear-gradient(45deg, #6d2121, #000000, #b72828, #000000);
     background-size: 400% 400%;

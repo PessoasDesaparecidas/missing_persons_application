@@ -7,9 +7,9 @@ $user = find_by_id($connection, get_user_id());
   <label for="chek"><i class="fa-solid fa-bars"></i></label>
   <h1 class="logo">Busca Solidaria</h1>
   <nav>
-    <a href="#">Início</a>
-    <a href="/orientacao.html">Orientações</a>
-    <a href="/desaparecidos.html">Desaparecidos</a>
+    <a href="./index.php">Início</a>
+    <a href="./orientacao.php">Orientações</a>
+    <a href="./desaparecidos.php">Desaparecidos</a>
     <a href="#sobre">Sobre</a>
   </nav>
 
@@ -67,11 +67,11 @@ $user = find_by_id($connection, get_user_id());
   <div class="wrapper">
     <!-- tela de login -->
     <?php
-        include './components/form-sing-in.php'
-        ?>
+    include './components/form-sing-in.php'
+    ?>
     <!--tela cadastro-->
     <?php
-        include './components/form-sing-up.php'
-        ?>
+    include './components/form-sing-up.php'
+    ?>
   </div>
 </div>

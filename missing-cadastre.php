@@ -167,8 +167,10 @@ include './utils/protect-page-route.php';
 
   <!-- libras -->
   <?php
-    include './components/libras.php'
-    ?>
+  include './components/libras.php'
+  ?>
+
+
   <!-- javascript do fomulario -->
   <script src="./assets/javascript/aply-phone-mask.js" defer></script>
   <script src="./assets/javascript/control-state-form.js" defer></script>

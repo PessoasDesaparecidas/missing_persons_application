@@ -20,6 +20,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  scroll-behavior: smooth;
+}
+
+:target {
+  scroll-margin-top: .8em;
 }
 
 /* Header */
@@ -63,6 +68,12 @@ nav a:hover {
   border-bottom: solid #b62222 3px;
   color: #b62222;
 }
+
+.active-link{
+  border-bottom: solid #b62222 3px;
+  color: #b62222;
+}
+
 .btn {
   display: inline-block;
   padding: 10px 30px;

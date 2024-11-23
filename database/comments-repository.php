@@ -26,7 +26,7 @@ function update_comment($connection, $comment_id, $content, $latitude, $longitud
 function fetch_comments_by_missing_id($connection, $missing_id)
 {
     $preparement_query_to_fetch_comments = $connection->prepare(
-        "SELECT Comment.*, User.username as author_name 
+        "SELECT Comment.*, User.username as author_name , User.user_photo as  author_image_url
         FROM Comment 
         JOIN User ON Comment.user_id = User.user_id 
         WHERE Comment.missing_person_id = ?

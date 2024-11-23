@@ -1,4 +1,7 @@
 <?php
+include './database/database-connection.php';
+include './utils/get-user-id.php';
+
 $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
 if ($page < 1) {
@@ -55,17 +58,18 @@ $quantity_missings = $row['quantity_missings'];
 // Exibindo a quantidade total de registros encontrados
 echo "<p>Total de MissingPersons: $quantity_missings</p>";
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Busca Solidaria</title>
-  <link rel="stylesheet" href="/assets/css/header.css">
-  <link rel="stylesheet" href="/assets/css/footer.css">
-  <link rel="stylesheet" href="/assets/css/tudo.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="./assets/images/favicon.png">
+
+  <link rel="stylesheet" href="./assets/styles/globals.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
   * {
@@ -86,31 +90,40 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
   }
 
   .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-flow: wrap;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 50px;
   }
 
   .card {
-    width: 20%;
     background: #fff;
     border: 1px solid #ccc;
-    margin-bottom: 50px;
+    border-radius: 5px;
     transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .card-img {
     text-align: center;
-    padding: 0;
+    padding: 10px;
     margin: 0;
+  }
+
+  .card-img img {
+    border-radius: 5px;
+    height: 225px;
+    width: 100%;
+    max-width: 160px;
+    object-fit: cover;
+    object-position: center;
   }
 
   .card-body {
     padding: 10px 20px;
     text-align: center;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .card-body .btn {
@@ -118,7 +131,7 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
     display: block;
     color: #fff;
     text-align: center;
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    background: #b6222b;
     margin-top: 20px;
     /* Diminui o espaçamento superior */
     text-decoration: none;
@@ -135,9 +148,10 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
   }
 
-  @media screen and (max-width: 1000px) {
-    .card {
-      width: 40%;
+  @media screen and (max-width: 1024px) {
+    .row {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
     }
   }
 
@@ -156,43 +170,28 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
     }
   }
   </style>
-
-
 </head>
 
 <body>
+  <!--comeco da nav-->
+  <?php
+  include './components/header.php'
+  ?>
+  <!--fim da nav-->
 
-  <header>
-    <input type="checkbox" name="" id="chek">
-    <label for="chek"><i class="fa-solid fa-bars"></i></label>
-    <h1 class="logo">Busca Solidaria</h1>
-    <nav>
-      <a href="/index.html">Inicio</a>
-      <a href="/orientacao.html">Orientações</a>
-      <a href="/desaparecidos.html">Desaparecidos</a>
-      <a href="#sobre">Sobre</a>
-    </nav>
-    <a href="#" class="btn">sign up</a>
-  </header>
 
-  <section>
-
-    <div class="overlay">
-      <video class="video" autoplay muted loop width="100%">
-        <source src="/assets/imagens/video.mp4">
-      </video>
-    </div>
-
+  <section class="desap">
     <div class="content">
-      <h1>Ajude-nos a encontrar aqueles que fazem falta</h1>
+      <h3>Encontre seu amigo, parente ou conhecido aqui...</h3>
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Pesquisar...">
+        <input type="text" class="search-input" placeholder="Pesquisar..." />
         <button class="filter-button">Filtrar</button>
         <button class="search-button">Buscar</button>
       </div>
     </div>
   </section>
 
+  <!-- cards -->
 
   <div class="container">
     <div class="heading">
@@ -202,256 +201,249 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
 
       <?php
       $missings = $connection->query($query_all_missing);
-      if ($missings->num_rows > 0):
+      if ($missings->num_rows > 0) :
       ?>
       <?php while ($missing = $missings->fetch_assoc()): ?>
-      <div>
-        <p>Nome: <?= htmlspecialchars($missing['missing_person_name']) ?></p>
-        <p>Gênero: <?= htmlspecialchars($missing['missing_person_gender']) ?></p>
-        <p>Data de Desaparecimento: <?= htmlspecialchars($missing['missing_date']) ?></p>
-        <p>Local de Desaparecimento: <?= htmlspecialchars($missing['missing_location']) ?></p>
-        <p>Contato: <?= htmlspecialchars($missing['missing_person_contact']) ?></p>
-        <p>Observação: <?= htmlspecialchars($missing['missing_person_note']) ?></p>
-        <hr>
-      </div>
-
-
       <div class="card">
         <div class="card-img">
           <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
+          <p><strong> Nome: </strong> <?php echo $missing["missing_person_name"] ?></p>
+          <p><strong> Idade: </strong> <?php echo $missing["missing_person_age"] ?></p>
+          <p><strong> Região: </strong> <?php echo $missing["missing_location"] ?></p>
+
+          <p><strong>Data do desaparecimento</strong>
+            <?php
+                $date = new DateTime($missing["missing_date"]);
+                $formatted_date = $date->format('d/m/Y');
+                echo  $formatted_date ?>
           </p>
-          <a href="./missing.php?missing_id=<?php echo $missing['missing_person_id']?>" class="btn">Read more</a>
+          <a href="./desaparecido.php?missing_id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i
+              class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
-      </div>div>
+      </div>
       <?php endwhile ?>
       <?php endif; ?>
-
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/dimi.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
 
       <div class="card">
         <div class="card-img">
-          <img src="/assets/imagens/desapecido.jpg">
+          <img src="./assets/images/desapecido.jpg" />
         </div>
         <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi neque molestiae eius explicabo mollitia
-            tempore reiciendis, vel, sequi.
-          </p>
-          <a href="#" class="btn">Read more</a>
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="./assets/images/desapecido.jpg" />
+        </div>
+        <div class="card-body">
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="./assets/images/desapecido.jpg" />
+        </div>
+        <div class="card-body">
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="./assets/images/desapecido.jpg" />
+        </div>
+        <div class="card-body">
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
         </div>
       </div>
     </div>
   </div>
+  <!-- fim cards -->
 
+  <section class="sobre" id="sobre">SOBRE NOS!!</section>
 
+  <!-- notificação -->
+  <?php
+  include './components/sonner.php';
+  ?>
 
-  <section class="sobre" id="sobre">
-    SOBRE NOS!!
-  </section>
-  <!--rodapé-->
-  <footer class="rodape" id="contato">
-    <div class="rodape-div">
+  <!-- rodapé -->
+  <?php
+  include './components/footer.php'
+  ?>
 
-      <div class="rodape-div-1">
-        <div class="rodape-div-1-coluna">
-          <!-- elemento -->
-          <span><b>LOGO</b></span>
-          <p>SIA Trecho 5 lote 000 bloco z sala 900 - Guará, Brasília - DF, 70000-010</p>
-        </div>
-      </div>
+  <!-- libras -->
+  <?php
+  include './components/libras.php'
+  ?>
 
-      <div class="rodape-div-2">
-        <div class="rodape-div-2-coluna">
-          <!-- elemento -->
-          <span><b>Contatos</b></span>
-          <p>contato@na.na</p>
-          <p>+55 63 99200-0000</p>
-        </div>
-      </div>
-
-      <div class="rodape-div-3">
-        <div class="rodape-div-3-coluna">
-          <!-- elemento -->
-          <span><b>Links</b></span>
-          <p><a href="#servicos">Serviços</a></p>
-          <p><a href="#empresa">Empresa</a></p>
-          <p><a href="#sobre">Sobre</a></p>
-        </div>
-      </div>
-
-      <div class="rodape-div-4">
-        <div class="rodape-div-4-coluna">
-          <!-- elemento -->
-          <span><b>Outros</b></span>
-          <p>Políticas de Privacidade</p>
-        </div>
-      </div>
-
-    </div>
-    <p class="rodape-direitos">Copyright © 2024 – Todos os Direitos Reservados.</p>
-  </footer>
-
-
-
+  <script src="./assets/javascript/politica.js"></script>
+  <script src="./assets/javascript/header.js"></script>
+  <script src="./assets/javascript/handle-form-user.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+  AOS.init();
+  </script>
 </body>
 
 </html>
