@@ -1,4 +1,17 @@
 <div class="form-box register" id="register">
+<<<<<<< HEAD
+  <h2>
+    <?php if ($leanguage == "pt"): ?>
+    Cadastro
+    <?php elseif ($leanguage == "es"): ?>
+    Registro
+    <?php elseif ($leanguage == "en"): ?>
+    Register
+    
+
+    <?php endif; ?>
+  </h2>
+=======
   <h2>
     <?php if ($leanguage == "pt"): ?>
     Cadastro
@@ -8,6 +21,7 @@
     Register
     <?php endif; ?>
   </h2>
+>>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
   <form action="sing-up.action.php" method="POST" id="form-sing-up" enctype="multipart/form-data">
 
     <div class="input-box">
@@ -43,6 +57,18 @@
       <span>li e aceito os <a href="./assets/files/terms-of-use.pdf" target="_blank">termos</a> de
         uso</span>
 
+<<<<<<< HEAD
+      <?php elseif ($leanguage == "es"): ?>
+      <span>He leído y acepto los <a href="./assets/files/terms-of-use.pdf" target="_blank">términos</a> de
+        uso</span>
+
+      <?php elseif ($leanguage == "en"): ?>
+      <span>I have read and accept the <a href="./assets/files/terms-of-use.pdf" target="_blank">terms</a> of
+        use</span>
+    
+
+      <?php endif; ?>
+=======
       <?php elseif ($leanguage == "es"): ?>
       <span>He leído y acepto los <a href="./assets/files/terms-of-use.pdf" target="_blank">términos</a> de
         uso</span>
@@ -51,6 +77,7 @@
       <span>I have read and accept the <a href="./assets/files/terms-of-use.pdf" target="_blank">terms</a> of
         use</span>
       <?php endif; ?>
+>>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
     </div>
 
     <button type="submit" class="btn" name="submit-form-register">
@@ -65,6 +92,19 @@
 
     </button>
     <div class="login-register">
+<<<<<<< HEAD
+      <p>
+        <?php if ($leanguage == "pt"): ?>
+        Já possui uma conta?
+        <?php elseif ($leanguage == "es"): ?>
+        ¿Ya tienes una cuenta?
+        <?php elseif ($leanguage == "en"): ?>
+        Already have an account?
+    
+
+        <?php endif; ?>
+      </p>
+=======
       <p>
         <?php if ($leanguage == "pt"): ?>
         Já possui uma conta?
@@ -74,6 +114,7 @@
         Already have an account?
         <?php endif; ?>
       </p>
+>>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
       <a class="login-link" name="button-sing-in-user">Login</a>
     </div>
   </form>
