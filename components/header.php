@@ -13,6 +13,10 @@ $user = find_by_id($connection, get_user_id());
     Búsqueda Solidaria
     <?php elseif ($leanguage == "en"): ?>
     Solidarity Search
+<<<<<<< HEAD
+    
+    <?php endif; ?>
+=======
     
     <?php endif; ?>
   </h1>
@@ -25,6 +29,7 @@ $user = find_by_id($connection, get_user_id());
     <?php elseif ($leanguage == "en"): ?>
     Solidarity Search
     <? endif; ?>
+>>>>>>> d9917f9db85c3cb07502f982dee3545f8861e675
   </h1>
 >>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
   <nav>
@@ -45,6 +50,10 @@ $user = find_by_id($connection, get_user_id());
     <a href="./orientacao.php">Guidelines</a>
     <a href="./desaparecidos.php">Missing</a>
     <a href="#sobre">About</a>
+<<<<<<< HEAD
+    
+    <?php endif; ?>
+=======
     
     <?php endif; ?>
 
@@ -60,6 +69,7 @@ $user = find_by_id($connection, get_user_id());
     <a href="./desaparecidos.php">Missing</a>
     <a href="#sobre">About</a>
     <? endif; ?>
+>>>>>>> d9917f9db85c3cb07502f982dee3545f8861e675
 
 >>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
   </nav>
@@ -89,6 +99,10 @@ $user = find_by_id($connection, get_user_id());
           Editar perfil
           <?php elseif ($leanguage == "en"): ?>
           Edit profile
+<<<<<<< HEAD
+          
+          <?php endif; ?>
+=======
           
           <?php endif; ?>
 =======
@@ -99,6 +113,7 @@ $user = find_by_id($connection, get_user_id());
           Edit profile
           <? endif; ?>
 >>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
+>>>>>>> d9917f9db85c3cb07502f982dee3545f8861e675
         </a>
       </li>
 
@@ -112,6 +127,10 @@ $user = find_by_id($connection, get_user_id());
           ver tu desaparecidos
           <?php elseif ($leanguage == "en"): ?>
           See your missing
+<<<<<<< HEAD
+          
+          <?php endif; ?>
+=======
           
           <?php endif; ?>
 =======
@@ -121,6 +140,7 @@ $user = find_by_id($connection, get_user_id());
           See your missing
           <? endif; ?>
 >>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
+>>>>>>> d9917f9db85c3cb07502f982dee3545f8861e675
         </a>
       </li>
 
