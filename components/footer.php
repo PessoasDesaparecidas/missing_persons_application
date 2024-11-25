@@ -17,7 +17,7 @@
           Contacts
         <?php elseif($leanguage == "es" ):?>
           Contactos
-        <?php endif?>
+        <?php endif;?>
           </b></span>
         <p>contato@na.na</p>
         <p>+55 63 99200-0000</p>
@@ -42,7 +42,7 @@
     Others
       <?php elseif($leanguage == "es" ):?>
       Otros
-      <?php endif?>
+      <?php endif;?>
           </b></span>
         <p id="button-privacy-policy">
       <?php if($leanguage == "pt" ):?>
@@ -51,7 +51,7 @@
          Privacy Policies
     <?php elseif($leanguage == "es" ):?>
         Políticas de privacidad
-    <?php endif?>
+    <?php endif;?>
           </p>
         <dialog id="dialog">
           <h2>Hello, World!</h2>
@@ -73,7 +73,7 @@
       All rights reserved.
     <?php elseif($leanguage == "es" ):?>
       Reservados todos los derechos.
-    <?php endif?>
+    <?php endif;?>
     </p>
 </footer>
 <!--fim rodapé-->
