@@ -25,11 +25,7 @@
       <p>Não possui uma conta?</p>
       <a class="register-link" id="register-link">Cadastrar</a>
     </div>
-<<<<<<< HEAD
     <?php elseif ($leanguage == "es"): ?>
-<<<<<<< HEAD
-    <div class="login-register">
-=======
     <div class="login-register">
       <p>¿No tienes una cuenta?</p>
       <a class="register-link" id="register-link">Registrarse</a>
@@ -41,24 +37,5 @@
     </div>
     
       <?php endif; ?>
-=======
-    <?php elseif ($leanguage == "es"): ?>
-    <div class="iniciar sesión-registro">
->>>>>>> d9917f9db85c3cb07502f982dee3545f8861e675
-      <p>¿No tienes una cuenta?</p>
-      <a class="register-link" id="register-link">Registrarse</a>
-    </div>
-    <?php elseif ($leanguage == "en"): ?>
-    <div class="login-register">
-      <p>Don't have an account?</p>
-      <a class="register-link" id="register-link">Register</a>
-    </div>
-<<<<<<< HEAD
-    
-      <?php endif; ?>
-=======
-    <?php endif ?>
->>>>>>> 36149c0c5c4ce92e3be05ba69e3ccfe2ea6abead
->>>>>>> d9917f9db85c3cb07502f982dee3545f8861e675
   </form>
 </div>
