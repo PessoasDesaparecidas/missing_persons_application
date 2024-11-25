@@ -3,6 +3,22 @@ include './database/database-connection.php';
 include './utils/get-user-id.php';
 include './database/missings-repository.php';
 
+$leanguage = "pt";
+
+if(isset($_GET["lg"])){
+  switch ($_GET["lg"]) {
+    case 'en':
+      $leanguage = "en";
+      break;
+    case 'es':
+      $leanguage = "es";
+      break;
+    default:
+      $leanguage = "pt";
+      break;
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +47,35 @@ include './database/missings-repository.php';
   <!--1 section-->
   <section class="one">
     <div class="content-0" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-      <h1>Ajude-nos a encontrar aqueles que fazem falta.</h1>
-      <p>O desaparecimento de pessoas no Brasil é uma questão alarmante, com cerca de 80 mil novos casos anuais,
+      <h1>
+        Ajude-nos a encontrar aqueles que fazem falta.</h1>
+      <p>
+      <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+      O desaparecimento de pessoas no Brasil é uma questão alarmante, com cerca de 80 mil novos casos anuais,
         segundo o Anuário Brasileiro de Segurança Pública. Diante da falta de informações claras à população sobre
         o que fazer em casos de desaparecimento, nossa plataforma procura auxiliar, oferecendo um banco de dados e
         um sistema para cadastro de pessoas desaparecidas.
       </p>
-      <a href="./missing-cadastre.php" class="btn">Cadastre aqui</a>
+      <a href="./missing-cadastre.php" class="btn">
+      <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>Cadastre aqui</a>
     </div>
   </section>
   <!--fim-->
   <br />
 
   <!-- carrossel -->
-  <h1 class="tit">DESAPARECIDOS RECENTEMENTE</h1>
+  <h1 class="tit">
+      <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+  DESAPARECIDOS RECENTEMENTE</h1>
   <section class="carrossel" data-aos="fade-up">
     <div class="wrapper">
       <i id="left" class="fa-solid fa-angle-left"></i>
@@ -76,79 +107,6 @@ include './database/missings-repository.php';
         </div>
         <?php endwhile ?>
         <?php endif; ?>
-
-        <div class="card">
-          <div class="card-img">
-            <img src="./assets/images/dimi.jpg">
-          </div>
-          <div class="card-body">
-            <p><strong> Nome: </strong> Lucas Dimitry</p>
-            <p><strong> Nascimento: </strong> 31/12/2006</p>
-            <p><strong> Visto por último em: </strong> Rua Aperibé, 0</p>
-            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <img src="./assets/images/kaua.jpg">
-          </div>
-          <div class="card-body">
-            <p><strong> Nome: </strong> Kauã Lopes</p>
-            <p><strong> Nascimento: </strong> 08/10/2006</p>
-            <p><strong> Visto por último em: </strong> Parque da Juventude</p>
-            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <img src="./assets/images/desapecido.jpg">
-          </div>
-          <div class="card-body">
-            <p><strong> Nome: </strong> Fulaninho da Silva</p>
-            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-            <p><strong> Visto por último em: </strong> endereço endereço</p>
-            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img">
-            <img src="./assets/images/desapecido.jpg">
-          </div>
-          <div class="card-body">
-            <p><strong> Nome: </strong> Fulaninho da Silva</p>
-            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-            <p><strong> Visto por último em: </strong> endereço endereço</p>
-            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <img src="./assets/images/desapecido.jpg">
-          </div>
-          <div class="card-body">
-            <p><strong> Nome: </strong> Fulaninho da Silva</p>
-            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-            <p><strong> Visto por último em: </strong> endereço endereço</p>
-            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <img src="./assets/images/desapecido.jpg">
-          </div>
-          <div class="card-body">
-            <p><strong> Nome: </strong> Fulaninho da Silva</p>
-            <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-            <p><strong> Visto por último em: </strong> endereço endereço</p>
-            <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-          </div>
-        </div>
-
-
       </ul>
       <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
@@ -158,14 +116,39 @@ include './database/missings-repository.php';
     <section class="cta-section">
       <div class="cta-content" data-aos="fade-up" data-aos-duration="3000">
         <h2>
-          <span>Cada minuto importa,</span><br>
+          <span>
+                <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+          Cada minuto importa,</span><br>
           </br>
-          <strong>cadastre aqui seu </strong>
+          <strong>
+                <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+          cadastre aqui seu </strong>
           <span class="typing-text"></span>
         </h2>
-        <p>aumentando a possibilidade de encontra-lo.</p>
-        <small>O preenchimento de formulario não substitui o BO</small>
-        <a href="/missing-cadastre.html" class="btn">Formulario de cadastro</a>
+        <p>
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+        aumentando a possibilidade de encontra-lo.</p>
+        <small>
+                <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+      O preenchimento de formulario não substitui o BO</small>
+        <a href="/missing-cadastre.html" class="btn">
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+        Formulario de cadastro</a>
       </div>
     </section>
 
@@ -180,7 +163,12 @@ include './database/missings-repository.php';
           <img src="./assets/images/sp.webp" alt="Descrição da Imagem">
         </div>
         <div class="text-section">
-          <p class="subtitle"> No ano de 2024, em uma pesquisa feita pela instituição SSP, aponta cerca de 17.711
+          <p class="subtitle">
+                  <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+       No ano de 2024, em uma pesquisa feita pela instituição SSP, aponta cerca de 17.711
             pessoas que estavam desaparecidas e foram encontradas em São Paulo. </p>
           <h1 class="title">Podemos ajudar nessa busca!</h1>
         </div>
@@ -191,16 +179,41 @@ include './database/missings-repository.php';
 
 
   <section class="faq-section">
-    <h2 data-aos="zoom-in">Principais perguntas e informações</h2>
+    <h2 data-aos="zoom-in">
+          <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+    Principais perguntas e informações</h2>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-      <h3>O que é desaparecimento?</h3>
-      <p>Desaparecimento é o sumiço repentino de alguém, sem aviso prévio a familiares ou a terceiros. Uma pessoa é
+      <h3>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      O que é desaparecimento?</h3>
+      <p>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Desaparecimento é o sumiço repentino de alguém, sem aviso prévio a familiares ou a terceiros. Uma pessoa é
         considerada desaparecida quando não pode ser localizada nos lugares que costuma frequentar, nem encontrada de
         qualquer outra forma.</p>
     </div>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-      <h3>Quais motivos podem levar ao desaparecimento de alguem?</h3>
-      <p>Várias causas podem levar a essa desaparição, por exemplo, conflitos familiares, uso problemático de drogas,
+      <h3>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Quais motivos podem levar ao desaparecimento de alguem?</h3>
+      <p>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Várias causas podem levar a essa desaparição, por exemplo, conflitos familiares, uso problemático de drogas,
         alcoolismo, transtorno mental, depressão, violência, dentre outras. O desaparecimento pode ser:
 
         </br> Voluntário, quando a pessoa se afasta por vontade própria e sem avisar. Isso pode acontecer por motivos
@@ -212,14 +225,34 @@ include './database/missings-repository.php';
 
     </div>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-      <h3>Por que agir rápido em caso de desaparecimento?</h3>
-      <p>Normalmente, não estamos preparados para vivenciar o desaparecimento de algum ente querido. Ele acontece de
+      <h3>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Por que agir rápido em caso de desaparecimento?</h3>
+      <p>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Normalmente, não estamos preparados para vivenciar o desaparecimento de algum ente querido. Ele acontece de
         repente e sem que se saiba sua causa. Quanto mais rápido você procurar ajuda, mais são as chances de reencontro,
         especialmente quando se trata de um desaparecimento forçado ou involuntário.</p>
     </div>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-      <h3>O que fazer em uma situação de desaparecimento voluntário?</h3>
-      <p>Toda pessoa tem o direito de mudar de vida, independentemente do motivo. No entanto, quando uma pessoa decide,
+      <h3>
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+      O que fazer em uma situação de desaparecimento voluntário?</h3>
+      <p>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Toda pessoa tem o direito de mudar de vida, independentemente do motivo. No entanto, quando uma pessoa decide,
         voluntariamente, se afastar de sua rotina ou do convívio com a família, é importante que ela comunique a decisão
         de se ausentar. O desaparecimento voluntário abala a rotina de outras pessoas e também do Poder Público, que
         deve se concentrar na busca de pessoas que desapareceram de forma involuntária ou forçada. É importante
@@ -229,8 +262,18 @@ include './database/missings-repository.php';
         localizado.</p>
     </div>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-      <h3>O que fazer em caso de desaparecimento de crianças, adolescentes e pessoas com transtorno mental?</h3>
-      <p>Para a lei, crianças, adolescentes e pessoas com transtorno mental desconhecem a gravidade de mudar de vida sem
+      <h3>
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+      O que fazer em caso de desaparecimento de crianças, adolescentes e pessoas com transtorno mental?</h3>
+      <p>
+            <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+      Para a lei, crianças, adolescentes e pessoas com transtorno mental desconhecem a gravidade de mudar de vida sem
         o apoio da família ou de pessoas próximas. Por isso, elas nunca são consideradas como casos de desaparecimento
         voluntário e devem imediatamente ser procuradas e reconduzidas a um local seguro. Ou seja, mesmo que ela tenha
         se esquecido de avisar aonde foi, tenha fugido ou se afastado por vontade própria, é dever do Poder Público
@@ -239,7 +282,12 @@ include './database/missings-repository.php';
         competente.</p>
     </div>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-      <h3>O registro do BO só pode ser feito depois de passadas algumas horas?</h3>
+      <h3>
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+      O registro do BO só pode ser feito depois de passadas algumas horas?</h3>
       <p>Pelo contrário! Quanto mais rápido você iniciar sua busca, há mais possibilidades de localizar a pessoa
         desaparecida.</p>
     </div>
@@ -261,16 +309,31 @@ include './database/missings-repository.php';
 	</div>
   </section>-->
 
-  <h1 class="tit">SOBRE NÓS</h1>
+  <h1 class="tit">
+        <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+  SOBRE NÓS</h1>
   <section class="about">
 
     <div class="about-content">
       <ul>
-        <p>O Busca Solidária surgiu em 2024 a partir de um projeto de TCC realizados por alunos da ETEC Parque da
+        <p>
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+        O Busca Solidária surgiu em 2024 a partir de um projeto de TCC realizados por alunos da ETEC Parque da
           Juventude do curso de Desenvolvimento de Sistemas. Tem o objetivo de ajudar as pessoas que possuem entes
           queridos desaparecidos a encontrá-los, por meio de um banco de dados aberto ao público.</p>
         <br />
-        <p>O Busca Solidária também visa conscientizar e sensibilizar os cidadãos quanto ao desaparecimento de pessoas,
+        <p>
+              <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>  
+        O Busca Solidária também visa conscientizar e sensibilizar os cidadãos quanto ao desaparecimento de pessoas,
           além de fornecer orientações quanto ao que deve ser feito ao se deparar com uma situação similar, servindo
           como uma plataforma auxiliar na busca por desaparecidos.</p>
       </ul>
@@ -282,7 +345,13 @@ include './database/missings-repository.php';
   </section>
 
   <!-- INTEGRANTES -->
-  <h1 class="tit">INTEGRANTES</h1>
+  <h1 class="tit">
+    
+        <?php if($leanguage = "pt"):?>  
+      <?php elseif($leanguage = "en"):?>
+      <?php elseif($leanguage = "es"):?>
+      <?endif?>
+      INTEGRANTES</h1>
   <section class="int">
     <div class="content-2">
       <ul class="ul1">
