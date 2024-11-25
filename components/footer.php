@@ -10,7 +10,15 @@
 
     <div class="rodape-div-2">
       <div class="rodape-div-2-coluna">
-        <span><b>Contatos</b></span>
+        <span><b>
+        <?php if($leanguage == "pt" ):?>
+          Contatos
+        <?php elseif($leanguage == "en" ):?>
+          Contacts
+        <?php elseif($leanguage == "es" ):?>
+          Contactos
+        <?php endif?>
+          </b></span>
         <p>contato@na.na</p>
         <p>+55 63 99200-0000</p>
       </div>
@@ -27,8 +35,24 @@
 
     <div class="rodape-div-4">
       <div class="rodape-div-4-coluna">
-        <span><b>Outros</b></span>
-        <p id="button-privacy-policy">Políticas de Privacidade</p>
+        <span><b>
+    <?php if($leanguage == "pt" ):?>
+      Outros
+    <?php elseif($leanguage == "en" ):?>
+    Others
+      <?php elseif($leanguage == "es" ):?>
+      Otros
+      <?php endif?>
+          </b></span>
+        <p id="button-privacy-policy">
+      <?php if($leanguage == "pt" ):?>
+        Políticas de Privacidade
+      <?php elseif($leanguage == "en" ):?>
+         Privacy Policies
+    <?php elseif($leanguage == "es" ):?>
+        Políticas de privacidad
+    <?php endif?>
+          </p>
         <dialog id="dialog">
           <h2>Hello, World!</h2>
           <p class="description">
@@ -42,6 +66,14 @@
     </div>
 
   </div>
-  <p class="rodape-direitos">Copyright © 2024 – Todos os Direitos Reservados.</p>
+  <p class="rodape-direitos">Copyright © 2024 – 
+    <?php if($leanguage == "pt" ):?>
+      Todos os Direitos Reservados.  
+    <?php elseif($leanguage == "en" ):?>
+      All rights reserved.
+    <?php elseif($leanguage == "es" ):?>
+      Reservados todos los derechos.
+    <?php endif?>
+    </p>
 </footer>
 <!--fim rodapé-->
