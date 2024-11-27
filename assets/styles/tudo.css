@@ -134,25 +134,7 @@
   animation: blink 0.5s step-end infinite alternate;
 }
 
-.typing-text::after {
-  content: "parente";
-  animation: typing 3s steps(8, end) infinite;
-}
-
-@keyframes typing {
-  0% {
-    content: "parente";
-  }
-  33% {
-    content: "amigo";
-  }
-  66% {
-    content: "conhecido";
-  }
-  100% {
-    content: "parente";
-  }
-}
+  
 
 @keyframes blink {
   50% {

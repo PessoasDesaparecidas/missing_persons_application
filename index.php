@@ -26,6 +26,61 @@ include './utils/select-language.php';
   <link rel="stylesheet" href="./assets/styles/tudo.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+  .typing-text::after {
+    content:
+      <?php if ($language=="pt"): ?>"parente"
+      <?php elseif ($language=="es"): ?> "relativo"
+      <?php elseif ($language=="en"): ?> "relative"
+      <?php endif;
+    ?>;
+    animation: typing 3s steps(8, end) infinite;
+  }
+
+  @keyframes typing {
+    0% {
+      content: <?php if ($language=="pt"): ?>"parente"
+        <?php elseif ($language=="es"): ?> "relativo"
+        <?php elseif ($language=="en"): ?> "relative"
+        <?php endif;
+      ?>;
+
+    }
+
+    33% {
+      content:
+        <?php if ($language=="pt"): ?>"amigo"
+        <?php elseif ($language=="es"): ?> "amigo"
+        <?php elseif ($language=="en"): ?> "friend"
+        <?php endif;
+      ?>;
+
+
+    }
+
+    66% {
+
+      content:
+        <?php if ($language=="pt"): ?>"conhecido"
+        <?php elseif ($language=="es"): ?> "conocido"
+        <?php elseif ($language=="en"): ?> "known"
+        <?php endif;
+      ?>;
+      ;
+    }
+
+    100% {
+      content:
+        <?php if ($language=="pt"): ?>"parente"
+        <?php elseif ($language=="es"): ?>"parente"
+        <?php elseif ($language=="en"): ?> "relative"
+        <?php endif;
+      ?>;
+    }
+  }
+  </style>
+
 </head>
 
 <body>
