@@ -566,7 +566,6 @@ include './utils/select-language.php';
       </p>
     </div>
     <div class="faq-item" data-aos="fade-up" data-aos-anchor-placement="top-center">
-
       <?php if ($language == "pt"): ?>
       <h3>
         O registro do BO só pode ser feito depois de passadas algumas horas?
@@ -590,6 +589,7 @@ include './utils/select-language.php';
 
     </div>
   </section>
+
   <h1 class="tit">
     <?php if ($language == "pt"): ?>
     SOBRE NÓS
@@ -599,8 +599,8 @@ include './utils/select-language.php';
     SOBRE NOSOTROS
     <?php endif; ?>
   </h1>
-  <section class="about">
 
+  <section class="about">
     <div class="about-content">
       <ul>
         <p>
@@ -649,16 +649,15 @@ include './utils/select-language.php';
 
   <!-- INTEGRANTES -->
   <h1 class="tit">
-
     <?php if ($language == "pt"): ?>
     INTEGRANTES
     <?php elseif ($language == "en"): ?>
     MEMBERS
     <?php elseif ($language == "es"): ?>
     MIEMBROS
-
     <?php endif; ?>
   </h1>
+
   <section class="int">
     <div class="content-2">
       <ul class="ul1">
@@ -702,17 +701,6 @@ include './utils/select-language.php';
     </div>
   </section>
 
-  <!-- video
-
-<div class="video-wrapper">
-    <iframe id="video-in" width="560" height="315"
-      src="https://www.youtube-nocookie.com/embed/2ixfkddD7xs?si=O_poGJMyXCmqs5AA" title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe>
-  </div> -->
-
-
   <!-- notificação -->
   <?php
   include './components/sonner.php';
@@ -729,7 +717,6 @@ include './utils/select-language.php';
   ?>
 
   <!-- javascript -->
-
   <script src="./assets/javascript/carrossel.js" defer></script>
   <script src="./assets/javascript/politica.js"></script>
   <script src="./assets/javascript/header.js"></script>
