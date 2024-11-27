@@ -1,16 +1,16 @@
 <?php
-$leanguage = "pt";
+$language = "pt";
 
 if (isset($_GET["lg"])) {
   switch ($_GET["lg"]) {
     case 'en':
-      $leanguage = "en";
+      $language = "en";
       break;
     case 'es':
-      $leanguage = "es";
+      $language = "es";
       break;
     default:
-      $leanguage = "pt";
+      $language = "pt";
       break;
   }
 }

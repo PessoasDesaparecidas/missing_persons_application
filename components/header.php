@@ -6,33 +6,33 @@ $user = find_by_id($connection, get_user_id());
   <input type="checkbox" name="" id="chek">
   <label for="chek"><i class="fa-solid fa-bars"></i></label>
   <h1 class="logo">
-    <?php if ($leanguage == "pt"): ?>
-    Busca Solidária
-    <?php elseif ($leanguage == "es"): ?>
-    Búsqueda Solidaria
-    <?php elseif ($leanguage == "en"): ?>
-    Solidarity Search
-    
+    <?php if ($language == "pt"): ?>
+      Busca Solidária
+    <?php elseif ($language == "es"): ?>
+      Búsqueda Solidaria
+    <?php elseif ($language == "en"): ?>
+      Solidarity Search
+
     <?php endif; ?>
   </h1>
   <nav>
 
-    <?php if ($leanguage == "pt"): ?>
-    <a href="./index.php">Início</a>
-    <a href="./orientacao.php">Orientações</a>
-    <a href="./desaparecidos.php">Desaparecidos</a>
-    <a href="#sobre">Sobre</a>
-    <?php elseif ($leanguage == "es"): ?>
-    <a href="./index.php">Inicio</a>
-    <a href="./orientacao.php">Orientaciones</a>
-    <a href="./desaparecidos.php">Desaparecido</a>
-    <a href="#about">Acerca de</a>
-    <?php elseif ($leanguage == "en"): ?>
-    <a href="./index.php">Home</a>
-    <a href="./orientacao.php">Guidelines</a>
-    <a href="./desaparecidos.php">Missing</a>
-    <a href="#sobre">About</a>
-    
+    <?php if ($language == "pt"): ?>
+      <a href="./index.php?lg=<?php echo $language ?>">Início</a>
+      <a href="./orientacao.php?lg=<?php echo $language ?>">Orientações</a>
+      <a href="./desaparecidos.php?lg=<?php echo $language ?>">Desaparecidos</a>
+      <a href="#sobre">Sobre</a>
+    <?php elseif ($language == "es"): ?>
+      <a href="./index.php?lg=<?php echo $language ?>">Inicio</a>
+      <a href="./orientacao.php?lg=<?php echo $language ?>">Orientaciones</a>
+      <a href="./desaparecidos.php?lg=<?php echo $language ?>">Desaparecido</a>
+      <a href="#about">Acerca de</a>
+    <?php elseif ($language == "en"): ?>
+      <a href="./index.php?lg=<?php echo $language ?>">Home</a>
+      <a href="./orientacao.php?lg=<?php echo $language ?>">Guidelines</a>
+      <a href="./desaparecidos.php?lg=<?php echo $language ?>">Missing</a>
+      <a href="#sobre">About</a>
+
     <?php endif; ?>
 
   </nav>
@@ -54,14 +54,14 @@ $user = find_by_id($connection, get_user_id());
       <li class="profile-dropdown-list-item">
         <a href="#">
           <i class="fa-regular fa-user"></i>
-          <?php if ($leanguage == "pt"): ?>
-          Editar perfil
+          <?php if ($language == "pt"): ?>
+            Editar perfil
 
-          <?php elseif ($leanguage == "es"): ?>
-          Editar perfil
-          <?php elseif ($leanguage == "en"): ?>
-          Edit profile
-          
+          <?php elseif ($language == "es"): ?>
+            Editar perfil
+          <?php elseif ($language == "en"): ?>
+            Edit profile
+
           <?php endif; ?>
         </a>
       </li>
@@ -69,13 +69,13 @@ $user = find_by_id($connection, get_user_id());
       <li class="profile-dropdown-list-item">
         <a href="#">
           <i class="fa-regular fa-circle-question"></i>
-          <?php if ($leanguage == "pt"): ?>
-          Ver seus desaparecidos
-          <?php elseif ($leanguage == "es"): ?>
-          ver tu desaparecidos
-          <?php elseif ($leanguage == "en"): ?>
-          See your missing
-          
+          <?php if ($language == "pt"): ?>
+            Ver seus desaparecidos
+          <?php elseif ($language == "es"): ?>
+            ver tu desaparecidos
+          <?php elseif ($language == "en"): ?>
+            See your missing
+
           <?php endif; ?>
         </a>
       </li>

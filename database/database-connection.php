@@ -49,8 +49,12 @@ $create_missing_comments_table = "CREATE TABLE IF NOT EXISTS Comment (
    missing_person_id INT NOT NULL,
    user_id INT NOT NULL,
    content TEXT NOT NULL,
+   
+   image_url VARCHAR(255),
+   video_url VARCHAR(255),
    latitude FLOAT ,
    longitude FLOAT ,
+   
    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
    PRIMARY KEY (comment_id),

@@ -20,22 +20,22 @@
     </div>
     <button type="submit" class="btn" name="btn-login">Login</button>
 
-    <?php if ($leanguage == "pt"): ?>
-    <div class="login-register">
-      <p>Não possui uma conta?</p>
-      <a class="register-link" id="register-link">Cadastrar</a>
-    </div>
-    <?php elseif ($leanguage == "es"): ?>
-    <div class="login-register">
-      <p>¿No tienes una cuenta?</p>
-      <a class="register-link" id="register-link">Registrarse</a>
-    </div>
-    <?php elseif ($leanguage == "en"): ?>
-    <div class="login-register">
-      <p>Don't have an account?</p>
-      <a class="register-link" id="register-link">Register</a>
-    </div>
-    
-      <?php endif; ?>
+    <?php if ($language == "pt"): ?>
+      <div class="login-register">
+        <p>Não possui uma conta?</p>
+        <a class="register-link" id="register-link">Cadastrar</a>
+      </div>
+    <?php elseif ($language == "es"): ?>
+      <div class="login-register">
+        <p>¿No tienes una cuenta?</p>
+        <a class="register-link" id="register-link">Registrarse</a>
+      </div>
+    <?php elseif ($language == "en"): ?>
+      <div class="login-register">
+        <p>Don't have an account?</p>
+        <a class="register-link" id="register-link">Register</a>
+      </div>
+
+    <?php endif; ?>
   </form>
 </div>
