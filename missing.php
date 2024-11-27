@@ -5,6 +5,8 @@ include "./database/missings-repository.php";
 include "./database/comments-repository.php";
 include "./utils/sonner.php";
 include "./utils/get-missing-id.php";
+include './utils/select-language.php';
+
 
 if (!get_missing_id()) {
   sonner("error", "Desaparecido não encontrado");
