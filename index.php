@@ -61,9 +61,6 @@ if (isset($_GET["lg"])) {
           Help us find those who are missing.
         <?php elseif ($leanguage == "es"): ?>
           Ayúdanos a encontrar a los desaparecidos.
-
-
-
         <?php endif; ?>
       </h1>
       <p>
@@ -135,49 +132,49 @@ if (isset($_GET["lg"])) {
                       Nombre:
                     <?php endif; ?>
                   </strong> <?php echo $missing["missing_person_name"] ?></p>
-                <p><strong> 
-                
-                <?php if ($leanguage == "pt"): ?>
-                  Idade:
-                <?php elseif ($leanguage == "en"): ?>
-                    Age:
-                <?php elseif ($leanguage == "es"): ?>
+                <p><strong>
+
+                    <?php if ($leanguage == "pt"): ?>
+                      Idade:
+                    <?php elseif ($leanguage == "en"): ?>
+                      Age:
+                    <?php elseif ($leanguage == "es"): ?>
                       Edad:
-                <?php endif; ?>  
-                 </strong> <?php echo $missing["missing_person_age"] ?></p>
-                <p><strong> 
-                <?php if ($leanguage == "pt"): ?>
-                  Região:<?php elseif ($leanguage == "en"): ?>
-                    Region:
+                    <?php endif; ?>
+                  </strong> <?php echo $missing["missing_person_age"] ?></p>
+                <p><strong>
+                    <?php if ($leanguage == "pt"): ?>
+                      Região:<?php elseif ($leanguage == "en"): ?>
+                      Region:
                     <?php elseif ($leanguage == "es"): ?>
                       Región:
-                    <?php endif; ?>    
-                 </strong> <?php echo $missing["missing_location"] ?></p>
+                    <?php endif; ?>
+                  </strong> <?php echo $missing["missing_location"] ?></p>
 
                 <p><strong>
-                <?php if ($leanguage == "pt"): ?>
-                  Data do desaparecimento
-                <?php elseif ($leanguage == "en"): ?>
-                  Date of disappearance
+                    <?php if ($leanguage == "pt"): ?>
+                      Data do desaparecimento
+                    <?php elseif ($leanguage == "en"): ?>
+                      Date of disappearance
                     <?php elseif ($leanguage == "es"): ?>
                       Fecha de desaparición
-                    <?php endif; ?>  
-                </strong>
+                    <?php endif; ?>
+                  </strong>
                   <?php
                   $date = new DateTime($missing["missing_date"]);
                   $formatted_date = $date->format('d/m/Y');
                   echo  $formatted_date ?>
                 </p>
                 <a href="./desaparecido.php?missing_id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i
-                    class="fa-solid fa-comment"></i> 
-                    <?php if ($leanguage == "pt"): ?>
-                      Viu? Comente
-                <?php elseif ($leanguage == "en"): ?>
-                  It saw?Comment
-                    <?php elseif ($leanguage == "es"): ?>
-                      Vio? Comente
-                    <?php endif; ?>  
-                    </a>
+                    class="fa-solid fa-comment"></i>
+                  <?php if ($leanguage == "pt"): ?>
+                    Viu? Comente
+                  <?php elseif ($leanguage == "en"): ?>
+                    It saw?Comment
+                  <?php elseif ($leanguage == "es"): ?>
+                    Vio? Comente
+                  <?php endif; ?>
+                </a>
               </div>
             </div>
           <?php endwhile ?>

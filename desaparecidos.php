@@ -55,8 +55,6 @@ $result = $connection->query($query_quantity_missings);
 $row = $result->fetch_assoc();
 $quantity_missings = $row['quantity_missings'];
 
-// Exibindo a quantidade total de registros encontrados
-echo "<p>Total de MissingPersons: $quantity_missings</p>";
 ?>
 
 <!DOCTYPE html>
@@ -65,110 +63,117 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Busca Solidaria</title>
+  <title>
+    <?php if ($leanguage == "pt"): ?>
+      Busca Solidária
+    <?php elseif ($leanguage == "es"): ?>
+      Búsqueda Solidaria
+    <?php elseif ($leanguage == "en"): ?> Solidarity Search
+    <?php endif; ?>
+  </title>
   <link rel="icon" href="./assets/images/favicon.png">
 
   <link rel="stylesheet" href="./assets/styles/globals.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .container {
-    width: 90%;
-    margin: 50px auto;
-  }
-
-  .heading {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 50px;
-  }
-
-  .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 50px;
-  }
-
-  .card {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .card-img {
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-  }
-
-  .card-img img {
-    border-radius: 5px;
-    height: 225px;
-    width: 100%;
-    max-width: 160px;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .card-body {
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 15px;
-  }
-
-  .card-body .btn {
-    background-image: url(/assets/imagens/desapecido.jpg);
-    display: block;
-    color: #fff;
-    text-align: center;
-    background: #b6222b;
-    margin-top: 20px;
-    /* Diminui o espaçamento superior */
-    text-decoration: none;
-    padding: 5px 10px;
-    /* Diminui o tamanho do botão */
-    font-size: 12px;
-    /* Ajusta o tamanho do texto */
-    border-radius: 5px;
-    /* Arredonda os cantos do botão */
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
-  }
-
-  @media screen and (max-width: 1024px) {
-    .row {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
-  }
 
-  @media screen and (max-width: 620px) {
     .container {
-      width: 100%;
+      width: 90%;
+      margin: 50px auto;
     }
 
     .heading {
-      padding: 20px;
+      text-align: center;
       font-size: 20px;
+      margin-bottom: 50px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 50px;
     }
 
     .card {
-      width: 80%;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-  }
+
+    .card-img {
+      text-align: center;
+      padding: 10px;
+      margin: 0;
+    }
+
+    .card-img img {
+      border-radius: 5px;
+      height: 225px;
+      width: 100%;
+      max-width: 160px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .card-body {
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .card-body .btn {
+      background-image: url("./assets/images/desapecido.jpg");
+      display: block;
+      color: #fff;
+      text-align: center;
+      background: #b6222b;
+      margin-top: 20px;
+      /* Diminui o espaçamento superior */
+      text-decoration: none;
+      padding: 5px 10px;
+      /* Diminui o tamanho do botão */
+      font-size: 12px;
+      /* Ajusta o tamanho do texto */
+      border-radius: 5px;
+      /* Arredonda os cantos do botão */
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+    }
+
+    @media screen and (max-width: 1024px) {
+      .row {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media screen and (max-width: 620px) {
+      .container {
+        width: 100%;
+      }
+
+      .heading {
+        padding: 20px;
+        font-size: 20px;
+      }
+
+      .card {
+        width: 80%;
+      }
+    }
   </style>
 </head>
 
@@ -182,11 +187,28 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
 
   <section class="desap">
     <div class="content">
-      <h3>Encontre seu amigo, parente ou conhecido aqui...</h3>
+      <h3>
+        <?php if ($leanguage == "pt"): ?>
+          Encontre seu amigo, parente ou conhecido aqui...
+        <?php elseif ($leanguage == "es"): ?>
+          Encuentra a tu amigo, pariente o conocido aquí ...
+        <?php elseif ($leanguage == "en"): ?>
+          Find your friend, relative or known here ...
+        <?php endif; ?>
+      </h3>
       <div class="search-bar">
         <input type="text" class="search-input" placeholder="Pesquisar..." />
-        <button class="filter-button">Filtrar</button>
-        <button class="search-button">Buscar</button>
+
+        <?php if ($leanguage == "pt"): ?>
+          <button class="filter-button">Filtrar</button>
+          <button class="search-button">Buscar</button>
+        <?php elseif ($leanguage == "es"): ?>
+          <button class="filter-button">Filtrar</button>
+          <button class="search-button">Buscar</button>
+        <?php elseif ($leanguage == "en"): ?>
+          <button class="filter-button">Filter</button>
+          <button class="search-button">Search</button>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -195,7 +217,15 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
 
   <div class="container">
     <div class="heading">
-      <h1>Desaparecidoss</h1>
+      <h1>
+        <?php if ($leanguage == "pt"): ?>
+          Desaparecidos
+        <?php elseif ($leanguage == "es"): ?>
+          Desaparecidos
+        <?php elseif ($leanguage == "en"): ?>
+          Missings
+        <?php endif; ?>
+      </h1>
     </div>
     <div class="row">
 
@@ -203,247 +233,103 @@ echo "<p>Total de MissingPersons: $quantity_missings</p>";
       $missings = $connection->query($query_all_missing);
       if ($missings->num_rows > 0) :
       ?>
-      <?php while ($missing = $missings->fetch_assoc()): ?>
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> <?php echo $missing["missing_person_name"] ?></p>
-          <p><strong> Idade: </strong> <?php echo $missing["missing_person_age"] ?></p>
-          <p><strong> Região: </strong> <?php echo $missing["missing_location"] ?></p>
+        <?php while ($missing = $missings->fetch_assoc()): ?>
+          <div class="card">
+            <div class="card-img">
+              <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
+            </div>
+            <div class="card-body">
+              <p><strong>
+                  <?php if ($leanguage == "pt"): ?>
+                    Nome:
+                  <?php elseif ($leanguage == "en"): ?>
+                    Name:
+                  <?php elseif ($leanguage == "es"): ?>
+                    Nombre:
+                  <?php endif; ?>
+                </strong> <?php echo $missing["missing_person_name"] ?></p>
+              <p><strong>
 
-          <p><strong>Data do desaparecimento</strong>
-            <?php
+                  <?php if ($leanguage == "pt"): ?>
+                    Idade:
+                  <?php elseif ($leanguage == "en"): ?>
+                    Age:
+                  <?php elseif ($leanguage == "es"): ?>
+                    Edad:
+                  <?php endif; ?>
+                </strong> <?php echo $missing["missing_person_age"] ?></p>
+              <p><strong>
+                  <?php if ($leanguage == "pt"): ?>
+                    Região:<?php elseif ($leanguage == "en"): ?>
+                    Region:
+                  <?php elseif ($leanguage == "es"): ?>
+                    Región:
+                  <?php endif; ?>
+                </strong> <?php echo $missing["missing_location"] ?></p>
+
+              <p><strong>
+                  <?php if ($leanguage == "pt"): ?>
+                    Data do desaparecimento
+                  <?php elseif ($leanguage == "en"): ?>
+                    Date of disappearance
+                  <?php elseif ($leanguage == "es"): ?>
+                    Fecha de desaparición
+                  <?php endif; ?>
+                </strong>
+                <?php
                 $date = new DateTime($missing["missing_date"]);
                 $formatted_date = $date->format('d/m/Y');
                 echo  $formatted_date ?>
-          </p>
-          <a href="./desaparecido.php?missing_id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i
-              class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-      <?php endwhile ?>
+              </p>
+              <a href="./desaparecido.php?missing_id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i
+                  class="fa-solid fa-comment"></i>
+                <?php if ($leanguage == "pt"): ?>
+                  Viu? Comente
+                <?php elseif ($leanguage == "en"): ?>
+                  It saw?Comment
+                <?php elseif ($leanguage == "es"): ?>
+                  Vio? Comente
+                <?php endif; ?>
+              </a>
+            </div>
+          </div>
+        <?php endwhile ?>
       <?php endif; ?>
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/dimi.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
+      <!-- fim cards -->
 
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
+      <section class="sobre" id="sobre">
+        <?php if ($leanguage == "pt"): ?>
+          SOBRE NOS!!
+        <?php elseif ($leanguage == "es"): ?>
+          SOBRE NOS!!
+        <?php elseif ($leanguage == "en"): ?>
+          ABOULT US!!
+        <?php endif; ?>
+      </section>
 
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
+      <!-- notificação -->
+      <?php
+      include './components/sonner.php';
+      ?>
 
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
+      <!-- rodapé -->
+      <?php
+      include './components/footer.php'
+      ?>
 
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
+      <!-- libras -->
+      <?php
+      include './components/libras.php'
+      ?>
 
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="./assets/images/desapecido.jpg" />
-        </div>
-        <div class="card-body">
-          <p><strong> Nome: </strong> Fulaninho da Silva</p>
-          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
-          <p><strong> Visto por último em: </strong> endereço endereço</p>
-          <a href="#" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fim cards -->
-
-  <section class="sobre" id="sobre">SOBRE NOS!!</section>
-
-  <!-- notificação -->
-  <?php
-  include './components/sonner.php';
-  ?>
-
-  <!-- rodapé -->
-  <?php
-  include './components/footer.php'
-  ?>
-
-  <!-- libras -->
-  <?php
-  include './components/libras.php'
-  ?>
-
-  <script src="./assets/javascript/politica.js"></script>
-  <script src="./assets/javascript/header.js"></script>
-  <script src="./assets/javascript/handle-form-user.js"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-  AOS.init();
-  </script>
+      <script src="./assets/javascript/politica.js"></script>
+      <script src="./assets/javascript/header.js"></script>
+      <script src="./assets/javascript/handle-form-user.js"></script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
 </body>
 
 </html>
