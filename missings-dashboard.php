@@ -1,6 +1,6 @@
 <?php
 include './utils/protect-page-route.php';
-include './database/missings-repository.php'
+include './utils/select-language.php';
 ?>
 
 <!DOCTYPE html>
