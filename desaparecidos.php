@@ -73,7 +73,6 @@ $quantity_missings = $row['quantity_missings'];
     <?php endif; ?>
   </title>
   <link rel="icon" href="./assets/images/favicon.png">
-
   <link rel="stylesheet" href="./assets/styles/globals.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -229,7 +228,6 @@ $quantity_missings = $row['quantity_missings'];
       </h1>
     </div>
     <div class="row">
-
       <?php
       $missings = $connection->query($query_all_missing);
       if ($missings->num_rows > 0) :
@@ -282,7 +280,7 @@ $quantity_missings = $row['quantity_missings'];
                 $formatted_date = $date->format('d/m/Y');
                 echo  $formatted_date ?>
               </p>
-              <a href="./desaparecido.php?missing_id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i
+              <a  class="btn"><i
                   class="fa-solid fa-comment"></i>
                 <?php if ($language == "pt"): ?>
                   Viu? Comente
@@ -298,7 +296,7 @@ $quantity_missings = $row['quantity_missings'];
       <?php endif; ?>
 
       <!-- fim cards -->
-
+    </div>
       <section class="sobre" id="sobre">
         <?php if ($language == "pt"): ?>
           SOBRE NOS!!
@@ -308,7 +306,7 @@ $quantity_missings = $row['quantity_missings'];
           ABOULT US!!
         <?php endif; ?>
       </section>
-
+</div>
       <!-- notificação -->
       <?php
       include './components/sonner.php';
