@@ -1,3 +1,6 @@
+body{
+  overflow-x: hidden;
+}
 .orient2 {
   background: #000;
   color: #fff;

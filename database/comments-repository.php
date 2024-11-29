@@ -30,6 +30,7 @@ function fetch_comments_by_missing_id($connection, $missing_id)
         FROM Comment 
         JOIN User ON Comment.user_id = User.user_id 
         WHERE Comment.missing_person_id = ?
+        ORDER BY created_at DESC
         "
     );
     $preparement_query_to_fetch_comments->bind_param("i", $missing_id);

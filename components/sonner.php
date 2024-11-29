@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,68 +6,68 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Toast Notifications</title>
   <style>
-    /* CSS tradicional para os toasts */
-    .toast {
-      width: auto;
-      z-index: 1000;
-      position: fixed;
-      right: 0;
-      bottom: 10px;
-      padding: 0.5rem 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 0.375rem;
-      transition: transform 0.3s ease;
-      transform: translateX(100%);
-    }
+  /* CSS tradicional para os toasts */
+  .toast {
+    width: auto;
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    bottom: 10px;
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.375rem;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+  }
 
-    .toast-success {
-      background-color: #d1fae5;
-      border: 2px solid #16a34a;
-    }
+  .toast-success {
+    background-color: #d1fae5;
+    border: 2px solid #16a34a;
+  }
 
-    .toast-error {
-      background-color: #fecaca;
-      border: 2px solid #dc2626;
-    }
+  .toast-error {
+    background-color: #fecaca;
+    border: 2px solid #dc2626;
+  }
 
-    .toast-alert {
-      background-color: #fef3c7;
-      border: 2px solid #ca8a04;
-    }
+  .toast-alert {
+    background-color: #fef3c7;
+    border: 2px solid #ca8a04;
+  }
 
-    .toast-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
+  .toast-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
 
-    .toast-icon-title {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
+  .toast-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 
-    .toast-title {
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
+  .toast-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
 
-    .toast-close {
-      cursor: pointer;
-      transform: translateY(1px);
-    }
+  .toast-close {
+    cursor: pointer;
+    transform: translateY(1px);
+  }
 
-    .toast-close:hover {
-      opacity: 0.75;
-    }
+  .toast-close:hover {
+    opacity: 0.75;
+  }
 
-    /* Classe para mostrar o toast (deslizar para dentro) */
-    .open {
-      transform: translateX(0);
-    }
+  /* Classe para mostrar o toast (deslizar para dentro) */
+  .open {
+    transform: translateX(0);
+  }
   </style>
 </head>
 
@@ -86,7 +82,8 @@ session_start();
         <h3 class="toast-title" id="sonner-success-title">Success</h3>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x toast-close" id="sonner-success-button-close">
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x toast-close"
+        id="sonner-success-button-close">
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
       </svg>
@@ -106,7 +103,8 @@ session_start();
         <h3 class="toast-title" id="sonner-error-title">Error</h3>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x toast-close" id="sonner-error-button-close">
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x toast-close"
+        id="sonner-error-button-close">
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
       </svg>
@@ -125,7 +123,8 @@ session_start();
         <h3 class="toast-title" id="sonner-alert-title">Alert</h3>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca8a04"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x toast-close" id="sonner-alert-button-close">
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x toast-close"
+        id="sonner-alert-button-close">
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
       </svg>
@@ -133,124 +132,124 @@ session_start();
   </div>
 
   <script>
-    // Funcionalidade JavaScript para exibir e ocultar os toasts
-    const toastSuccess = {
-      element: document.getElementById("sonner-success"),
-      title: document.getElementById("sonner-success-title"),
-      handle: ({
+  // Funcionalidade JavaScript para exibir e ocultar os toasts
+  const toastSuccess = {
+    element: document.getElementById("sonner-success"),
+    title: document.getElementById("sonner-success-title"),
+    handle: ({
+      message,
+      timeInSeconds
+    }) => {
+      toastSuccess.open({
         message,
         timeInSeconds
-      }) => {
-        toastSuccess.open({
-          message,
-          timeInSeconds
-        });
-        setTimeout(() => toastSuccess.close(), 1000 * timeInSeconds);
-      },
-      open: ({
+      });
+      setTimeout(() => toastSuccess.close(), 1000 * timeInSeconds);
+    },
+    open: ({
+      message,
+      timeInSeconds
+    }) => {
+      toastSuccess.title.innerText = message;
+      toastSuccess.element.classList.add("open");
+    },
+    close: () => {
+      toastSuccess.element.classList.remove("open");
+    },
+  };
+
+  const toastAlert = {
+    element: document.getElementById("sonner-alert"),
+    title: document.getElementById("sonner-alert-title"),
+    handle: ({
+      message,
+      timeInSeconds
+    }) => {
+      toastAlert.open({
         message,
         timeInSeconds
-      }) => {
-        toastSuccess.title.innerText = message;
-        toastSuccess.element.classList.add("open");
-      },
-      close: () => {
-        toastSuccess.element.classList.remove("open");
-      },
-    };
+      });
+      setTimeout(() => toastAlert.close(), 1000 * timeInSeconds);
+    },
+    open: ({
+      message,
+      timeInSeconds
+    }) => {
+      toastAlert.title.innerText = message;
+      toastAlert.element.classList.add("open");
+    },
+    close: () => {
+      toastAlert.element.classList.remove("open");
+    },
+  };
 
-    const toastAlert = {
-      element: document.getElementById("sonner-alert"),
-      title: document.getElementById("sonner-alert-title"),
-      handle: ({
+  const toastError = {
+    element: document.getElementById("sonner-error"),
+    title: document.getElementById("sonner-error-title"),
+    handle: ({
+      message,
+      timeInSeconds
+    }) => {
+      toastError.open({
         message,
         timeInSeconds
-      }) => {
-        toastAlert.open({
-          message,
-          timeInSeconds
-        });
-        setTimeout(() => toastAlert.close(), 1000 * timeInSeconds);
-      },
-      open: ({
+      });
+      setTimeout(() => toastError.close(), 1000 * timeInSeconds);
+    },
+    open: ({
+      message,
+      timeInSeconds
+    }) => {
+      toastError.title.innerText = message;
+      toastError.element.classList.add("open");
+    },
+    close: () => {
+      toastError.element.classList.remove("open");
+    },
+  };
+
+  const buttonSuccessClose = document.getElementById("sonner-success-button-close");
+  const buttonAlertClose = document.getElementById("sonner-alert-button-close");
+  const buttonErrorClose = document.getElementById("sonner-error-button-close");
+
+  buttonSuccessClose.addEventListener("click", () => {
+    toastSuccess.close();
+  });
+
+  buttonAlertClose.addEventListener("click", () => {
+    toastAlert.close();
+  });
+
+  buttonErrorClose.addEventListener("click", () => {
+    toastError.close();
+  });
+
+  // Lógica PHP: Exibe o toast com base na variável de sessão
+  <?php if (isset($_SESSION['sonner-type']) && isset($_SESSION['sonner-message'])): ?>
+  const message = "<?php echo $_SESSION['sonner-message']; ?>";
+  const type = "<?php echo $_SESSION['sonner-type']; ?>";
+  const timeInSeconds = 2;
+  switch (type) {
+    case 'success':
+      toastSuccess.handle({
         message,
         timeInSeconds
-      }) => {
-        toastAlert.title.innerText = message;
-        toastAlert.element.classList.add("open");
-      },
-      close: () => {
-        toastAlert.element.classList.remove("open");
-      },
-    };
-
-    const toastError = {
-      element: document.getElementById("sonner-error"),
-      title: document.getElementById("sonner-error-title"),
-      handle: ({
+      });
+      break;
+    case 'error':
+      toastError.handle({
         message,
         timeInSeconds
-      }) => {
-        toastError.open({
-          message,
-          timeInSeconds
-        });
-        setTimeout(() => toastError.close(), 1000 * timeInSeconds);
-      },
-      open: ({
+      });
+      break;
+    case 'alert':
+      toastAlert.handle({
         message,
         timeInSeconds
-      }) => {
-        toastError.title.innerText = message;
-        toastError.element.classList.add("open");
-      },
-      close: () => {
-        toastError.element.classList.remove("open");
-      },
-    };
-
-    const buttonSuccessClose = document.getElementById("sonner-success-button-close");
-    const buttonAlertClose = document.getElementById("sonner-alert-button-close");
-    const buttonErrorClose = document.getElementById("sonner-error-button-close");
-
-    buttonSuccessClose.addEventListener("click", () => {
-      toastSuccess.close();
-    });
-
-    buttonAlertClose.addEventListener("click", () => {
-      toastAlert.close();
-    });
-
-    buttonErrorClose.addEventListener("click", () => {
-      toastError.close();
-    });
-
-    // Lógica PHP: Exibe o toast com base na variável de sessão
-    <?php if (isset($_SESSION['sonner-type']) && isset($_SESSION['sonner-message'])): ?>
-      const message = "<?php echo $_SESSION['sonner-message']; ?>";
-      const type = "<?php echo $_SESSION['sonner-type']; ?>";
-      const timeInSeconds = 2;
-      switch (type) {
-        case 'success':
-          toastSuccess.handle({
-            message,
-            timeInSeconds
-          });
-          break;
-        case 'error':
-          toastError.handle({
-            message,
-            timeInSeconds
-          });
-          break;
-        case 'alert':
-          toastAlert.handle({
-            message,
-            timeInSeconds
-          });
-          break;
-      }
-    <?php endif; ?>
+      });
+      break;
+  }
+  <?php endif; ?>
   </script>
 </body>
 

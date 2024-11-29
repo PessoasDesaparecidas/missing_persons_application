@@ -360,6 +360,7 @@ starting-style {
 
 /*comentario*/
 .main {
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -388,6 +389,14 @@ starting-style {
   height: 35px;
   border-radius: 50%;
   background: #333;
+}
+
+.newPost .infoUser .imgUser img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+ object-fit: cover;
+ object-position: center center; 
 }
 
 .newPost .infoUser strong {
@@ -478,6 +487,13 @@ starting-style {
   height: 35px;
   border-radius: 50%;
   background-color: #333;
+}
+.posts .post .infoUserPost .imgUserPost img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .posts .post .infoUserPost .imgUserPost .nameAndHour > strong {

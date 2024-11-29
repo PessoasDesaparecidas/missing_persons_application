@@ -15,7 +15,7 @@ include './utils/protect-page-route.php';
 <body>
   <div class="container">
     <div class="form-image">
-      <img src="./assets/images/sample-example-profile.svg">
+      <img src="./assets/images/ilustracao.png">
     </div>
     <div class="form">
       <form action="missing-cadastre.action.php" method="POST" class="form-register-missing"
