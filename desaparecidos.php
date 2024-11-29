@@ -1,5 +1,7 @@
 <?php
+
 include './database/database-connection.php';
+include './database/missings-repository.php';
 include './utils/get-user-id.php';
 include './utils/select-language.php';
 
@@ -58,23 +60,20 @@ $quantity_missings = $row['quantity_missings'];
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>
-    <?php if ($language == "pt"): ?>
-      Busca Solidária
-    <?php elseif ($language == "es"): ?>
-      Búsqueda Solidaria
-    <?php elseif ($language == "en"): ?> Solidarity Search
-    <?php endif; ?>
-  </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca Solidaria</title>
+  <link rel="stylesheet" href="./assets/styles/header.css">
   <link rel="icon" href="./assets/images/favicon.png">
-  <link rel="stylesheet" href="./assets/styles/globals.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/styles/footer.css">
+  <link rel="stylesheet" href="./assets/styles/tudo.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     * {
@@ -92,22 +91,30 @@ $quantity_missings = $row['quantity_missings'];
       text-align: center;
       font-size: 20px;
       margin-bottom: 50px;
+      margin-top: 0px;
+    }
+
+    .desapare {
+      color: #b62222;
+      margin-top: 10px;
+      text-align: center;
     }
 
     .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-flow: wrap;
+      gap: 18px;
     }
 
     .card {
+      width: 20%;
       background: #fff;
       border: 1px solid #ccc;
       border-radius: 5px;
+      margin-bottom: 50px;
       transition: 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .card-img {
@@ -119,10 +126,7 @@ $quantity_missings = $row['quantity_missings'];
     .card-img img {
       border-radius: 5px;
       height: 225px;
-      width: 100%;
-      max-width: 160px;
-      object-fit: cover;
-      object-position: center;
+      width: 160px;
     }
 
     .card-body {
@@ -136,7 +140,7 @@ $quantity_missings = $row['quantity_missings'];
       display: block;
       color: #fff;
       text-align: center;
-      background: #b6222b;
+      background: #b62222;
       margin-top: 20px;
       /* Diminui o espaçamento superior */
       text-decoration: none;
@@ -153,10 +157,9 @@ $quantity_missings = $row['quantity_missings'];
       box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
     }
 
-    @media screen and (max-width: 1024px) {
-      .row {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 40px;
+    @media screen and (max-width: 1000px) {
+      .card {
+        width: 40%;
       }
     }
 
@@ -174,59 +177,130 @@ $quantity_missings = $row['quantity_missings'];
         width: 80%;
       }
     }
+
+
+    .hero {
+      height: 70vh;
+      /* Altura total da tela */
+      background: linear-gradient(to bottom, #b6222b, #000000);
+      /* Fundo gradiente */
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      /* Estrelas */
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    .desas {
+      position: relative;
+      z-index: 2;
+      /* Para garantir que o texto e os botões fiquem acima das estrelas */
+      max-width: 100%;
+    }
+
+    .desas h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1em;
+      margin-top: 100px;
+    }
+
+    .desas p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .search-bar {
+      display: flex;
+      width: 80%;
+      height: 50px;
+      align-items: center;
+      gap: 8px;
+      background-color: #f0f0f0;
+      border-radius: 15px;
+      padding: 10px 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+      margin-left: 125px;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px;
+      align-items: center;
+      font-size: 16px;
+      outline: none;
+
+    }
+
+    .filter-button {
+      background-color: #101010;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .search-button {
+      background-color: #0b0b0b;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .filter-button:hover {
+      background-color: #b62222;
+    }
+
+    .search-button:hover {
+      background-color: #b62222;
+    }
   </style>
 </head>
 
 <body>
-  <!--comeco da nav-->
-  <?php
-  include './components/header.php'
-  ?>
-  <!--fim da nav-->
+  <?php include "./components/header.php"; ?>
 
-
-  <section class="desap">
-    <div class="content">
-      <h3>
-        <?php if ($language == "pt"): ?>
-          Encontre seu amigo, parente ou conhecido aqui...
-        <?php elseif ($language == "es"): ?>
-          Encuentra a tu amigo, pariente o conocido aquí ...
-        <?php elseif ($language == "en"): ?>
-          Find your friend, relative or known here ...
-        <?php endif; ?>
-      </h3>
+  <section class="hero">
+    <div class="desas">
+      <h1>Seu olhar atento pode ser a esperança de um reencontro.</h1>
+      <p>Reconhece algum desses rostos? Pesquise pelo nome, características ou idade e ajude-nos </br>a trazer alguém de volta para casa. </p>
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Pesquisar..." />
-
-        <?php if ($language == "pt"): ?>
-          <button class="filter-button">Filtrar</button>
-          <button class="search-button">Buscar</button>
-        <?php elseif ($language == "es"): ?>
-          <button class="filter-button">Filtrar</button>
-          <button class="search-button">Buscar</button>
-        <?php elseif ($language == "en"): ?>
-          <button class="filter-button">Filter</button>
-          <button class="search-button">Search</button>
-        <?php endif; ?>
+        <input type="text" class="search-input" placeholder="Procure aqui...">
+        <button class="filter-button">Filtrar</button>
+        <button class="search-button">Buscar</button>
       </div>
     </div>
   </section>
-
   <!-- cards -->
 
   <div class="container">
     <div class="heading">
-      <h1>
-        <?php if ($language == "pt"): ?>
-          Desaparecidos
-        <?php elseif ($language == "es"): ?>
-          Desaparecidos
-        <?php elseif ($language == "en"): ?>
-          Missings
-        <?php endif; ?>
-      </h1>
+      <h1 class="desapare">Desaparecidoss</h1>
     </div>
+
     <div class="row">
       <?php
       $missings = $connection->query($query_all_missing);
@@ -239,96 +313,202 @@ $quantity_missings = $row['quantity_missings'];
             </div>
             <div class="card-body">
               <p><strong>
-                  <?php if ($language == "pt"): ?>
-                    Nome:
-                  <?php elseif ($language == "en"): ?>
-                    Name:
-                  <?php elseif ($language == "es"): ?>
-                    Nombre:
-                  <?php endif; ?>
+                  Nome:
                 </strong> <?php echo $missing["missing_person_name"] ?></p>
               <p><strong>
 
-                  <?php if ($language == "pt"): ?>
-                    Idade:
-                  <?php elseif ($language == "en"): ?>
-                    Age:
-                  <?php elseif ($language == "es"): ?>
-                    Edad:
-                  <?php endif; ?>
+                  Idade:
+
                 </strong> <?php echo $missing["missing_person_age"] ?></p>
               <p><strong>
-                  <?php if ($language == "pt"): ?>
-                    Região:<?php elseif ($language == "en"): ?>
-                    Region:
-                  <?php elseif ($language == "es"): ?>
-                    Región:
-                  <?php endif; ?>
+                  Região:
                 </strong> <?php echo $missing["missing_location"] ?></p>
 
               <p><strong>
-                  <?php if ($language == "pt"): ?>
-                    Data do desaparecimento
-                  <?php elseif ($language == "en"): ?>
-                    Date of disappearance
-                  <?php elseif ($language == "es"): ?>
-                    Fecha de desaparición
-                  <?php endif; ?>
+                  Data do desaparecimento
                 </strong>
                 <?php
                 $date = new DateTime($missing["missing_date"]);
                 $formatted_date = $date->format('d/m/Y');
                 echo  $formatted_date ?>
               </p>
-              <a  class="btn"><i
-                  class="fa-solid fa-comment"></i>
-                <?php if ($language == "pt"): ?>
-                  Viu? Comente
-                <?php elseif ($language == "en"): ?>
-                  It saw?Comment
-                <?php elseif ($language == "es"): ?>
-                  Vio? Comente
-                <?php endif; ?>
-              </a>
+              <a id="openm" class="btn btnn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+              <dialog id="dialogo">
+                <p class="description">
+                <main class="main">
+                  <!--formlário de postagem-->
+                  <div class="newPost">
+
+                    <div class="infoUser">
+                      <div class="imgUser"></div>
+                      <strong>Douglas Souza</strong>
+                    </div>
+
+                    <!--Formulario de envio-->
+                    <form action="" class="formPost">
+                      <textarea name="textarea" placeholder="Faça seu comentário"></textarea>
+
+                      <div class="iconsAndButton">
+                        <div class="icons">
+                          <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem"></button>
+                          <button class="btnFileForm"><img src="./assets/images/video.svg" alt="Adicionar um video"></button>
+                        </div>
+                        <button type="submit" class="btnSubmitForm">Publicar</button>
+                      </div>
+                    </form>
+                  </div>
+
+
+                  <!--post de comentário-->
+                  <ul class="posts">
+                    <li class="post">
+                      <div class="infoUserPost">
+                        <div class="imgUserPost"></div>
+                        <div class="nameAndHour">
+                          <strong>Douglas Pukas</strong>
+                          <p>00h</p>
+                        </div>
+                      </div>
+                      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe veritatis nemo quibusdam? Consequatur reiciendis odio aliquam, similique, quo ex tempore eligendi provident odit blanditiis qui vel autem voluptatem a neque?</p>
+
+                      <div class="actionBtnPost">
+                        <button type="button" class="filesPost like"><img src="./assets/images/heart.svg" alt="Curtir">Curtir</button>
+                        <button type="button" class="filesPost comment"><img src="./assets/images/comment.svg" alt="Comentar">Comentar</button>
+                        <button type="button" class="filesPost share"><img src="./assets/images/share.svg" alt="Compartilhar">Compartilhar</button>
+                      </div>
+                    </li>
+                  </ul>
+                </main>
+                </p>
+                <button id="closem" class="btn" autofocus>Close</button>
+              </dialog>
             </div>
           </div>
         <?php endwhile ?>
       <?php endif; ?>
+      <div class="card">
+        <div class="card-img">
+          <img src="../assets/images/dimi.jpg">
+        </div>
+        <div class="card-body">
+          <p><strong> Nome: </strong> Fulaninho da Silva</p>
+          <p><strong> Nascimento: </strong> dd/mm/aaaa</p>
+          <p><strong> Visto por último em: </strong> endereço endereço</p>
+          <a id="openm" class="btn btnn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
 
-      <!-- fim cards -->
+          <dialog id="dialogo">
+            <p class="description">
+            <main class="main">
+              <!--formlário de postagem-->
+              <div class="newPost">
+
+                <div class="infoUser">
+                  <div class="imgUser"></div>
+                  <strong>Douglas Souza</strong>
+                </div>
+
+                <!--Formulario de envio-->
+                <form action="" class="formPost">
+                  <textarea name="textarea" placeholder="Faça seu comentário"></textarea>
+
+                  <div class="iconsAndButton">
+                    <div class="icons">
+                      <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem"></button>
+                      <button class="btnFileForm"><img src="./assets/images/video.svg" alt="Adicionar um video"></button>
+                    </div>
+                    <button type="submit" class="btnSubmitForm">Publicar</button>
+                  </div>
+                </form>
+              </div>
+
+
+              <!--post de comentário-->
+              <ul class="posts">
+                <li class="post">
+                  <div class="infoUserPost">
+                    <div class="imgUserPost"></div>
+                    <div class="nameAndHour">
+                      <strong>Douglas Pukas</strong>
+                      <p>00h</p>
+                    </div>
+                  </div>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe veritatis nemo quibusdam? Consequatur reiciendis odio aliquam, similique, quo ex tempore eligendi provident odit blanditiis qui vel autem voluptatem a neque?</p>
+
+                  <div class="actionBtnPost">
+                    <button type="button" class="filesPost like"><img src="./assets/images/heart.svg" alt="Curtir">Curtir</button>
+                    <button type="button" class="filesPost comment"><img src="./assets/images/comment.svg" alt="Comentar">Comentar</button>
+                    <button type="button" class="filesPost share"><img src="./assets/images/share.svg" alt="Compartilhar">Compartilhar</button>
+                  </div>
+                </li>
+              </ul>
+            </main>
+            </p>
+            <button id="closem" class="btn" autofocus>Close</button>
+          </dialog>
+        </div>
+      </div>
+
     </div>
-      <section class="sobre" id="sobre">
-        <?php if ($language == "pt"): ?>
-          SOBRE NOS!!
-        <?php elseif ($language == "es"): ?>
-          SOBRE NOS!!
-        <?php elseif ($language == "en"): ?>
-          ABOULT US!!
-        <?php endif; ?>
-      </section>
-</div>
-      <!-- notificação -->
-      <?php
-      include './components/sonner.php';
-      ?>
+  </div>
+  <!-- fim cards -->
 
-      <!-- rodapé -->
-      <?php
-      include './components/footer.php'
-      ?>
+  <section class="social-media-section">
+    <h2>Junte-se a nós nas redes sociais</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+        </div>
+        <h3>Instagram</h3>
+        <p>Siga-nos no Instagram para acompanhar as informações e atualizações.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
+        </div>
+        <h3>TikTok</h3>
+        <p>Para alcançar o maximo de jovens com informações sobre o desparecido no nosso TikTok.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+        </div>
+        <h3>Facebook</h3>
+        <p>Curta nossa página no Facebook para atualizações e encontro especiais.</p>
+      </div>
+    </div>
+  </section>
 
-      <!-- libras -->
-      <?php
-      include './components/libras.php'
-      ?>
 
-      <script src="./assets/javascript/politica.js"></script>
-      <script src="./assets/javascript/header.js"></script>
-      <script src="./assets/javascript/handle-form-user.js"></script>
-      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-      <script>
-        AOS.init();
-      </script>
+  <section class="sobre" id="sobre">
+    SOBRE NOS!!
+  </section>
+
+
+  <!-- notificação -->
+  <?php
+  include './components/sonner.php';
+  ?>
+
+  <!-- rodapé -->
+  <?php
+  include './components/footer.php'
+  ?>
+
+  <!-- libras -->
+  <?php
+  include './components/libras.php'
+  ?>
+  <!--fim rodapé-->
+  <script src="./assets/javascript/politica.js"></script>
+  <script src="./assets/javascript/header.js"></script>
+  <script src="./assets/javascript/handle-form-user.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./assets/javascript/comentario.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
 </body>
 
 </html>

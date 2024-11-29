@@ -20,12 +20,12 @@ function scrollleft() {
 
 const containe = document.querySelector('.containe');
 
-document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth) * 100;
-  const y = (e.clientY / window.innerHeight) * 100;
+// document.addEventListener('mousemove', (e) => {
+//   const x = (e.clientX / window.innerWidth) * 100;
+//   const y = (e.clientY / window.innerHeight) * 100;
 
-  containe.style.backgroundPosition = `${x}% ${y}%`;
-});
+//   containe.style.backgroundPosition = `${x}% ${y}%`;
+// });
 
 
 

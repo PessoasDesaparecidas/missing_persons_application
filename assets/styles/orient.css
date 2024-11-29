@@ -1,0 +1,255 @@
+.orient2 {
+  background: #000;
+  color: #fff;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 30vw 50vw;
+  gap: 10%;
+  justify-content: center;
+}
+
+.containe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  color: #ffffff;
+  background: linear-gradient(45deg, #6d2121, #000000, #b72828, #000000);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.text-content {
+  text-align: left;
+  max-width: 800px;
+}
+
+.text-content h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-content p {
+  font-size: 1.2rem;
+  max-width: 400px;
+  border-left: 2px solid #ffffff;
+  padding-left: 15px;
+  margin-top: 20px;
+}
+
+/* Gradiente animado */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 10vw 10vw 8vw;
+  gap: 300px; /* Aumenta o espaçamento entre as colunas e linhas */
+  justify-content: center;
+  max-width: 100%;
+}
+
+.feature {
+  text-align: center;
+  width: 300px; /* Mantém a largura fixa para cada .feature */
+  margin: 30px 350px; /* Aumenta o espaço ao redor dos itens */
+}
+
+.icon {
+  width: 70px; /* Aumenta o tamanho do círculo do ícone */
+  height: 70px;
+  background-color: #b62222;
+  color: #000000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px; /* Aumenta o tamanho do ícone */
+  margin: 0 auto 20px; /* Aumenta o espaçamento abaixo do ícone */
+}
+
+.feature h3 {
+  color: #b3b3b3;
+  font-weight: bold;
+  font-size: 24px; /* Aumenta o tamanho do título */
+  margin: 15px 0; /* Aumenta o espaço acima e abaixo do título */
+}
+
+.feature p {
+  font-size: 15px; /* Aumenta o tamanho do texto */
+  color: #b3b3b3;
+  line-height: 1.6; /* Aumenta a altura da linha */
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Estilos adicionais para o restante */
+.baby {
+  font-size: 5rem;
+  color: #6d2121;
+}
+
+.cont-orin1 p {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin-top: 20px;
+  color: #ccc;
+}
+
+.orient1 {
+  background: #ccc;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 150px;
+}
+
+.orient1::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  background-color: #000000;
+  top: 35%;
+}
+
+.orin {
+  color: #000;
+  font-size: 4rem;
+}
+
+.orient3 {
+  height: 2000px;
+  background: #000;
+  color: #fff;
+  padding: 150px;
+  display: grid;
+  grid-template-columns: 30vw 50vw;
+  gap: 10%;
+  justify-content: center;
+}
+.titu {
+  font-size: 1.5rem;
+}
+.orient4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #000000;
+  color: #fff;
+  padding: 20px;
+}
+
+.tt-mapa {
+  font-size: 40px;
+  color: #b3b3b3;
+  text-align: center;
+  margin-top: 0; /* Remove o espaço superior */
+  margin-bottom: 40px; /* Aumenta o espaço inferior para separar do próximo elemento */
+}
+
+.cont-mapa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 250px;
+  flex-wrap: wrap;
+}
+
+.tt-map {
+  font-size: 25px;
+  text-align: left;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.iframe {
+  max-width: 600px;
+  height: 400px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.class-action-section {
+  display: flex;
+  align-items: center;
+  background-color: #ccc; /* Cor de fundo laranja */
+  color: #000;
+  padding: 150px;
+  height: 90vh;
+  font-family: Arial, sans-serif;
+}
+
+.content {
+  flex: 1;
+}
+
+.content h2 {
+  color: white;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.content h1 {
+  font-size: 45px;
+  font-weight: bold;
+  width: 700px;
+  color: #000000;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0 0 20px;
+}
+
+.content li {
+  color: #000;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-left: 70px;
+}
+
+.image img {
+  width: 100%;
+  max-width: 500px; /* Ajuste conforme necessário */
+  border-radius: 5px;
+}
+/* Estilo do botão */
+.btn-link {
+  font-size: 18px; /* Aumenta o tamanho do texto */
+  color: #ffffff;
+  line-height: 1.6; /* Aumenta a altura da linha */
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Efeito hover */
+.btn-link:hover {
+  background-color: #b62222;
+  border-radius: 10px;
+  transform: scale(1.05);
+}
+
+/* Efeito de foco */
+.btn-link:focus {
+  outline: none;
+  box-shadow: 0 0 8px #0056b3;
+}
