@@ -1,11 +1,11 @@
 <?php
-function create_comment($connection, $missing_id, $user_id, $content, $latitude, $longitude)
+function create_comment($connection, $missing_id, $user_id, $content, $latitude, $longitude, $image_url)
 {
     $preparement_query_to_created_comment = $connection->prepare(
-        "INSERT INTO Comment (missing_person_id, user_id, content, latitude, longitude)
-         VALUES (?, ?, ?, ?, ?)"
+        "INSERT INTO Comment (missing_person_id, user_id, content, latitude, longitude, image_url)
+         VALUES (?, ?, ?, ?, ?, ?)"
     );
-    $preparement_query_to_created_comment->bind_param("sssss", $missing_id, $user_id, $content, $latitude, $longitude);
+    $preparement_query_to_created_comment->bind_param("ssssss", $missing_id, $user_id, $content, $latitude, $longitude, $image_url);
     $preparement_query_to_created_comment->execute();
     $preparement_query_to_created_comment->close();
 }

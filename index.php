@@ -114,10 +114,12 @@ include './database/comments-repository.php';
                   <!--Formulario de envio-->
                   <form
                     action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing["missing_person_id"] ?>"
-                    class="formPost" method="post">
+                    class="formPost" method="post" enctype="multipart/form-data">
                     <textarea name=" comment" id="comment" placeholder="Faça seu comentário"></textarea>
                     <input type="number" name="latitude" id="latitude" class="invisible">
                     <input type="number" name="longitude" id="longitude" class="invisible">
+
+                    <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" required>
 
                     <div class="iconsAndButton">
                       <div class="icons">
@@ -151,6 +153,12 @@ include './database/comments-repository.php';
                                     echo  $formatted_date  ?></p>
                       </div>
                     </div>
+
+
+                    <?php if (isset($comment["image_url"])): ?>
+                    <img src="./assets/uploads/comments/<?php echo $comment["image_url"] ?>" alt=""
+                      class="comment-image-url">
+                    <?php endif; ?>
                     <p><?php echo $comment["content"] ?></p>
 
                     <div class="actionBtnPost">

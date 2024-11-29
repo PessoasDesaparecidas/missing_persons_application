@@ -15,6 +15,7 @@ closeBtnms.forEach((closeBtnm, i) => {
 dialogos.forEach((dialogo, i) => {
   dialogo.addEventListener("click", (event) => {
     const rect = dialogo.getBoundingClientRect();
+    
     const isInDialog =
       event.clientX >= rect.left &&
       event.clientX <= rect.right &&
