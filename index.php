@@ -113,20 +113,24 @@ include './database/comments-repository.php';
 
                   <!--Formulario de envio-->
                   <form
-                    action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing["missing_person_id"] ?>"
+                    action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing['missing_person_id'] ?>"
                     class="formPost" method="post" enctype="multipart/form-data">
                     <textarea name=" comment" id="comment" placeholder="Faça seu comentário"></textarea>
-                    <input type="number" name="latitude" id="latitude" class="invisible">
-                    <input type="number" name="longitude" id="longitude" class="invisible">
-
-                    <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem" required>
+                    <input type="number" name="latitude" id="input-latitude-<?php echo $missing['missing_person_id'] ?>"
+                      class="invisible">
+                    <input type="number" name="longitude"
+                      id="input-longitude-<?php echo $missing["missing_person_id"] ?>" class="invisible">
 
                     <div class="iconsAndButton">
                       <div class="icons">
-                        <button class="btnFileForm"><img src="./assets/images/img.svg"
-                            alt="Adicionar uma imagem"></button>
-                        <button class="btnFileForm"><img src="./assets/images/video.svg"
-                            alt="Adicionar um video"></button>
+                        <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem">
+                          <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem"
+                            required></button>
+                        <button class="btnFileForm" id="btn-add-current-location" type="button"
+                          data-missing-id="<?php echo $missing['missing_person_id']; ?>"><img
+                            src="./assets/images/location.svg" alt="Adicionar localização atual"></button>
+                      </div>
+                      <div id="map-comment-<?php echo $missing["missing_person_id"] ?>">
                       </div>
                       <button type="submit" class="btnSubmitForm">Publicar</button>
                     </div>
@@ -159,6 +163,39 @@ include './database/comments-repository.php';
                     <img src="./assets/uploads/comments/<?php echo $comment["image_url"] ?>" alt=""
                       class="comment-image-url">
                     <?php endif; ?>
+
+                    <?php if (isset($comment["latitude"]) && isset($comment["longitude"])): ?>
+                    <div id="map-<?php echo $comment["comment_id"] ?>"></div>
+
+                    <script>
+                    function showMap(position) {
+
+
+                      const map = L.map("map").setView([<?php echo $comment["latitude"] ?>,
+                        <?php echo $comment["longitude"] ?>
+                      ], 13);
+
+                      // Adiciona o mapa base do OpenStreetMap
+                      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                      }).addTo(map);
+
+                      // Adiciona um marcador no mapa
+                      L.marker([latitude, longitude])
+                        .addTo(map)
+                        .bindPopup("Desaparecido visto aqui!")
+                        .openPopup();
+                    }
+
+                    function onError(error) {
+                      console.error("Erro ao obter a localização:", error);
+                    }
+
+                    navigator.geolocation.getCurrentPosition(showMap, onError);
+                    </script>
+
+                    <?php endif; ?>
+
                     <p><?php echo $comment["content"] ?></p>
 
                     <div class="actionBtnPost">
@@ -436,6 +473,45 @@ include './database/comments-repository.php';
   <script src="./assets/javascript/handle-form-user.js"></script>
   <script src="./assets/javascript/comentario.js"></script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./assets/javascript/get-coordinates-user.js"></script>
+
+  <script>
+  const buttonsAddCurrentLocation = document.querySelectorAll("#btn-add-current-location")
+
+
+  function initMap(mapId, latitude, longitude) {
+    const map = L.map(mapId).setView([latitude, longitude], 13);
+
+    // Adiciona o mapa base do OpenStreetMap
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Adiciona um marcador no mapa
+    L.marker([latitude, longitude])
+      .addTo(map)
+      .bindPopup("Você está aqui!")
+      .openPopup();
+  }
+
+
+  buttonsAddCurrentLocation.forEach((button) => {
+    console.log(button)
+    button.addEventListener("click", () => {
+      if (navigator.geolocation) {
+        // obter id do botão e pegar e redenrizar mapa e setar input
+      } else {
+        alert("Geolocalização não é suportada pelo seu navegador.");
+      }
+
+
+      function onError(error) {
+        console.error("Erro ao obter a localização:", error);
+        alert("Não foi possível obter sua localização.");
+      }
+    });
+  });
+  </script>
   <script>
   AOS.init();
   </script>

@@ -447,7 +447,19 @@ starting-style {
   background: #fff;
   margin-right: 15px;
   border: 0;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  position: relative;
+}
+
+.newPost .formPost .iconsAndButton .icons button input{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  cursor: pointer;
+
 }
 
 .newPost .formPost .iconsAndButton .btnSubmitForm {
