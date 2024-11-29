@@ -70,10 +70,15 @@ $quantity_missings = $row['quantity_missings'];
   <title>Busca Solidaria</title>
   <link rel="stylesheet" href="./assets/styles/header.css">
   <link rel="icon" href="./assets/images/favicon.png">
+<<<<<<< HEAD
   <link rel="stylesheet" href="./assets/styles/footer.css">
   <link rel="stylesheet" href="./assets/styles/tudo.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+=======
+  <link rel="stylesheet" href="./assets/styles/globals.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+>>>>>>> origin/main
 
   <style>
     * {
@@ -300,7 +305,10 @@ $quantity_missings = $row['quantity_missings'];
     <div class="heading">
       <h1 class="desapare">Desaparecidoss</h1>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     <div class="row">
       <?php
       $missings = $connection->query($query_all_missing);
@@ -332,6 +340,7 @@ $quantity_missings = $row['quantity_missings'];
                 $formatted_date = $date->format('d/m/Y');
                 echo  $formatted_date ?>
               </p>
+<<<<<<< HEAD
               <a id="openm" class="btn btnn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
               <dialog id="dialogo">
                 <p class="description">
@@ -382,6 +391,18 @@ $quantity_missings = $row['quantity_missings'];
                 </p>
                 <button id="closem" class="btn" autofocus>Close</button>
               </dialog>
+=======
+              <a  class="btn"><i
+                  class="fa-solid fa-comment"></i>
+                <?php if ($language == "pt"): ?>
+                  Viu? Comente
+                <?php elseif ($language == "en"): ?>
+                  It saw?Comment
+                <?php elseif ($language == "es"): ?>
+                  Vio? Comente
+                <?php endif; ?>
+              </a>
+>>>>>>> origin/main
             </div>
           </div>
         <?php endwhile ?>
@@ -396,6 +417,7 @@ $quantity_missings = $row['quantity_missings'];
           <p><strong> Visto por último em: </strong> endereço endereço</p>
           <a id="openm" class="btn btnn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
 
+<<<<<<< HEAD
           <dialog id="dialogo">
             <p class="description">
             <main class="main">
@@ -410,6 +432,24 @@ $quantity_missings = $row['quantity_missings'];
                 <!--Formulario de envio-->
                 <form action="" class="formPost">
                   <textarea name="textarea" placeholder="Faça seu comentário"></textarea>
+=======
+      <!-- fim cards -->
+    </div>
+      <section class="sobre" id="sobre">
+        <?php if ($language == "pt"): ?>
+          SOBRE NOS!!
+        <?php elseif ($language == "es"): ?>
+          SOBRE NOS!!
+        <?php elseif ($language == "en"): ?>
+          ABOULT US!!
+        <?php endif; ?>
+      </section>
+</div>
+      <!-- notificação -->
+      <?php
+      include './components/sonner.php';
+      ?>
+>>>>>>> origin/main
 
                   <div class="iconsAndButton">
                     <div class="icons">
