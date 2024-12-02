@@ -114,6 +114,10 @@ if (!$missing) {
 </head>
 
 <body>
+
+  <?php include './components/select-language.php'; ?>
+
+
   <div class="content-missing">
     <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>" alt="foto de <?php echo $missing["missing_person_name"] ?>">
     <div class="content-missing-description">

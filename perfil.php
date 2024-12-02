@@ -21,6 +21,20 @@ include './utils/select-language.php';
     <link rel="icon" href="./assets/images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Perfil </title>
+    <style>
+        .select-language-group {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            z-index: 1000;
+            background-color: black;
+            font-size: 1rem;
+            color: white;
+            width: auto;
+            height: auto;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,8 +42,18 @@ include './utils/select-language.php';
 
     <div class="prof">
         <?php include './components/header.php'; ?>
+        <?php include './components/select-language.php'; ?>
+
         <div class="container-profile">
-            <h4 class="title-profile"> <span><i class="fa-solid fa-gear"></i></span> Configurações de Perfil</h4>
+            <h4 class="title-profile"> <span><i class="fa-solid fa-gear"></i></span>
+                <?php if ($language == "pt"): ?>
+                    Configurações de Perfil
+                <?php elseif ($language == "es"): ?>
+                    Configuración de perfil
+                <?php elseif ($language == "en"): ?>
+                    Profile Settings
+                <?php endif; ?>
+            </h4>
             <div class="profile-settings">
                 <div class="sidebar">
                     <div class="profile-photo">
@@ -42,34 +66,89 @@ include './utils/select-language.php';
                     </div>
                     <ul>
                         <li class="tab-link active" data-tab="editar-perfil">
-                            <i class="fa-solid fa-pen"></i> Editar Perfil
+                            <i class="fa-solid fa-pen"></i>
+                            <?php if ($language == "pt"): ?>
+                                Editar Perfil
+                            <?php elseif ($language == "es"): ?>
+                                editar Perfil
+                            <?php elseif ($language == "en"): ?>
+                                Edit profile
+                            <?php endif; ?>
+
                         </li>
-                        <li class="tab-link" data-tab="meus-desap"> <i class="fa-solid fa-person"></i> Meus Desaparecidos</li>
+                        <li class="tab-link" data-tab="meus-desap"> <i class="fa-solid fa-person"></i>
+                            <?php if ($language == "pt"): ?>
+                                Meus Desaparecidos
+                            <?php elseif ($language == "es"): ?>
+                                Mi desaparición
+                            <?php elseif ($language == "en"): ?>
+                                My missing
+                            <?php endif; ?>
+                        </li>
                     </ul>
                 </div>
                 <div class="contentp">
                     <div class="tab active" id="editar-perfil">
                         <form method="post" action="./user-update.action.php" enctype="multipart/form-data">
-                            <label for="username">Usuário:</label>
+                            <label for="username">
+                                <?php if ($language == "pt"): ?>
+                                    Usuário:
+                                <?php elseif ($language == "es"): ?>
+                                    Usuario:
+                                <?php elseif ($language == "en"): ?>
+                                    User:
+                                <?php endif; ?>
+                            </label>
                             <input type="text" placeholder="Nome do usuário" value="<?php echo $user["username"] ?>" name="username" id="username" />
 
 
                             <label>Email:</label>
                             <input type="email" placeholder="Seu email" value=<?php echo $user["user_email"] ?> name="user_email" id="user_email" disabled />
 
-                            <label for="password">Senha:</label>
+                            <label for="password">
+                                <?php if ($language == "pt"): ?>
+                                    Senha:
+                                <?php elseif ($language == "es"): ?>
+                                    Contraseña:
+                                <?php elseif ($language == "en"): ?>
+                                    Password:
+                                <?php endif; ?>
+                            </label>
                             <input type="password" placeholder="*******" name="password" id="password" />
 
-                            <label class="picture" for="imagem">Foto</label>
+                            <label class="picture" for="imagem">
+
+                                <?php if ($language == "pt"): ?>
+                                    Foto:
+                                <?php elseif ($language == "es"): ?>
+                                    Foto:
+                                <?php elseif ($language == "en"): ?>
+                                    Photo:
+                                <?php endif; ?></label>
                             <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem">
 
 
-                            <button class="button save">Salvar Alterações</button>
+                            <button class="button save">
+                                <?php if ($language == "pt"): ?>
+                                    Salvar Alterações
+                                <?php elseif ($language == "es"): ?>
+                                    Guardar cambios
+                                <?php elseif ($language == "en"): ?>
+                                    Save changes
+                                <?php endif; ?>
+                            </button>
                         </form>
                     </div>
                     <div class="tab" id="meus-desap">
                         <h4 style="font-size: 20px; margin-bottom: 10px">
-                            Meus Desaparecidos
+                            <?php if ($language == "pt"): ?>
+                                Meus Desaparecidos
+                            <?php elseif ($language == "es"): ?>
+                                Mis Desaparecidos
+                            <?php elseif ($language == "en"): ?>
+                                My missings
+                            <?php endif; ?>
+
                         </h4>
                         <div class="row">
                             <?php
@@ -83,14 +162,36 @@ include './utils/select-language.php';
                                             alt="Desaparecido <?php echo $missing["missing_person_name"] ?>" />
                                         <div class="card-body">
                                             <p><strong>
-                                                    Nome:
+                                                    <?php if ($language == "pt"): ?>
+                                                        Nome:
+                                                    <?php elseif ($language == "es"): ?>
+                                                        Nombre:
+                                                    <?php elseif ($language == "en"): ?>
+                                                        Name:
+                                                    <?php endif; ?>
+
                                                 </strong> <?php echo $missing["missing_person_name"] ?></p>
                                             <p><strong>
-                                                    Visto por último em:
+                                                    <?php if ($language == "pt"): ?>
+
+                                                        Visto por último em:
+                                                    <?php elseif ($language == "es"): ?>
+
+                                                        Visto por último en:
+                                                    <?php elseif ($language == "en"): ?>
+
+                                                        Seen last at:
+                                                    <?php endif; ?>
                                                 </strong> <?php echo $missing["missing_location"] ?></p>
 
                                             <p><strong>
-                                                    Data do desaparecimento:
+                                                    <?php if ($language == "pt"): ?>
+                                                        Data do desaparecimento:
+                                                    <?php elseif ($language == "es"): ?>
+                                                        Fecha de desaparición:
+                                                    <?php elseif ($language == "en"): ?>
+                                                        Date of disappearance:
+                                                    <?php endif; ?>
                                                 </strong>
                                                 <?php
                                                 $date = new DateTime($missing["missing_date"]);
@@ -107,8 +208,14 @@ include './utils/select-language.php';
                             <?php else: ?>
                                 <div class="not-missing">
 
-                                    <h2>Você não possui desaparecidos cadastrados</h2>
-                                    <a href="./missing-cadastre.php" class="btn">cadastrar desaparecidos</a>
+                                    <?php if ($language == "pt"): ?> <h2>Você não possui desaparecidos cadastrados</h2>
+                                        <a href="./missing-cadastre.php" class="btn">cadastrar desaparecidos</a>
+                                    <?php elseif ($language == "es"): ?> <h2>No tienes la falta registrada</h2>
+                                        <a href="./missing-cadastre.php" class="btn">Registar Desaparecido</a>
+                                    <?php elseif ($language == "en"): ?> <h2>You do not have registered missing</h2>
+                                        <a href="./missing-cadastre.php" class="btn">Register Missing</a>
+                                    <?php endif; ?>
+
                                 </div>
                             <?php endif; ?>
 

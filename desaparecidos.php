@@ -96,6 +96,21 @@ $quantity_missings = $row['quantity_missings'];
 
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    .select-language-group {
+      position: fixed;
+      right: 10px;
+      top: 40%;
+      z-index: 1000;
+      background-color: black;
+      font-size: 1rem;
+      color: white;
+      width: auto;
+      height: auto;
+      padding: 5px 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -103,209 +118,621 @@ $quantity_missings = $row['quantity_missings'];
   <?php include './components/header.php'; ?>
   <!--fim da nav-->
 
-  <section class="hero">
-    <div class="desas">
-      <h1>Seu olhar atento pode ser a esperança de um reencontro. </h1>
-      <p>Reconhece algum desses rostos? Pesquise pelo nome, características ou idade e ajude-nos </br>a trazer alguém de volta para casa. </p>
-      <form class="form-search" action="./desaparecidos.php" method="get">
-        <div class="search-bar">
-          <input type="text" class="search-input" name="name" id="name" placeholder="Procure aqui..." value="<?php echo $name ?>">
-        </div>
+  <?php include './components/select-language.php'; ?>
+  <?php if ($language == "pt"): ?>
 
-        <div>
-          <select name="gender" id="gender">
-            <option value="" <?php if ($gender === "") echo "selected"; ?>>Tanto Faz</option>
-            <option value="masculino" <?php if ($gender === "masculino") echo "selected"; ?>>Masculino</option>
-            <option value="feminino" <?php if ($gender === "feminino") echo "selected"; ?>>Feminino</option>
-          </select>
-
-          <select name="created_at" id="created_at">
-            <option value="DESC" <?php if ($create_at_missings == "DESC") echo "selected"; ?>>Mais Recente</option>
-            <option value="ASC" <?php if ($create_at_missings == "ASC") echo "selected"; ?>>Mais antigo</option>
-          </select>
-
-
-          <select name="age_range" id="age_range">
-            <option value="" <?php if ($age_range == "") echo "selected"; ?>>Todas as idades</option>
-            <option value="jovem" <?php if ($age_range == "jovem") echo "selected"; ?>>Jovem (-18 anos)</option>
-            <option value="adulto" <?php if ($age_range == "adulto") echo "selected"; ?>>Aduto (+ 18anos)</option>
-            <option value="velho" <?php if ($age_range == "velho") echo "selected"; ?>>Idoso (+ 60anos)</option>
-          </select>
-
-          <button class="search-button" type="submit">
-            Buscar
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
-
-
-    </div>
-  </section>
-  <!-- cards -->
-  <div class="container">
-    <div class="heading">
-      <h1 class="desapare">Desaparecidos </h1>
-      <h3 class="desapare">
-        Total Resultados: <?php echo $quantity_missings; ?>
-      </h3>
-    </div>
-    <div class="row">
-
-      <?php
-
-      $missings = $connection->query($query_all_missing);
-      if ($missings->num_rows > 0) :
-      ?>
-        <?php while ($missing = $missings->fetch_assoc()): ?>
-          <div class="card">
-            <div class="card-img">
-              <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
-            </div>
-            <div class="card-body">
-              <p><strong>
-                  Nome:
-                </strong> <?php echo $missing["missing_person_name"] ?></p>
-              <p><strong>
-                  Visto por último em:
-                </strong> <?php echo $missing["missing_location"] ?></p>
-
-              <p><strong>
-                  Data do desaparecimento
-                </strong>
-                <?php
-                $date = new DateTime($missing["missing_date"]);
-                $formatted_date = $date->format('d/m/Y');
-                echo  $formatted_date ?>
-              </p>
-              <div class="buttons">
-                <a id="openm" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
-                <a href="./desaparecido.php?missing-id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i class="fa-solid fa-link"></i> Ver mais sobre</a>
-              </div>
-
-              <dialog id="dialogo">
-                <p class="description">
-                <main class="main">
-                  <div class="newPost">
-                    <?php if (get_user_id()): ?>
-                      <!--formlário de postagem-->
-
-                      <div class="infoUser">
-                        <div class="imgUser">
-                          <img src="./assets/uploads/users/<?php echo $user["user_photo"] ?>" alt="">
-                        </div>
-                        <strong><?php echo $user["username"] ?></strong>
-                      </div>
-
-                      <!--Formulario de envio-->
-                      <form
-                        action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing['missing_person_id'] ?>"
-                        class="formPost" method="post" enctype="multipart/form-data">
-                        <textarea name=" comment" id="comment" placeholder="Faça seu comentário" required></textarea>
-                        <input type="text" name="latitude" id="input-latitude-<?php echo $missing['missing_person_id'] ?>"
-                          value="" class="invisible">
-                        <input type="text" name="longitude"
-                          id="input-longitude-<?php echo $missing["missing_person_id"] ?>" value="" class="invisible">
-
-                        <div class="iconsAndButton">
-                          <div class="icons">
-                            <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem">
-                              <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem"></button>
-                            <button class="btnFileForm" id="btn-add-current-location" type="button"
-                              data-missing-id="<?php echo $missing['missing_person_id']; ?>"><img
-                                src="./assets/images/location.svg" alt="Adicionar localização atual"></button>
-                          </div>
-                          <button type="submit" class="btnSubmitForm">Publicar</button>
-                        </div>
-                      </form>
-                    <?php else: ?>
-                      <div style="width:100%; height:100%; display:flex; justify-content: center; align-content:center">
-                        <h3>necessario ter uma conta para comentar :(</h3>
-                      </div>
-                    <?php endif; ?>
-                  </div>
-
-
-
-                  <!--post de comentário-->
-                  <ul class="posts">
-                    <?php
-                    $comments = fetch_comments_by_missing_id($connection, $missing["missing_person_id"]);
-                    ?>
-                    <?php if ($comments->num_rows > 0): ?>
-                      <?php while ($comment = $comments->fetch_assoc()): ?>
-                        <li class="post">
-                          <div class="infoUserPost">
-                            <div class="imgUserPost">
-                              <img src="./assets/uploads/users/<?php echo $comment["author_image_url"] ?>" alt="">
-                            </div>
-                            <div class="nameAndHour">
-                              <strong><?php echo $comment["author_name"] ?></strong>
-                              <p><?php $date = new DateTime($comment["created_at"]);
-                                  $formatted_date = $date->format('d/m/Y');
-                                  echo  $formatted_date  ?></p>
-                            </div>
-                          </div>
-
-
-                          <?php if (isset($comment["image_url"])): ?>
-                            <img src="./assets/uploads/comments/<?php echo $comment["image_url"] ?>" alt=""
-                              class="comment-image-url">
-                          <?php endif; ?>
-
-                          <p><?php echo $comment["content"] ?></p>
-
-                        </li>
-                      <?php endwhile; ?>
-                    <?php endif; ?>
-
-                  </ul>
-                </main>
-                </p>
-                <button id="closem" class="btn" autofocus>Close</button>
-              </dialog>
-            </div>
+    <section class="hero">
+      <div class="desas">
+        <h1>Seu olhar atento pode ser a esperança de um reencontro. </h1>
+        <p>Reconhece algum desses rostos? Pesquise pelo nome, características ou idade e ajude-nos </br>a trazer alguém de volta para casa. </p>
+        <form class="form-search" action="./desaparecidos.php" method="get">
+          <div class="search-bar">
+            <input type="text" class="search-input" name="name" id="name" placeholder="Procure aqui..." value="<?php echo $name ?>">
           </div>
-        <?php endwhile ?>
+
+          <div>
+            <select name="gender" id="gender">
+              <option value="" <?php if ($gender === "") echo "selected"; ?>>Tanto Faz</option>
+              <option value="masculino" <?php if ($gender === "masculino") echo "selected"; ?>>Masculino</option>
+              <option value="feminino" <?php if ($gender === "feminino") echo "selected"; ?>>Feminino</option>
+            </select>
+
+            <select name="created_at" id="created_at">
+              <option value="DESC" <?php if ($create_at_missings == "DESC") echo "selected"; ?>>Mais Recente</option>
+              <option value="ASC" <?php if ($create_at_missings == "ASC") echo "selected"; ?>>Mais antigo</option>
+            </select>
+
+
+            <select name="age_range" id="age_range">
+              <option value="" <?php if ($age_range == "") echo "selected"; ?>>Todas as idades</option>
+              <option value="jovem" <?php if ($age_range == "jovem") echo "selected"; ?>>Jovem (-18 anos)</option>
+              <option value="adulto" <?php if ($age_range == "adulto") echo "selected"; ?>>Aduto (+ 18anos)</option>
+              <option value="velho" <?php if ($age_range == "velho") echo "selected"; ?>>Idoso (+ 60anos)</option>
+            </select>
+
+            <button class="search-button" type="submit">
+              Buscar
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+
+
+      </div>
+    </section>
+
+    <!-- cards -->
+    <div class="container">
+      <div class="heading">
+        <h1 class="desapare">Desaparecidos </h1>
+        <h3 class="desapare">
+          Total Resultados: <?php echo $quantity_missings; ?>
+        </h3>
+      </div>
+      <div class="row">
+
+        <?php
+
+        $missings = $connection->query($query_all_missing);
+        if ($missings->num_rows > 0) :
+        ?>
+          <?php while ($missing = $missings->fetch_assoc()): ?>
+            <div class="card">
+              <div class="card-img">
+                <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
+              </div>
+              <div class="card-body">
+                <p><strong>
+                    Nome:
+                  </strong> <?php echo $missing["missing_person_name"] ?></p>
+                <p><strong>
+                    Visto por último em:
+                  </strong> <?php echo $missing["missing_location"] ?></p>
+
+                <p><strong>
+                    Data do desaparecimento
+                  </strong>
+                  <?php
+                  $date = new DateTime($missing["missing_date"]);
+                  $formatted_date = $date->format('d/m/Y');
+                  echo  $formatted_date ?>
+                </p>
+                <div class="buttons">
+                  <a id="openm" class="btn"><i class="fa-solid fa-comment"></i> Viu? Comente</a>
+                  <a href="./desaparecido.php?missing-id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i class="fa-solid fa-link"></i> Ver mais sobre</a>
+                </div>
+
+                <dialog id="dialogo">
+                  <p class="description">
+                  <main class="main">
+                    <div class="newPost">
+                      <?php if (get_user_id()): ?>
+                        <!--formlário de postagem-->
+
+                        <div class="infoUser">
+                          <div class="imgUser">
+                            <img src="./assets/uploads/users/<?php echo $user["user_photo"] ?>" alt="">
+                          </div>
+                          <strong><?php echo $user["username"] ?></strong>
+                        </div>
+
+                        <!--Formulario de envio-->
+                        <form
+                          action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing['missing_person_id'] ?>"
+                          class="formPost" method="post" enctype="multipart/form-data">
+                          <textarea name=" comment" id="comment" placeholder="Faça seu comentário" required></textarea>
+                          <input type="text" name="latitude" id="input-latitude-<?php echo $missing['missing_person_id'] ?>"
+                            value="" class="invisible">
+                          <input type="text" name="longitude"
+                            id="input-longitude-<?php echo $missing["missing_person_id"] ?>" value="" class="invisible">
+
+                          <div class="iconsAndButton">
+                            <div class="icons">
+                              <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem">
+                                <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem"></button>
+                              <button class="btnFileForm" id="btn-add-current-location" type="button"
+                                data-missing-id="<?php echo $missing['missing_person_id']; ?>"><img
+                                  src="./assets/images/location.svg" alt="Adicionar localização atual"></button>
+                            </div>
+                            <button type="submit" class="btnSubmitForm">Publicar</button>
+                          </div>
+                        </form>
+                      <?php else: ?>
+                        <div style="width:100%; height:100%; display:flex; justify-content: center; align-content:center">
+                          <h3>necessario ter uma conta para comentar :(</h3>
+                        </div>
+                      <?php endif; ?>
+                    </div>
+
+
+
+                    <!--post de comentário-->
+                    <ul class="posts">
+                      <?php
+                      $comments = fetch_comments_by_missing_id($connection, $missing["missing_person_id"]);
+                      ?>
+                      <?php if ($comments->num_rows > 0): ?>
+                        <?php while ($comment = $comments->fetch_assoc()): ?>
+                          <li class="post">
+                            <div class="infoUserPost">
+                              <div class="imgUserPost">
+                                <img src="./assets/uploads/users/<?php echo $comment["author_image_url"] ?>" alt="">
+                              </div>
+                              <div class="nameAndHour">
+                                <strong><?php echo $comment["author_name"] ?></strong>
+                                <p><?php $date = new DateTime($comment["created_at"]);
+                                    $formatted_date = $date->format('d/m/Y');
+                                    echo  $formatted_date  ?></p>
+                              </div>
+                            </div>
+
+
+                            <?php if (isset($comment["image_url"])): ?>
+                              <img src="./assets/uploads/comments/<?php echo $comment["image_url"] ?>" alt=""
+                                class="comment-image-url">
+                            <?php endif; ?>
+
+                            <p><?php echo $comment["content"] ?></p>
+
+                          </li>
+                        <?php endwhile; ?>
+                      <?php endif; ?>
+
+                    </ul>
+                  </main>
+                  </p>
+                  <button id="closem" class="btn" autofocus>Close</button>
+                </dialog>
+              </div>
+            </div>
+          <?php endwhile ?>
+        <?php endif; ?>
+      </div>
+      <?php if ($quantity_missings > 8): ?>
+        <div class="show-more-container">
+          <button id="showMoreBtn" class="show-more">Mostrar mais ⬇</button>
+        </div>
       <?php endif; ?>
     </div>
-    <?php if ($quantity_missings > 8): ?>
-      <div class="show-more-container">
-        <button id="showMoreBtn" class="show-more">Mostrar mais ⬇</button>
+
+
+    <!-- social media -->
+    <section class="social-media-section">
+      <h2>Junte-se a nós nas redes sociais</h2>
+      <div class="features">
+        <a class="feature" href="https://www.instagram.com/busca.solidaria?igsh=MTltM3Bkdm1uMnV0eg%3D%3D&utm_source=qr" target="_blank">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+          </div>
+          <h3>Instagram</h3>
+          <p>Siga-nos no Instagram para acompanhar as informações e atualizações.</p>
+        </a>
+        <a class="feature" href="https://tiktok.com/@buscasolidaria?_t=8rrjrmitTjL&_r=1" target="_blank">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
+          </div>
+          <h3>TikTok</h3>
+          <p>Para alcançar o maximo de jovens com informações sobre o desparecido no nosso TikTok.</p>
+        </a>
+        <a class="feature">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </div>
+          <h3>Facebook</h3>
+          <p>Curta nossa página no Facebook para atualizações e encontro especiais.</p>
+        </a>
       </div>
-    <?php endif; ?>
-  </div>
+    </section>
+
+  <?php elseif ($language == "es"): ?>
+
+    <section class="hero">
+      <div class="desas">
+        <h1>Su aspecto atento puede ser la esperanza de una reunión.</h1>
+        <p>¿Reconoces alguna de estas caras?Busque el nombre, las características o la edad y ayúdanos a traer a alguien de regreso a casa.</p>
+        <form class="form-search" action="./desaparecidos.php" method="get">
+          <div class="search-bar">
+            <input type="text" class="search-input" name="name" id="name" placeholder="Procure aqui..." value="<?php echo $name ?>">
+          </div>
+
+          <div>
+            <select name="gender" id="gender">
+              <option value="" <?php if ($gender === "") echo "selected"; ?>>Lo que</option>
+              <option value="masculino" <?php if ($gender === "masculino") echo "selected"; ?>>masculino</option>
+              <option value="feminino" <?php if ($gender === "feminino") echo "selected"; ?>>Femenino</option>
+            </select>
+
+            <select name="created_at" id="created_at">
+              <option value="DESC" <?php if ($create_at_missings == "DESC") echo "selected"; ?>>El más reciente</option>
+              <option value="ASC" <?php if ($create_at_missings == "ASC") echo "selected"; ?>>Más viejo</option>
+            </select>
+
+
+            <select name="age_range" id="age_range">
+              <option value="" <?php if ($age_range == "") echo "selected"; ?>>Todas las edades</option>
+              <option value="jovem" <?php if ($age_range == "jovem") echo "selected"; ?>>Jovem (-18 años)</option>
+              <option value="adulto" <?php if ($age_range == "adulto") echo "selected"; ?>>Aduto (+ 18anos)</option>
+              <option value="velho" <?php if ($age_range == "velho") echo "selected"; ?>>Anciano (+ 60anos)</option>
+            </select>
+
+            <button class="search-button" type="submit">
+              Buscar
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+
+
+      </div>
+    </section>
+
+    <!-- cards -->
+    <div class="container">
+      <div class="heading">
+        <h1 class="desapare">Desaparecidos</h1>
+        <h3 class="desapare">
+          Resultados totales: <?php echo $quantity_missings; ?>
+        </h3>
+      </div>
+      <div class="row">
+
+        <?php
+
+        $missings = $connection->query($query_all_missing);
+        if ($missings->num_rows > 0) :
+        ?>
+          <?php while ($missing = $missings->fetch_assoc()): ?>
+            <div class="card">
+              <div class="card-img">
+                <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
+              </div>
+              <div class="card-body">
+                <p><strong>
+                    Nombre:
+                  </strong> <?php echo $missing["missing_person_name"] ?></p>
+                <p><strong>
+                    Visto por último en:
+                  </strong> <?php echo $missing["missing_location"] ?></p>
+
+                <p><strong>
+                    Fecha de desaparición
+                  </strong>
+                  <?php
+                  $date = new DateTime($missing["missing_date"]);
+                  $formatted_date = $date->format('d/m/Y');
+                  echo  $formatted_date ?>
+                </p>
+                <div class="buttons">
+                  <a id="openm" class="btn"><i class="fa-solid fa-comment"></i> Vio?</a>
+                  <a href="./desaparecido.php?missing-id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i class="fa-solid fa-link"></i> Ver más</a>
+                </div>
+
+                <dialog id="dialogo">
+                  <p class="description">
+                  <main class="main">
+                    <div class="newPost">
+                      <?php if (get_user_id()): ?>
+                        <!--formlário de postagem-->
+
+                        <div class="infoUser">
+                          <div class="imgUser">
+                            <img src="./assets/uploads/users/<?php echo $user["user_photo"] ?>" alt="">
+                          </div>
+                          <strong><?php echo $user["username"] ?></strong>
+                        </div>
+
+                        <!--Formulario de envio-->
+                        <form
+                          action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing['missing_person_id'] ?>"
+                          class="formPost" method="post" enctype="multipart/form-data">
+                          <textarea name=" comment" id="comment" placeholder="Faça seu comentário" required></textarea>
+                          <input type="text" name="latitude" id="input-latitude-<?php echo $missing['missing_person_id'] ?>"
+                            value="" class="invisible">
+                          <input type="text" name="longitude"
+                            id="input-longitude-<?php echo $missing["missing_person_id"] ?>" value="" class="invisible">
+
+                          <div class="iconsAndButton">
+                            <div class="icons">
+                              <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem">
+                                <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem"></button>
+                              <button class="btnFileForm" id="btn-add-current-location" type="button"
+                                data-missing-id="<?php echo $missing['missing_person_id']; ?>"><img
+                                  src="./assets/images/location.svg" alt="Adicionar localização atual"></button>
+                            </div>
+                            <button type="submit" class="btnSubmitForm">publicar</button>
+                          </div>
+                        </form>
+                      <?php else: ?>
+                        <div style="width:100%; height:100%; display:flex; justify-content: center; align-content:center">
+                          <h3>Necesito tener una cuenta para comentar :(</h3>
+                        </div>
+                      <?php endif; ?>
+                    </div>
 
 
 
-  <section class="social-media-section">
-    <h2>Junte-se a nós nas redes sociais</h2>
-    <div class="features">
-      <div class="feature">
-        <div class="icon">
-          <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
-        </div>
-        <h3>Instagram</h3>
-        <p>Siga-nos no Instagram para acompanhar as informações e atualizações.</p>
+                    <!--post de comentário-->
+                    <ul class="posts">
+                      <?php
+                      $comments = fetch_comments_by_missing_id($connection, $missing["missing_person_id"]);
+                      ?>
+                      <?php if ($comments->num_rows > 0): ?>
+                        <?php while ($comment = $comments->fetch_assoc()): ?>
+                          <li class="post">
+                            <div class="infoUserPost">
+                              <div class="imgUserPost">
+                                <img src="./assets/uploads/users/<?php echo $comment["author_image_url"] ?>" alt="">
+                              </div>
+                              <div class="nameAndHour">
+                                <strong><?php echo $comment["author_name"] ?></strong>
+                                <p><?php $date = new DateTime($comment["created_at"]);
+                                    $formatted_date = $date->format('d/m/Y');
+                                    echo  $formatted_date  ?></p>
+                              </div>
+                            </div>
+
+
+                            <?php if (isset($comment["image_url"])): ?>
+                              <img src="./assets/uploads/comments/<?php echo $comment["image_url"] ?>" alt=""
+                                class="comment-image-url">
+                            <?php endif; ?>
+
+                            <p><?php echo $comment["content"] ?></p>
+
+                          </li>
+                        <?php endwhile; ?>
+                      <?php endif; ?>
+
+                    </ul>
+                  </main>
+                  </p>
+                  <button id="closem" class="btn" autofocus>Close</button>
+                </dialog>
+              </div>
+            </div>
+          <?php endwhile ?>
+        <?php endif; ?>
       </div>
-      <div class="feature">
-        <div class="icon">
-          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
+      <?php if ($quantity_missings > 8): ?>
+        <div class="show-more-container">
+          <button id="showMoreBtn" class="show-more">Mostrar más ⬇</button>
         </div>
-        <h3>TikTok</h3>
-        <p>Para alcançar o maximo de jovens com informações sobre o desparecido no nosso TikTok.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
-        </div>
-        <h3>Facebook</h3>
-        <p>Curta nossa página no Facebook para atualizações e encontro especiais.</p>
-      </div>
+      <?php endif; ?>
     </div>
-  </section>
 
 
+    <!-- social media -->
+    <section class="social-media-section">
+      <h2>Únase a nosotros en las redes sociales</h2>
+      <div class="features">
+        <a class="feature" href="https://www.instagram.com/busca.solidaria?igsh=MTltM3Bkdm1uMnV0eg%3D%3D&utm_source=qr" target="_blank">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+          </div>
+          <h3>Instagram</h3>
+          <p>Síguenos en Instagram para rastrear la información y las actualizaciones.</p>
+        </a>
+        <a class="feature" href="https://tiktok.com/@buscasolidaria?_t=8rrjrmitTjL&_r=1" target="_blank">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
+          </div>
+          <h3>TikTok</h3>
+          <p>Para llegar al máximo de los jóvenes con información sobre los despedidos en nuestro tiktok.</p>
+        </a>
+        <a class="feature">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </div>
+          <h3>Facebook</h3>
+          <p>Me gusta nuestra página de Facebook para actualizaciones especiales y reuniones.</p>
+        </a>
+      </div>
+    </section>
+  <?php elseif ($language == "en"): ?>
+
+    <section class="hero">
+      <div class="desas">
+        <h1>Your attentive look may be the hope of a reunion. </h1>
+        <p>Do you recognize any of these faces?Search for the name, characteristics or age and help us </br>bringing someone back home. </p>
+        <form class="form-search" action="./desaparecidos.php" method="get">
+          <div class="search-bar">
+            <input type="text" class="search-input" name="name" id="name" placeholder="Procure aqui..." value="<?php echo $name ?>">
+          </div>
+
+          <div>
+            <select name="gender" id="gender">
+              <option value="" <?php if ($gender === "") echo "selected"; ?>>Whatever</option>
+              <option value="masculino" <?php if ($gender === "masculino") echo "selected"; ?>>Masculine</option>
+              <option value="feminino" <?php if ($gender === "feminino") echo "selected"; ?>>Feminine</option>
+            </select>
+
+            <select name="created_at" id="created_at">
+              <option value="DESC" <?php if ($create_at_missings == "DESC") echo "selected"; ?>>Most recent</option>
+              <option value="ASC" <?php if ($create_at_missings == "ASC") echo "selected"; ?>>Older</option>
+            </select>
+
+
+            <select name="age_range" id="age_range">
+              <option value="" <?php if ($age_range == "") echo "selected"; ?>>All ages</option>
+              <option value="jovem" <?php if ($age_range == "jovem") echo "selected"; ?>>Young (-18 anos)</option>
+              <option value="adulto" <?php if ($age_range == "adulto") echo "selected"; ?>>aduto (+ 18anos)</option>
+              <option value="velho" <?php if ($age_range == "velho") echo "selected"; ?>>Elderly (+ 60anos)</option>
+            </select>
+
+            <button class="search-button" type="submit">
+              Buscar
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+
+
+      </div>
+    </section>
+
+    <!-- cards -->
+    <div class="container">
+      <div class="heading">
+        <h1 class="desapare">Missings </h1>
+        <h3 class="desapare">
+          Total Results:<?php echo $quantity_missings; ?>
+        </h3>
+      </div>
+      <div class="row">
+
+        <?php
+
+        $missings = $connection->query($query_all_missing);
+        if ($missings->num_rows > 0) :
+        ?>
+          <?php while ($missing = $missings->fetch_assoc()): ?>
+            <div class="card">
+              <div class="card-img">
+                <img src="./assets/uploads/missings/<?php echo $missing["missing_person_photo"] ?>">
+              </div>
+              <div class="card-body">
+                <p><strong>
+                    Name:
+                  </strong> <?php echo $missing["missing_person_name"] ?></p>
+                <p><strong>
+                    Seen last at:
+                  </strong> <?php echo $missing["missing_location"] ?></p>
+
+                <p><strong>
+                    Date of disappearance
+                  </strong>
+                  <?php
+                  $date = new DateTime($missing["missing_date"]);
+                  $formatted_date = $date->format('d/m/Y');
+                  echo  $formatted_date ?>
+                </p>
+                <div class="buttons">
+                  <a id="openm" class="btn"><i class="fa-solid fa-comment"></i>It saw?Comment</a>
+                  <a href="./desaparecido.php?missing-id=<?php echo $missing["missing_person_id"] ?>" class="btn"><i class="fa-solid fa-link"></i>See more about</a>
+                </div>
+
+                <dialog id="dialogo">
+                  <p class="description">
+                  <main class="main">
+                    <div class="newPost">
+                      <?php if (get_user_id()): ?>
+                        <!--formlário de postagem-->
+
+                        <div class="infoUser">
+                          <div class="imgUser">
+                            <img src="./assets/uploads/users/<?php echo $user["user_photo"] ?>" alt="">
+                          </div>
+                          <strong><?php echo $user["username"] ?></strong>
+                        </div>
+
+                        <!--Formulario de envio-->
+                        <form
+                          action="./create-comment-by-missing.action.php?missing-id=<?php echo $missing['missing_person_id'] ?>"
+                          class="formPost" method="post" enctype="multipart/form-data">
+                          <textarea name=" comment" id="comment" placeholder="Faça seu comentário" required></textarea>
+                          <input type="text" name="latitude" id="input-latitude-<?php echo $missing['missing_person_id'] ?>"
+                            value="" class="invisible">
+                          <input type="text" name="longitude"
+                            id="input-longitude-<?php echo $missing["missing_person_id"] ?>" value="" class="invisible">
+
+                          <div class="iconsAndButton">
+                            <div class="icons">
+                              <button class="btnFileForm"><img src="./assets/images/img.svg" alt="Adicionar uma imagem">
+                                <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem"></button>
+                              <button class="btnFileForm" id="btn-add-current-location" type="button"
+                                data-missing-id="<?php echo $missing['missing_person_id']; ?>"><img
+                                  src="./assets/images/location.svg" alt="Adicionar localização atual"></button>
+                            </div>
+                            <button type="submit" class="btnSubmitForm">Post</button>
+                          </div>
+                        </form>
+                      <?php else: ?>
+                        <div style="width:100%; height:100%; display:flex; justify-content: center; align-content:center">
+                          <h3>Need to have an account to comment :(</h3>
+                        </div>
+                      <?php endif; ?>
+                    </div>
+
+
+
+                    <!--post de comentário-->
+                    <ul class="posts">
+                      <?php
+                      $comments = fetch_comments_by_missing_id($connection, $missing["missing_person_id"]);
+                      ?>
+                      <?php if ($comments->num_rows > 0): ?>
+                        <?php while ($comment = $comments->fetch_assoc()): ?>
+                          <li class="post">
+                            <div class="infoUserPost">
+                              <div class="imgUserPost">
+                                <img src="./assets/uploads/users/<?php echo $comment["author_image_url"] ?>" alt="">
+                              </div>
+                              <div class="nameAndHour">
+                                <strong><?php echo $comment["author_name"] ?></strong>
+                                <p><?php $date = new DateTime($comment["created_at"]);
+                                    $formatted_date = $date->format('d/m/Y');
+                                    echo  $formatted_date  ?></p>
+                              </div>
+                            </div>
+
+
+                            <?php if (isset($comment["image_url"])): ?>
+                              <img src="./assets/uploads/comments/<?php echo $comment["image_url"] ?>" alt=""
+                                class="comment-image-url">
+                            <?php endif; ?>
+
+                            <p><?php echo $comment["content"] ?></p>
+
+                          </li>
+                        <?php endwhile; ?>
+                      <?php endif; ?>
+
+                    </ul>
+                  </main>
+                  </p>
+                  <button id="closem" class="btn" autofocus>Close</button>
+                </dialog>
+              </div>
+            </div>
+          <?php endwhile ?>
+        <?php endif; ?>
+      </div>
+      <?php if ($quantity_missings > 8): ?>
+        <div class="show-more-container">
+          <button id="showMoreBtn" class="show-more">Show more ⬇</button>
+        </div>
+      <?php endif; ?>
+    </div>
+
+
+    <!-- social media -->
+    <section class="social-media-section">
+      <h2>Join us on social networks</h2>
+      <div class="features">
+        <a class="feature" href="https://www.instagram.com/busca.solidaria?igsh=MTltM3Bkdm1uMnV0eg%3D%3D&utm_source=qr" target="_blank">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+          </div>
+          <h3>Instagram</h3>
+          <p>Follow us on Instagram to track the information and updates.</p>
+        </a>
+        <a class="feature" href="https://tiktok.com/@buscasolidaria?_t=8rrjrmitTjL&_r=1" target="_blank">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
+          </div>
+          <h3>TikTok</h3>
+          <p>To reach the maximum of young people with information about the dismissed in our Tiktok.</p>
+        </a>
+        <a class="feature">
+          <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </div>
+          <h3>Facebook</h3>
+          <p>Like our Facebook page for special updates and meeting.</p>
+        </a>
+      </div>
+    </section>
+  <?php endif; ?>
 
   <!--rodapé-->
   <?php include './components/footer.php'; ?>

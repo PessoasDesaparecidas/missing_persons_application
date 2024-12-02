@@ -1843,7 +1843,7 @@ if ($missing["user_id"] != get_user_id()) {
 
                     <div class="continue-button">
                         <button type="submit" name="btn-cadastre-missing">
-                            Cadastrar
+                            Atualizar
                         </button>
                     </div>
                 </section>

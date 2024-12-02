@@ -56,7 +56,7 @@ $user = find_by_id($connection, get_user_id());
 
     <ul class="profile-dropdown-list">
       <li class="profile-dropdown-list-item">
-        <a href="./perfil.php#edit-perfil">
+        <a href="./perfil.php?lg=<?php echo $language ?>#edit-perfil">
           <i class="fa-regular fa-user"></i>
           <?php if ($language == "pt"): ?>
             Editar perfil
@@ -71,7 +71,7 @@ $user = find_by_id($connection, get_user_id());
       </li>
 
       <li class="profile-dropdown-list-item">
-        <a href="./perfil.php#missings">
+        <a href="./perfil.php?lg=<?php echo $language ?>#missings">
           <i class="fa-regular fa-circle-question"></i>
           <?php if ($language == "pt"): ?>
             Ver seus desaparecidos
