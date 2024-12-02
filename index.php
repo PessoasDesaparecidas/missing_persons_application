@@ -61,7 +61,7 @@ include './database/comments-repository.php';
                     um sistema para cadastro de pessoas desaparecidas.
                 </p>
                 <?php if (get_user_id()): ?>
-                    <a href="./missing-cadastre.php" class="btn">
+                    <a href="./missing-cadastre.php?lg=<?php echo $language ?>" class="btn">
                         Cadastre aqui
                     </a>
                 <?php else: ?>
@@ -222,7 +222,7 @@ include './database/comments-repository.php';
                     <p>aumentando a possibilidade de encontra-lo.</p>
                     <small>O preenchimento de formulario não substitui o BO</small>
                     <?php if (get_user_id()): ?>
-                        <a href="./missing-cadastre.php" class="btn">Formulario de cadastro</a>
+                        <a href="./missing-cadastre.php?lg=<?php echo $language ?>" class="btn">Formulario de cadastro</a>
 
                     <?php else: ?>
                         <a class="btn" id="register-missing-not-authenticated2">

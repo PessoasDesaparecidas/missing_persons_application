@@ -3,6 +3,7 @@ include './utils/protect-page-route.php';
 include './database/missings-repository.php';
 include './utils/get-missing-id.php';
 include './utils/sonner.php';
+include './utils/select-language.php';
 
 $missing = get_missing_by_id($connection, get_missing_id());
 
@@ -36,10 +37,25 @@ if ($missing["user_id"] != get_user_id()) {
         .input-group2 {
             grid-template-columns: 1fr 1fr;
         }
+
+        .select-language-group {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            z-index: 1000;
+            background-color: black;
+            font-size: 1rem;
+            color: white;
+            width: auto;
+            height: auto;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 
 <body>
+    <?php include "./components/select-language.php"; ?>
+
     <div class="container">
         <div class="form-image">
             <style>
@@ -1715,36 +1731,76 @@ if ($missing["user_id"] != get_user_id()) {
                 <section id="form-state-one">
                     <div class="input-group">
                         <div class="input-box">
-                            <label for="missing_person_name">Nome </label>
+                            <label for="missing_person_name">
+                                <?php if ($language == "pt"): ?>
+                                    Nome
+                                <?php elseif ($language == "es"): ?>
+                                    Nome
+                                <?php elseif ($language == "en"): ?>
+                                    Nome
+                                <?php endif; ?>
+                            </label>
                             <input id="missing_person_name" type="text" name="missing_person_name"
                                 placeholder="Digite o username completo do desaparecido" value="<?php echo $missing["missing_person_name"] ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="missing_person_age">Idade do desaparecido </label>
+                            <label for="missing_person_age"> <?php if ($language == "pt"): ?>
+                                    Idade do Desaparecido
+                                <?php elseif ($language == "es"): ?>
+                                    Idade do Desaparecido
+                                <?php elseif ($language == "en"): ?>
+                                    Idade do Desaparecido
+                                <?php endif; ?> </label>
                             <input id="missing_person_age" type="text" name="missing_person_age"
                                 placeholder="Digite a idade atual do desaparecido" value="<?php echo $missing["missing_person_age"] ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="missing_person_note">Caracteristicas do desaparecido </label>
+                            <label for="missing_person_note"> <?php if ($language == "pt"): ?>
+                                    Caracteristicas do desaparecido
+                                <?php elseif ($language == "es"): ?>
+                                    Caracteristicas do desaparecido
+                                <?php elseif ($language == "en"): ?>
+                                    Caracteristicas do desaparecido
+                                <?php endif; ?> </label>
                             <input id="missing_person_note" type="text" name="missing_person_note"
                                 placeholder="Digite as caraceristicas do desaparecido" value="<?php echo $missing["missing_person_note"] ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="missing_person_contact">Telefone para contato </label>
+                            <label for="missing_person_contact">
+                                <?php if ($language == "pt"): ?>
+                                    Telefone para contato
+                                <?php elseif ($language == "es"): ?>
+                                    Telefone para contato
+                                <?php elseif ($language == "en"): ?>
+                                    Telefone para contato
+                                <?php endif; ?> </label>
                             <input id="missing_person_contact" type="tel" name="missing_person_contact" placeholder="(xx) xxxxx-xxxx"
                                 minlength="11" maxlength="15" value="<?php echo $missing["missing_person_contact"] ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="missing_date">Foi visto por último em </label>
+                            <label for="missing_date">
+                                <?php if ($language == "pt"): ?>
+                                    Foi visto por último em
+                                <?php elseif ($language == "es"): ?>
+                                    Foi visto por último em
+                                <?php elseif ($language == "en"): ?>
+                                    Foi visto por último em
+                                <?php endif; ?> </label>
                             <input id="missing_date" type="datetime-local" name="missing_date" value="<?php echo $missing["missing_date"] ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="missing_location">ultima vez foi visto </label>
+                            <label for="missing_location"> <?php if ($language == "pt"): ?>
+                                    ultima vez foi visto
+                                <?php elseif ($language == "es"): ?>
+                                    ultima vez foi visto
+                                <?php elseif ($language == "en"): ?>
+                                    ultima vez foi visto
+                                <?php endif; ?> </label>
                             <input type="text" name="missing_location" id="missing_location" placeholder="av. guilherme cotching 777" value="<?php echo $missing["missing_location"] ?>">
                         </div>
                     </div>
@@ -1753,24 +1809,49 @@ if ($missing["user_id"] != get_user_id()) {
 
 
                     <div class="input-box">
-                        <label for="missing_person_story">o que fazia quando desapareceu </label>
+                        <label for="missing_person_story"> <?php if ($language == "pt"): ?>
+                                o que fazia quando desapareceu
+                            <?php elseif ($language == "es"): ?>
+                                o que fazia quando desapareceu
+                            <?php elseif ($language == "en"): ?>
+                                o que fazia quando desapareceu
+                            <?php endif; ?> </label>
                         <input id="missing_person_story" type="text" name="missing_person_story" placeholder="Digite a historia do desaparecido" value="<?php echo $missing["missing_person_story"] ?>">
                     </div>
 
                     <div class="input-box">
-                        <label class="picture" tabindex="0" for="imagem">Foto </label>
+                        <label class="picture" tabindex="0" for="imagem"><?php if ($language == "pt"): ?>
+                                foto
+                            <?php elseif ($language == "es"): ?>
+                                foto
+                            <?php elseif ($language == "en"): ?>
+                                foto
+                            <?php endif; ?> </label>
                         <input type="file" accept="image/*" class="picture_input" id="imagem" name="imagem">
                     </div>
 
 
                     <div class="input-box">
-                        <label class="picture" tabindex="0" for="imagem">Boletim de ocorrencia </label>
+                        <label class="picture" tabindex="0" for="imagem"> <?php if ($language == "pt"): ?>
+                                Boletim de ocorrencia
+                            <?php elseif ($language == "es"): ?>
+                                Boletim de ocorrencia
+                            <?php elseif ($language == "en"): ?>
+                                Boletim de ocorrencia
+                            <?php endif; ?> </label>
                         <input type="file" accept=".pdf" class="picture_input" id="police_report" name="police_report">
                     </div>
 
                     <div class="continue-button" id="next-state-form">
                         <button type="button">
-                            Proxima
+                            <?php if ($language == "pt"): ?>
+                                Proxima
+                            <?php elseif ($language == "es"): ?>
+                                Proxima
+                            <?php elseif ($language == "en"): ?>
+                                Proxima
+                            <?php endif; ?>
+
                         </button>
                     </div>
                 </section>
@@ -1779,28 +1860,60 @@ if ($missing["user_id"] != get_user_id()) {
 
                     <div class="gender-inputs">
                         <div class="gender-title">
-                            <h6>Gênero </h6>
+                            <h6> <?php if ($language == "pt"): ?>
+                                    Gênero
+                                <?php elseif ($language == "es"): ?>
+                                    Gênero
+                                <?php elseif ($language == "en"): ?>
+                                    Gênero
+                                <?php endif; ?> </h6>
                         </div>
                         <div class="gender-group ">
 
                             <div class="gender-input">
                                 <input type="radio" id="female" name="missing_person_gender" value="Feminino" <?php if ($missing["missing_person_gender"] == "Feminino") echo 'checked'; ?>>
-                                <label for="female">Feminino</label>
+                                <label for="female"> <?php if ($language == "pt"): ?>
+                                        Feminino
+                                    <?php elseif ($language == "es"): ?>
+                                        Feminino
+                                    <?php elseif ($language == "en"): ?>
+                                        Feminino
+                                    <?php endif; ?>
+                                </label>
                             </div>
 
                             <div class="gender-input">
                                 <input type="radio" id="male" name="missing_person_gender" value="Masculino" <?php if ($missing["missing_person_gender"] == "Masculino") echo 'checked'; ?>>
-                                <label for="male">Masculino</label>
+                                <label for="male"> <?php if ($language == "pt"): ?>
+                                        Masculino
+                                    <?php elseif ($language == "es"): ?>
+                                        Masculino
+                                    <?php elseif ($language == "en"): ?>
+                                        Masculino
+                                    <?php endif; ?>
+                                </label>
                             </div>
 
                             <div class="gender-input">
                                 <input type="radio" id="others" name="missing_person_gender" value="Outros" <?php if ($missing["missing_person_gender"] == "Outros") echo 'checked'; ?>>
-                                <label for="others">Outros</label>
+                                <label for="others"> <?php if ($language == "pt"): ?>
+                                        Outros
+                                    <?php elseif ($language == "es"): ?>
+                                        Outros
+                                    <?php elseif ($language == "en"): ?>
+                                        Outros
+                                    <?php endif; ?></label>
                             </div>
 
                             <div class="gender-input">
                                 <input type="radio" id="none" name="missing_person_gender" value="Prefiro não dizer" <?php if ($missing["missing_person_gender"] == "Prefiro não dizer") echo 'checked'; ?>>
-                                <label for="none">Prefiro não dizer</label>
+                                <label for="none"> <?php if ($language == "pt"): ?>
+                                        Prefiro não dizer
+                                    <?php elseif ($language == "es"): ?>
+                                        Prefiro não dizer
+                                    <?php elseif ($language == "en"): ?>
+                                        Prefiro não dizer
+                                    <?php endif; ?></label>
                             </div>
 
                         </div>
@@ -1809,30 +1922,66 @@ if ($missing["user_id"] != get_user_id()) {
                     <br>
                     <div class="gender-inputs">
                         <div class="gender-title">
-                            <h6>Mais informações</h6>
+                            <h6> <?php if ($language == "pt"): ?>
+                                    Mais informações
+                                <?php elseif ($language == "es"): ?>
+                                    Mais informações
+                                <?php elseif ($language == "en"): ?>
+                                    Mais informações
+                                <?php endif; ?></h6>
                         </div>
 
                         <div class="input-group input-group2">
                             <div class="input-box">
-                                <label for="mais-infromacao-1">Doenças: </label>
+                                <label for="mais-infromacao-1">
+                                    <?php if ($language == "pt"): ?>
+                                        Doenças:
+                                    <?php elseif ($language == "es"): ?>
+                                        Doenças:
+                                    <?php elseif ($language == "en"): ?>
+                                        Doenças:
+                                    <?php endif; ?>
+                                </label>
                                 <input id="mais-infromacao-1" type="text" name="mais-infromacao-1"
                                     placeholder="Possui algum transtorno ?" value="<?php echo $missing["illnesses"] ?>">
                             </div>
 
                             <div class="input-box">
-                                <label for="mais-infromacao-2">Dependencias quimicas: </label>
+                                <label for="mais-infromacao-2">
+                                    <?php if ($language == "pt"): ?>
+                                        Dependencias quimicas:
+                                    <?php elseif ($language == "es"): ?>
+                                        Dependencias quimicas:
+                                    <?php elseif ($language == "en"): ?>
+                                        Dependencias quimicas:
+                                    <?php endif; ?> </label>
                                 <input id="mais-infromacao-2" type="text" name="mais-infromacao-2"
                                     placeholder="Alcolatra" value="<?php echo $missing["chemical_dependency"] ?>">
                             </div>
 
                             <div class="input-box">
-                                <label for="mais-infromacao-3">Perfil Rede Social: </label>
+                                <label for="mais-infromacao-3">
+                                    <?php if ($language == "pt"): ?>
+                                        Perfil Rede Social:
+                                    <?php elseif ($language == "es"): ?>
+                                        Perfil Rede Social:
+                                    <?php elseif ($language == "en"): ?>
+                                        Perfil Rede Social:
+                                    <?php endif; ?>
+                                </label>
                                 <input id="mais-infromacao-3" type="text" name="mais-infromacao-3"
                                     placeholder="facebook.com..." value="<?php echo $missing["profile"] ?>">
                             </div>
 
                             <div class="input-box">
-                                <label for="mais-infromacao-4">veiculo: </label>
+                                <label for="mais-infromacao-4">
+                                    <?php if ($language == "pt"): ?>
+                                        Placa do carro:
+                                    <?php elseif ($language == "es"): ?>
+                                        Placa do carro:
+                                    <?php elseif ($language == "en"): ?>
+                                        Placa do carro:
+                                    <?php endif; ?> </label>
                                 <input id="mais-infromacao-4" type="tel" name="mais-infromacao-4" placeholder="xxx-0000"
                                     minlength="11" maxlength="15" value="<?php echo $missing["car_plate"] ?>">
                             </div>
@@ -1843,7 +1992,14 @@ if ($missing["user_id"] != get_user_id()) {
 
                     <div class="continue-button">
                         <button type="submit" name="btn-cadastre-missing">
-                            Atualizar
+
+                            <?php if ($language == "pt"): ?>
+                                Atualizar
+                            <?php elseif ($language == "es"): ?>
+                                Atualizar
+                            <?php elseif ($language == "en"): ?>
+                                Atualizar
+                            <?php endif; ?>
                         </button>
                     </div>
                 </section>
