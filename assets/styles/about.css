@@ -1,37 +1,26 @@
-.tit{
-    color: white;
-    margin-top: 10px;
-    text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
 }
-/*
-.sobre{
-    background-color: #9C0000;
-    color: white;
-    max-width: 100vw;
-    min-width: 50vw;
-    max-height: 100vh;
-    min-height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    margin-left: 100px;
-    margin-right: 100px;
-    border-radius: 5px;
+
+.tit {
+  color: white;
+  margin-top: 10px;
+  text-align: center;
 }
-.sobre-text{
-    line-height: 25px;
-    font-size: 1.6rem;
-    text-align: justify;
-    margin-left: 100px;
-    margin-right: 100px;
-}*/
-.about{
-    display: flex;
-    justify-content: center;
-    padding: 30px;
+
+.about {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
 }
-.about-content{
+
+.about-content {
   display: flex;
   color: #fff;
   width: 85%;
@@ -40,43 +29,98 @@
   text-align: justify;
 }
 
-  /*integrantes*/
-  .int{
-    height: 150vh;
-    line-height: 30px;
-    justify-content: center;
-  }
-  .content-2
-  {
-      color: white;
-      justify-content: center;
-      padding: 25px;
-      display: grid;
-      grid-template-columns: 30vw 30vw 25vw;
-  }
-  .content-2 ul , .content-22 ul{
-      padding: 15px;
-      width: 25vw;
-      text-align: left;
-  }
-  .content-2 img, .content-22 img{
-      width: 30%;
-      border-radius: 50%;
-  }
-  .detail{
-    color: #969696;
-  }
-
-.content-22{
-      color: white;
-      justify-content: center;
-      padding: 25px;
-      display: grid;
-      grid-template-columns:20vw 40vw 40vw;
-
+/* Integrantes */
+.int {
+  height: auto;
+  line-height: 30px;
+  padding: 30px 0;
+  justify-content: center;
 }
-@media  screen and (max-width: 600px) {
-  .content-2 .content-22 .int{
-      grid-auto-columns: 100%;
+
+.content-2 {
+  color: white;
+  justify-content: center;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 30vw 30vw 25vw;
+}
+
+.content-2 ul,
+.content-22 ul {
+  padding: 15px;
+  width: 25vw;
+  text-align: left;
+}
+
+.content-2 img,
+.content-22 img {
+  width: 30%;
+  border-radius: 50%;
+}
+
+.detail {
+  color: #969696;
+}
+
+.content-22 {
+  color: white;
+  justify-content: center;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 20vw 40vw 40vw;
+}
+
+@media screen and (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .content-2,
+  .content-22 {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .content-2 ul,
+  .content-22 ul {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .content-2 img,
+  .content-22 img {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .int {
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content-2 .content-22 .int {
+    grid-auto-columns: 100%;
+  }
+
+  .tit {
+    font-size: 1.2rem;
+  }
+
+  .about-content {
+    font-size: 0.9rem;
+  }
+
+  .content-2,
+  .content-22 {
+    padding: 10px;
+  }
+
+  .content-2 img,
+  .content-22 img {
+    width: 60%;
   }
 }

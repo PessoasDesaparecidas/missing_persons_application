@@ -3,8 +3,10 @@ const dialogos = document.querySelectorAll("#dialogo");
 const closeBtnms = document.querySelectorAll("#closem");
 
 openBtnms.forEach((openBtnm, i) => {
-  console.log(openBtnm);
-  openBtnm.addEventListener("click", () => dialogos[i].showModal());
+  openBtnm.addEventListener("click", () => {
+    dialogos[i].showModal()
+    dialogos[i].scrollTop = 0
+  });
 });
 
 closeBtnms.forEach((closeBtnm, i) => {

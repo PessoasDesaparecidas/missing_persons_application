@@ -1,3 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+/* Estilo geral da barra de rolagem */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra vertical */
+  height: 12px; /* Altura da barra horizontal */
+}
+
+/* Fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* Cor da barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background: #b62222;
+  height: 10%;
+}
+
+/* Cor da barra ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #b62222;
+}
+
 .one {
   padding: 6%;
   justify-content: flex-start;
@@ -215,9 +246,12 @@
 
 .spsp {
   height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 100px;
 }
+
 .sampa {
   display: flex;
   width: 80%;
@@ -269,6 +303,8 @@ button {
 }
 
 dialog {
+  width: 100%;
+  max-width: 1000px;
   margin: auto;
   padding: 2rem;
   border: none;
@@ -303,14 +339,24 @@ starting-style {
 }
 /*fim dos termos de priv */
 
-.description {
-  max-width: 40ch;
+footer .description {
+  width: 100%;
   margin: 1rem 0;
+}
+
+footer .description h4 {
+  color: #9a0101;
+  font-size: 1.2rem;
+}
+
+footer .description p {
+  font-size: 0.9rem;
+  color: black;
 }
 
 .social-media-section {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 4rem 0rem 8rem 0rem;
 }
 
 .social-media-section h2 {
@@ -320,6 +366,7 @@ starting-style {
 }
 
 .features {
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -358,17 +405,119 @@ starting-style {
   color: #ccc;
 }
 
+@media (max-width: 1024px) {
+  .content-0 {
+    max-width: 70%;
+  }
+
+  .cta-section {
+    padding: 100px;
+  }
+
+  .cta-content h2 {
+    font-size: 1em;
+  }
+
+  .textin {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .faq-item h3,
+  .faq-item p {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .one {
+    flex-direction: column;
+    padding: 10%;
+    height: auto;
+  }
+
+  .content-0 {
+    max-width: 90%;
+    margin-top: 20px;
+  }
+
+  .content-0 h1 {
+    margin-top: 50px;
+    font-size: 0.5em;
+    line-height: 1.2;
+  }
+
+  .cta-section {
+    padding: 50px;
+  }
+
+  .textin {
+    width: 100%;
+    padding: 20px;
+  }
+
+  #girl {
+    width: 90%;
+  }
+
+  .faq-section {
+    padding: 20px;
+  }
+
+  .sampa {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .image-section {
+    width: 100%;
+  }
+  .text-section {
+    width: 100%;
+    font-size: 1rem;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-0 h1 {
+    font-size: 1.5em;
+  }
+
+  .faq-section h2 {
+    font-size: 1.5em;
+  }
+
+  .cta-content p {
+    font-size: 1em;
+  }
+
+  .feature {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .sampa {
+    gap: 20px;
+  }
+}
+
 /*comentario*/
 .main {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-
 }
 
 .newPost {
   width: 100%;
-  height: 240px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -386,18 +535,18 @@ starting-style {
 }
 
 .newPost .infoUser .imgUser {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #333;
 }
 
-.newPost .infoUser .imgUser img{
-  width: 35px;
-  height: 35px;
+.newPost .infoUser .imgUser img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
- object-fit: cover;
- object-position: center center; 
+  object-fit: cover;
+  object-position: center center;
 }
 
 .newPost .infoUser strong {
@@ -422,6 +571,7 @@ starting-style {
   outline: none;
   border: 0;
   font-weight: bold;
+  font-size: 1rem;
   color: #252525;
   font-family: "Roboto", sans-serif;
 }
@@ -453,13 +603,12 @@ starting-style {
   position: relative;
 }
 
-.newPost .formPost .iconsAndButton .icons button input{
+.newPost .formPost .iconsAndButton .icons button input {
   position: absolute;
   width: 20px;
   height: 20px;
   opacity: 0;
   cursor: pointer;
-
 }
 
 .newPost .formPost .iconsAndButton .btnSubmitForm {
@@ -484,9 +633,13 @@ starting-style {
   padding: 25px;
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.2);
   list-style-type: none;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.posts .post .comment-image-url{
+.posts .post .comment-image-url {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -497,31 +650,36 @@ starting-style {
   align-items: center;
 }
 
-.posts .post .infoUserPost .imgUserPost .nameAndHour {
-  margin-left: 20px;
+.nameAndHour {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .posts .post .infoUserPost .imgUserPost {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #333;
+  margin-right: 1rem;
 }
 .posts .post .infoUserPost .imgUserPost img {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center center;
 }
 
-.posts .post .infoUserPost .imgUserPost .nameAndHour > strong {
+.nameAndHour > strong {
   color: #9a0101;
 }
 
-.posts .post .infoUserPost .imgUserPost .nameAndHour > p {
-  color: #d1d1d1;
-  font-size: 12px;
+.nameAndHour > p {
+  margin: 0 !important;
+  padding: 0 !important;
+  all: unset;
+  color: black;
 }
 
 .posts .post > p {
@@ -556,6 +714,13 @@ starting-style {
 
 .posts .post .actionBtnPost .filesPost img {
   margin-right: 5px;
+}
+
+.map-form {
+  width: 600px; /* Largura fixa */
+  height: 400px; /* Altura fixa */
+  border: 1px solid #ccc; /* Opcional: Adiciona uma borda para destacar o mapa */
+  margin: 20px auto; /* Centraliza o mapa horizontalmente */
 }
 
 .like {
@@ -619,8 +784,8 @@ starting-style {
   transform: scale(1);
 }
 
-.content-form.wrapper.active {
-  height: 520px;
+.wrapper.active {
+  height: 600px;
 }
 
 .content-form .wrapper .form-box {
@@ -687,6 +852,8 @@ starting-style {
 
 .input-box label {
   position: absolute;
+  display: block;
+
   top: 50%;
   left: 5px;
   font-size: 1em;
@@ -719,6 +886,10 @@ starting-style {
   font-size: 1.5em;
   color: #e4e0e7;
   line-height: 57px;
+  background-color: transparent;
+  width: 24px !important;
+  height: 57px !important;
+  border-radius: 0;
 }
 
 .login-register {
@@ -754,24 +925,50 @@ starting-style {
 .input-terms-of-use {
   display: flex;
   width: 100%;
+  gap: 5px;
+
   font-size: 1rem;
   color: #fff;
   align-items: center;
+  margin-bottom: 30px;
+}
+
+.input-terms-of-use span a {
+  color: #aa0014;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .input-photo {
   width: 100%;
   height: 2rem;
-  background-color: #e4e0e7;
+  color: white;
+  position: relative;
+  border: 2px solid #e4e0e7;
+  padding: 5px 4px;
+  margin: 30px 0;
+  cursor: pointer;
 }
 
 .input-photo input {
   all: unset;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
   width: 100%;
   height: 100%;
-  background-color: #e4e0e7;
 }
 
 .invisible {
   visibility: hidden !important;
   display: none !important;
+}
+
+@media (max-width: 768px) {
+  .faq-section div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }

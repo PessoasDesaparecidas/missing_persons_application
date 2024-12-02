@@ -1,5 +1,5 @@
 <?php
-$host = "localhost:3307";
+$host = "localhost:3306";
 $username = "root";
 $password = "";
 $database = "tcc";
@@ -27,12 +27,14 @@ $create_missing_persons_table = "CREATE TABLE IF NOT EXISTS MissingPerson (
    missing_person_name VARCHAR(50) NOT NULL,
    missing_person_gender VARCHAR(20) NOT NULL,
    missing_person_photo VARCHAR(255) NOT NULL,
+   missing_police_report VARCHAR(255) NOT NULl,
    missing_person_contact VARCHAR(255) NOT NULL,
    missing_person_story TEXT NOT NULL,
    missing_person_note TEXT NOT NULL,
    missing_person_age INT NOT NULL,
    missing_date DATETIME NOT NULL,
    missing_location VARCHAR(255) NOT NULL,
+   
    illnesses VARCHAR(255),
    chemical_dependency VARCHAR(255),
    profile VARCHAR(255),

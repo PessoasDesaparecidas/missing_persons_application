@@ -12,6 +12,15 @@ function create_user($connection, $username, $email, $password, $user_photo)
   $preparement_query_to_create_user->close();
 }
 
+function update_user_by_id($connection, $id, $username, $password, $user_photo)
+{
+  $preparement_query_to_update_user = $connection->prepare(
+    "UPDATE User SET username =?, user_password =?, user_photo =? WHERE user_id =?"
+  );
+  $preparement_query_to_update_user->bind_param("ssss", $username, $password, $user_photo, $id);
+  $preparement_query_to_update_user->execute();
+}
+
 function find_by_id($connection, $id)
 {
   $preparement_query_to_find_user_by_id = $connection->prepare("SELECT * FROM User WHERE user_id = ?");

@@ -9,6 +9,15 @@ window.addEventListener('scroll', () => {
     header.classList.remove('header-scroll');
   }
 });
+window.addEventListener('load', () => {
+
+  if (window.scrollY > 50) {
+    header.classList.add('header-scroll');
+  } else {
+    header.classList.remove('header-scroll');
+  }
+});
+
 
 // document.addEventListener("click", closeAllSelect);
 function scrollright() {
@@ -72,9 +81,23 @@ window.addEventListener('load', () => {
       clearClassListNavLinks()
       navLinksInHeader[3].classList.add("active-link")
       break;
+    case "termos.php":
+      clearClassListNavLinks()
+      navLinksInHeader[4].classList.add("active-link")
+      break;
     default:
       clearClassListNavLinks()
 
       break;
   }
 })
+
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+
+            const progressBar = document.getElementById("progressBar");
+            progressBar.style.width = scrollPercentage + "%";
+        });

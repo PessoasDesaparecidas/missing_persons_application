@@ -1,6 +1,13 @@
-body{
-  overflow-x: hidden;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
 }
+
 .orient2 {
   background: #000;
   color: #fff;
@@ -55,21 +62,22 @@ body{
 }
 
 .features {
+  width: 100%;
   display: grid;
-  grid-template-columns: 10vw 10vw 8vw;
-  gap: 300px; /* Aumenta o espaçamento entre as colunas e linhas */
-  justify-content: center;
-  max-width: 100%;
+  max-width: 1200px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding: 3rem;
+  margin: auto;
 }
 
 .feature {
-  text-align: center;
-  width: 300px; /* Mantém a largura fixa para cada .feature */
-  margin: 30px 350px; /* Aumenta o espaço ao redor dos itens */
+  width: 100%;
+  height: 300px;
 }
 
 .icon {
-  width: 70px; /* Aumenta o tamanho do círculo do ícone */
+  width: 70px;
   height: 70px;
   background-color: #b62222;
   color: #000000;
@@ -77,26 +85,24 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35px; /* Aumenta o tamanho do ícone */
-  margin: 0 auto 20px; /* Aumenta o espaçamento abaixo do ícone */
+  font-size: 35px;
+  margin: 0 auto 20px;
 }
 
 .feature h3 {
   color: #b3b3b3;
   font-weight: bold;
-  font-size: 24px; /* Aumenta o tamanho do título */
-  margin: 15px 0; /* Aumenta o espaço acima e abaixo do título */
+  font-size: 24px;
+  margin: 15px 0;
 }
 
 .feature p {
-  font-size: 15px; /* Aumenta o tamanho do texto */
+  font-size: 15px;
   color: #b3b3b3;
-  line-height: 1.6; /* Aumenta a altura da linha */
+  line-height: 1.6;
   max-width: 280px;
   margin: 0 auto;
 }
-
-/* Estilos adicionais para o restante */
 .baby {
   font-size: 5rem;
   color: #6d2121;
@@ -160,8 +166,8 @@ body{
   font-size: 40px;
   color: #b3b3b3;
   text-align: center;
-  margin-top: 0; /* Remove o espaço superior */
-  margin-bottom: 40px; /* Aumenta o espaço inferior para separar do próximo elemento */
+  margin-top: 0;
+  margin-bottom: 40px;
 }
 
 .cont-mapa {
@@ -189,7 +195,7 @@ body{
 .class-action-section {
   display: flex;
   align-items: center;
-  background-color: #ccc; /* Cor de fundo laranja */
+  background-color: #ccc;
   color: #000;
   padding: 150px;
   height: 90vh;
@@ -232,27 +238,160 @@ body{
 
 .image img {
   width: 100%;
-  max-width: 500px; /* Ajuste conforme necessário */
+  max-width: 500px;
   border-radius: 5px;
 }
-/* Estilo do botão */
+
 .btn-link {
-  font-size: 18px; /* Aumenta o tamanho do texto */
+  font-size: 18px;
   color: #ffffff;
-  line-height: 1.6; /* Aumenta a altura da linha */
+  line-height: 1.6;
   max-width: 280px;
   margin: 0 auto;
 }
 
-/* Efeito hover */
 .btn-link:hover {
   background-color: #b62222;
   border-radius: 10px;
   transform: scale(1.05);
 }
 
-/* Efeito de foco */
 .btn-link:focus {
   outline: none;
   box-shadow: 0 0 8px #0056b3;
+}
+
+@media (max-width: 1024px) {
+  .text-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .text-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .btn-link {
+    font-size: 0.9rem;
+  }
+
+  .orient1,
+  .orient2,
+  .orient3 {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .orient4 {
+    padding: 10px;
+  }
+}
+
+.cont-mapa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 250px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .cont-mapa {
+    gap: 20px;
+  }
+
+  .iframe {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+.class-action-section {
+  display: flex;
+  align-items: center;
+  background-color: #ccc;
+  color: #000;
+  padding: 150px;
+  height: 90vh;
+}
+
+@media (max-width: 768px) {
+  .class-action-section {
+    flex-direction: column;
+    padding: 50px;
+    height: auto;
+  }
+}
+
+.image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .image img {
+    max-width: 80%;
+  }
+}
+
+.btn-link {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .btn-link {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .orient3 {
+    grid-template-columns: 0fr;
+    padding: 20px;
+  }
+  .baby {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 100%) {
+  .cont-orin {
+    grid-template-columns: 0fr;
+    padding: 0px;
+  }
+  .baby {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .icon {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+  }
+
+  .feature h3 {
+    font-size: 18px;
+  }
+
+  .feature p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }

@@ -6,6 +6,7 @@ function create_missing(
   $missing_person_name,
   $missing_person_gender,
   $missing_person_photo,
+  $missing_police_report,
   $missing_person_contact,
   $missing_person_story,
   $missing_person_note,
@@ -18,15 +19,16 @@ function create_missing(
   $car_plate
 ) {
   $preparement_query_to_create_missing = $connection->prepare("INSERT INTO MissingPerson 
-(user_id, missing_person_name, missing_person_gender, missing_person_photo, missing_person_contact, missing_person_story, missing_person_note, missing_date, missing_person_age, missing_location, illnesses, profile, car_plate, chemical_dependency)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+(user_id, missing_person_name, missing_person_gender, missing_person_photo, missing_police_report,  missing_person_contact, missing_person_story, missing_person_note, missing_date, missing_person_age, missing_location, illnesses, profile, car_plate, chemical_dependency)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   $preparement_query_to_create_missing->bind_param(
-    "ssssssssssssss",
+    "sssssssssssssss",
     $user_id,
     $missing_person_name,
     $missing_person_gender,
     $missing_person_photo,
+    $missing_police_report,
     $missing_person_contact,
     $missing_person_story,
     $missing_person_note,

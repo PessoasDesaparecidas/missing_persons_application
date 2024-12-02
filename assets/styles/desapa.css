@@ -1,0 +1,301 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+s .container {
+  width: 90%;
+  margin: 50px auto;
+}
+.heading {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 50px;
+  margin-top: 0px;
+}
+
+.desapare {
+  color: #b62222;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.row {
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
+  gap: 3rem 2rem;
+}
+
+@media screen and (max-width: 2200px) {
+  .row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 1750px) {
+  .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 950px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .row {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.card {
+  height: 100%;
+  max-height: 500px;
+  width: 100%;
+  list-style: none;
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: 0.2s all;
+}
+
+.card-img {
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
+.card-img img {
+  border-radius: 5px;
+  height: 225px;
+  width: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-body {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.card-body .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px; /* Diminui o espaçamento superior */
+}
+.card-body .btn {
+  background-image: url(./assets/images/desapecido.jpg);
+  display: block;
+  color: #fff;
+  text-align: center;
+  background: #b62222;
+  text-decoration: none;
+  padding: 5px 10px; /* Diminui o tamanho do botão */
+  font-size: 12px; /* Ajusta o tamanho do texto */
+  border-radius: 5px; /* Arredonda os cantos do botão */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    width: 100%;
+  }
+
+  .heading {
+    padding: 20px;
+    font-size: 20px;
+  }
+}
+
+.hero {
+  height: 70vh; /* Altura total da tela */
+  background: linear-gradient(
+    to bottom,
+    #b6222b,
+    #000000
+  ); /* Fundo gradiente */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png"); /* Estrelas */
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.desas {
+  position: relative;
+  z-index: 2; /* Para garantir que o texto e os botões fiquem acima das estrelas */
+  max-width: 100%;
+}
+
+.desas h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1em;
+  margin-top: 100px;
+}
+
+.desas p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.form-search {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-bar {
+  width: 80%;
+  height: auto;
+  align-items: center;
+  gap: 8px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-search div {
+  display: grid;
+  width: 80%;
+  margin: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 850px) {
+  .form-search div {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  align-items: center;
+  font-size: 16px;
+  outline: none;
+}
+
+.filter-button,
+.search-button,
+.form-search select {
+  background-color: #f0f0f0;
+  color: #101010;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+.search-button {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+.filter-button:hover,
+.search-button:hover {
+  background-color: #b62222;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 90%;
+  }
+
+  .search-input {
+    font-size: 14px;
+  }
+
+  .filter-button,
+  .search-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .search-input {
+    font-size: 14px;
+  }
+
+  .filter-button,
+  .search-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+.card.hidden {
+  display: none;
+}
+
+.show-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.show-more {
+  background-color: #b62222;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.show-more:hover {
+  background-color: #a11f1f;
+}

@@ -1,4 +1,7 @@
 /assets/uploads/missings/*
 /assets/uploads/users/*
+/assets/uploads/comments/*
+/assets/storage/pdfs/*
+
 
 node_modules

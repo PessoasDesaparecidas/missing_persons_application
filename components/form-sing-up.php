@@ -34,7 +34,8 @@
       <label>password</label>
     </div>
     <div class="input-photo">
-      <input type="file" accept="image/*" id="imagem" name="imagem" required>
+      <p>foto:</p>
+      <input type="file" accept="image/*" id="imagem" name="imagem" required placeholder="Foto">
     </div>
 
     <div class="input-terms-of-use">

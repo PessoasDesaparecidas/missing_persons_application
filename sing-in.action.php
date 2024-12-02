@@ -23,4 +23,14 @@ if ($is_password_valid) {
     sonner('error', 'password invalida');
 }
 
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $previousPage = filter_var($_SERVER['HTTP_REFERER'], FILTER_VALIDATE_URL);
+
+    if ($previousPage) {
+        header("Location: $previousPage");
+        exit;
+    }
+}
+
+
 header("Location: index.php");

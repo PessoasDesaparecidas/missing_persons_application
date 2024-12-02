@@ -27,7 +27,6 @@ if (isset($_POST['submit-form-register'])) {
 
       $user = find_by_email($connection, $email);
       $_SESSION['user_id'] = $user['user_id'];
-
       sonner('success', ' Bem Vindo ' . $user["username"]);
     } else {
       $_SESSION['user_id'] = '';
@@ -36,5 +35,16 @@ if (isset($_POST['submit-form-register'])) {
   } else {
     sonner('error', 'usuario não autorizado');
   }
+
+  if (isset($_SERVER['HTTP_REFERER'])) {
+    $previousPage = filter_var($_SERVER['HTTP_REFERER'], FILTER_VALIDATE_URL);
+
+    if ($previousPage) {
+      header("Location: $previousPage");
+      exit;
+    }
+  }
+
+
   header('Location: index.php');
 }

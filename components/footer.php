@@ -54,12 +54,66 @@
           <?php endif; ?>
         </p>
         <dialog id="dialog">
-          <h2>Hello, World!</h2>
-          <p class="description">
-            Velit magna qui laborum dolore fugiat elit magna consequat et cupidatat.
-            Minim non anim nostrud dolore officia tempor mollit. Elit sint consequat
-            velit sint ex enim amet exercitation.
-          </p>
+          <h2>Políticas de privacidad</h2>
+          <div class="description">
+            <h4>
+              Objeto:
+            </h4>
+            <p>
+              A plataforma oferece ferramentas para cadastro de pessoas desaparecidas, incluindo informações e localização de usuários.
+            </p>
+
+            <h4>Aceitação:</h4>
+            <p>
+              Ao usar a plataforma, o usuário aceita os Termos de Uso e compromete-se a cumpri-los, sob risco de sanções.
+            </p>
+
+            <h4>Acesso:</h4>
+            <p>O serviço é disponibilizado 24/7, mas pode haver interrupções para manutenção ou ajustes.</p>
+
+            <h4>
+              Cadastro:
+            </h4>
+            <p>É necessário cadastro com dados válidos e atualizados. Alguns serviços podem exigir pagamento.
+            </p>
+
+            <h4>Suporte:</h4>
+            <p>
+              Contato para dúvidas ou problemas via e-mail: etecpj.ds.2024@gmail.com.
+
+            </p>
+
+            <h4> Responsabilidades:
+            </h4>
+            <p>
+              <strong>Usuário:</strong> Uso correto da plataforma, proteção de dados de acesso e respeito às regras.
+              <br>
+              <strong>Plataforma:</strong> Garantir informações corretas sobre os serviços e atender às legislações aplicáveis. Não se responsabiliza por links externos ou conteúdos ilícitos divulgados por terceiros.
+              Direitos Autorais: Todos os direitos da plataforma são reservados. O uso é pessoal, intransferível, e qualquer uso não autorizado será punido conforme a lei.
+            </p>
+
+            <h4>
+              Sanções:
+            </h4>
+            <p>
+              Contas podem ser suspensas ou canceladas em caso de violação das regras, comportamento fraudulento ou ofensivo.
+            </p>
+
+            <h4> Rescisão: </h4>
+            <p>O descumprimento das obrigações poderá levar ao cancelamento imediato dos serviços.
+            </p>
+
+            <h4>Alterações:</h4>
+            <p> Os Termos podem ser modificados unilateralmente, e as mudanças serão publicadas no site. O usuário pode aceitar ou encerrar o uso.
+            </p>
+
+            <h4>Política de Privacidade:</h4>
+            <p> O usuário deve consentir com os termos da Política de Privacidade.</p>
+
+            <h4>Foro: </h4>
+            <p>Controvérsias serão resolvidas segundo o Direito brasileiro, no foro da comarca da sede da empresa.
+            </p>
+          </div>
           <button id="close-modal" class="btn" autofocus="">Close</button>
         </dialog>
       </div>
