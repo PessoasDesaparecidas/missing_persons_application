@@ -28,6 +28,8 @@ if (!$missing) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desaparecido | <?php echo $missing["missing_person_name"] ?></title>
   <link rel="stylesheet" href="./assets/styles/tudo.css" />
+
+  <link rel="stylesheet" href="./assets/styles/missing.css" />
   <link rel="icon" href="./assets/images/favicon.png">
 
   <!-- Incluindo o CSS do Leaflet -->
@@ -38,79 +40,7 @@ if (!$missing) {
   <!-- Incluindo o JavaScript do Leaflet -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <style>
-    .content-missing {
-      margin: auto;
-      display: grid;
-      width: 100%;
-      max-width: 1200px;
-      height: 60vh;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      padding: 2rem 1rem 0;
-    }
 
-    .content-missing img {
-      width: 100%;
-      height: 56vh;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: 5px;
-    }
-
-    .content-missing .content-missing-description {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .content-missing .content-missing-description div {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-    }
-
-
-    .metadata .maps {
-      width: 100%;
-      height: 40vh;
-      max-width: 1200px;
-    }
-
-    .metadata {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .comment-image-url {
-      width: 100%;
-      max-width: 1200px;
-      height: 40vh;
-      height: auto;
-      object-fit: cover;
-      object-position: top center;
-      margin: auto !important;
-    }
-
-
-    .form-content {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .main {
-      padding: 0 1rem;
-      max-width: 1200px;
-
-    }
-  </style>
 </head>
 
 <body>
